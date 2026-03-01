@@ -14,7 +14,6 @@ const serviceOptions = [
   { value: '', label: 'Bitte wählen…' },
   { value: 'automation', label: 'AI-Automatisierungen (n8n + Python)' },
   { value: 'saas', label: 'SaaS-Produktentwicklung' },
-  { value: 'trading', label: 'Trading-Algorithmen' },
   { value: 'agents', label: 'AI-Agent-Systeme' },
   { value: 'other', label: 'Sonstiges / Noch unklar' },
 ];
@@ -90,7 +89,7 @@ export default function ContactForm() {
         <h3 className="text-heading-3 mb-2 text-text-primary">Nachricht erhalten.</h3>
         <p className="text-body text-text-secondary">
           Wir melden uns innerhalb von 24 Stunden.
-          In dringenden Fällen: <a href="mailto:hello@wandasystems.de" className="text-accent hover:underline">hello@wandasystems.de</a>
+          In dringenden Fällen: <a href="mailto:wanda.devops@gmail.com" className="text-accent hover:underline">wanda.devops@gmail.com</a>
         </p>
       </div>
     );

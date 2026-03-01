@@ -6,13 +6,19 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node
@@ -26,14 +32,18 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Clone target repo and deploy
-        run: |
-          git config --global user.email "wanda.devops@gmail.com"
-          git config --global user.name "Wanda"
-          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/wanda-OS-dev/wanda-OS-dev.github.io.git target
-          rm -rf target/*
-          cp -r dist/* target/
-          cd target
-          git add -A
-          git diff --cached --quiet || git commit -m "deploy: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/wanda-OS-dev/wanda-OS-dev.github.io.git main
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

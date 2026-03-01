@@ -4,6 +4,7 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   site: 'https://wanda-os-dev.github.io',
+  base: '/wandasystems-site',
   integrations: [
     react(),
     tailwind({
