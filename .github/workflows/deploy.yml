@@ -12,7 +12,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout source
         uses: actions/checkout@v4
 
       - name: Setup Node
@@ -26,11 +26,14 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to wanda-OS-dev.github.io
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          personal_token: ${{ secrets.DEPLOY_TOKEN }}
-          external_repository: wanda-OS-dev/wanda-OS-dev.github.io
-          publish_branch: main
-          publish_dir: ./dist
-          force_orphan: true
+      - name: Clone target repo and deploy
+        run: |
+          git config --global user.email "wanda.devops@gmail.com"
+          git config --global user.name "Wanda"
+          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/wanda-OS-dev/wanda-OS-dev.github.io.git target
+          rm -rf target/*
+          cp -r dist/* target/
+          cd target
+          git add -A
+          git diff --cached --quiet || git commit -m "deploy: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/wanda-OS-dev/wanda-OS-dev.github.io.git main
