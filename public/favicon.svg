@@ -1,4 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="WandaSystems favicon">
-  <rect width="64" height="64" rx="14" fill="#0B0F17"/>
-  <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700" fill="#D4AF37" letter-spacing="-1">WS</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="WandaSystems">
+  <!-- Background -->
+  <rect width="64" height="64" rx="14" fill="#0d0816"/>
+  <rect width="64" height="64" rx="14" fill="none" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+  <!-- W mark -->
+  <path d="M12 18L21 48L32 34L43 48L52 18" stroke="#00f5ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M18 18L21 26L32 34L43 26L46 18" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.45"/>
+  <!-- Glow hint -->
+  <path d="M12 18L21 48L32 34L43 48L52 18" stroke="#00f5ff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.15"/>
 </svg>
