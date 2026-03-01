@@ -59,12 +59,17 @@ export default function ContactForm() {
     setFormState('loading');
 
     try {
-      // Submit to Netlify Forms / Formspree / custom endpoint
-      // For static deployment, we use a hidden form + fetch
-      const response = await fetch('/api/contact', {
+      const payload = new FormData();
+      payload.append('name', data.name);
+      payload.append('email', data.email);
+      payload.append('company', data.company);
+      payload.append('service', data.service);
+      payload.append('message', data.message);
+
+      const response = await fetch('https://formspree.io/f/xpwzogdb', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        headers: { Accept: 'application/json' },
+        body: payload,
       });
 
       if (response.ok) {
@@ -73,8 +78,7 @@ export default function ContactForm() {
         throw new Error('Submission failed');
       }
     } catch {
-      // Fallback: mailto link
-      setFormState('success'); // Show success for static sites
+      setFormState('error');
     }
   };
 
@@ -212,6 +216,13 @@ export default function ContactForm() {
           </p>
         )}
       </div>
+
+      {formState === 'error' && (
+        <p className="text-sm text-red-400">
+          Versand fehlgeschlagen. Bitte schreiben Sie direkt an{' '}
+          <a href="mailto:wanda.devops@gmail.com" className="text-accent hover:underline">wanda.devops@gmail.com</a>.
+        </p>
+      )}
 
       {/* Submit */}
       <div className="flex items-center justify-between gap-4">

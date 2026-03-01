@@ -24,11 +24,11 @@ const services = [
     href: '/services#saas',
   },
   {
-    id: 'trading',
-    icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 14l4-5 3 3 4-6 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 17H3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-    title: 'Trading-Algorithmen',
-    desc: 'Quantitative Strategien für Crypto-Märkte. Backtesting, Live-Execution, Risk-Management — vollständig automatisiert.',
-    href: '/services#trading',
+    id: 'web-app',
+    icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="3" width="15" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 16.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 13v3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    title: 'Web & App Development',
+    desc: 'Performante Web-Apps und interne Plattformen mit klarem Fokus auf UX, Geschwindigkeit und messbare Business-Ergebnisse.',
+    href: '/services#saas',
   },
   {
     id: 'agents',
@@ -42,13 +42,17 @@ const services = [
 
 <Layout
   title="AI-Systeme, die arbeiten"
-  description="WandaSystems baut AI-Automatisierungen, SaaS-Produkte und Trading-Algorithmen für B2B-Unternehmen, die Ergebnisse brauchen — keine Versprechen."
+  description="WandaSystems baut AI-Automatisierungen, SaaS-Produkte und API-Integrationen für B2B-Unternehmen, die Ergebnisse brauchen — keine Versprechen."
 >
   <!-- Hero Section -->
   <section class="relative overflow-hidden pt-20 pb-24 lg:pt-28 lg:pb-32" aria-labelledby="hero-headline">
-    <!-- Subtle grid background -->
+    <!-- Premium animated background -->
     <div class="pointer-events-none absolute inset-0" aria-hidden="true">
-      <div class="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:64px_64px] opacity-40"></div>
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:64px_64px] opacity-30"></div>
+      <div class="hero-aurora hero-aurora-1"></div>
+      <div class="hero-aurora hero-aurora-2"></div>
+      <div class="hero-aurora hero-aurora-3"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.18),transparent_55%)]"></div>
       <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bg to-transparent"></div>
     </div>
 
@@ -69,7 +73,7 @@ const services = [
         <!-- Sub -->
         <p class="mb-10 max-w-[560px] text-body-lg text-text-secondary">
           Keine Demos. Keine Buzzwords. WandaSystems liefert AI-Automatisierungen,
-          SaaS-Produkte und Trading-Algorithmen, die messbare Ergebnisse produzieren.
+          SaaS-Produkte und API-Integrationen, die messbare Ergebnisse produzieren.
         </p>
 
         <!-- CTAs -->
@@ -214,4 +218,54 @@ const services = [
       </div>
     </div>
   </section>
+
+  <style>
+    .hero-aurora {
+      position: absolute;
+      filter: blur(80px);
+      border-radius: 9999px;
+      opacity: 0.28;
+      animation: floatAurora 14s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    .hero-aurora-1 {
+      width: 28rem;
+      height: 28rem;
+      left: -6rem;
+      top: -4rem;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.8) 0%, rgba(37, 99, 235, 0) 70%);
+      animation-delay: -2s;
+    }
+
+    .hero-aurora-2 {
+      width: 24rem;
+      height: 24rem;
+      right: -5rem;
+      top: 2rem;
+      background: radial-gradient(circle, rgba(96, 165, 250, 0.5) 0%, rgba(96, 165, 250, 0) 70%);
+      animation-duration: 18s;
+    }
+
+    .hero-aurora-3 {
+      width: 20rem;
+      height: 20rem;
+      left: 42%;
+      bottom: -8rem;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(59, 130, 246, 0) 70%);
+      animation-duration: 16s;
+      animation-delay: -5s;
+    }
+
+    @keyframes floatAurora {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(0, -14px, 0) scale(1.06); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-aurora {
+        animation: none;
+      }
+    }
+  </style>
 </Layout>
