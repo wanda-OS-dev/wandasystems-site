@@ -9,17 +9,23 @@ const navItems = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 border-b border-border bg-bg/80 backdrop-blur-xl">
+<header class="sticky top-0 z-50 border-b border-border backdrop-blur-xl" style="background: rgba(13, 8, 22, 0.85);">
+  <!-- Subtle bottom glow line -->
+  <div class="absolute bottom-0 left-0 right-0 glow-divider opacity-60"></div>
+
   <div class="container-content">
     <nav class="flex h-16 items-center justify-between" role="navigation" aria-label="Main navigation">
       <!-- Logo -->
-      <a  href="/wandasystems-site/" class="flex items-center gap-2.5 no-underline" aria-label="WandaSystems Home">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-          <rect width="28" height="28" rx="6" fill="#2563eb"/>
-          <path d="M7 8L14 20L21 8" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M10.5 14L14 20L17.5 14" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-        </svg>
-        <span class="text-sm font-semibold tracking-tight text-text-primary">WandaSystems</span>
+      <a href="/wandasystems-site/" class="flex items-center gap-2.5 no-underline group" aria-label="WandaSystems Home">
+        <div class="relative">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <rect width="28" height="28" rx="6" fill="#0f172a" stroke="rgba(6,182,212,0.4)" stroke-width="1"/>
+            <path d="M7 8L14 20L21 8" stroke="#00f5ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10.5 14L14 20L17.5 14" stroke="#06b6d4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+          </svg>
+          <div class="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="box-shadow: 0 0 12px rgba(0,245,255,0.4);"></div>
+        </div>
+        <span class="text-sm font-semibold tracking-tight text-text-primary group-hover:text-accent transition-colors duration-150">WandaSystems</span>
       </a>
 
       <!-- Desktop Nav -->
@@ -31,7 +37,7 @@ const currentPath = Astro.url.pathname;
               class:list={[
                 'rounded-lg px-4 py-2 text-small font-medium transition-colors duration-150',
                 currentPath === item.href || currentPath.startsWith(item.href + '/')
-                  ? 'bg-surface text-text-primary'
+                  ? 'bg-surface text-accent border border-accent/20'
                   : 'text-text-secondary hover:bg-surface hover:text-text-primary',
               ]}
               aria-current={currentPath === item.href ? 'page' : undefined}
@@ -54,7 +60,7 @@ const currentPath = Astro.url.pathname;
         <!-- Mobile menu button -->
         <button
           id="mobile-menu-btn"
-          class="flex h-9 w-9 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-surface hover:text-text-primary md:hidden"
+          class="flex h-9 w-9 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-surface hover:text-accent md:hidden"
           aria-label="Menu öffnen"
           aria-expanded="false"
           aria-controls="mobile-menu"
@@ -70,7 +76,8 @@ const currentPath = Astro.url.pathname;
   <!-- Mobile Menu -->
   <div
     id="mobile-menu"
-    class="hidden border-t border-border bg-bg md:hidden"
+    class="hidden border-t border-border md:hidden"
+    style="background: rgba(13, 8, 22, 0.97);"
     role="dialog"
     aria-label="Mobile navigation"
   >
@@ -83,7 +90,7 @@ const currentPath = Astro.url.pathname;
               class:list={[
                 'block rounded-lg px-4 py-3 text-small font-medium transition-colors',
                 currentPath === item.href
-                  ? 'bg-surface text-text-primary'
+                  ? 'bg-surface text-accent'
                   : 'text-text-secondary hover:bg-surface hover:text-text-primary',
               ]}
             >

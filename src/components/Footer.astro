@@ -12,22 +12,24 @@ const footerLinks = {
     { label: 'Kontakt', href: '/wandasystems-site/contact' },
   ],
 };
-
 ---
 
-<footer class="mt-auto border-t border-border bg-bg">
+<footer class="mt-auto relative border-t border-border" style="background: rgba(13, 8, 22, 0.97);">
+  <!-- Top glow line -->
+  <div class="absolute top-0 left-0 right-0 glow-divider opacity-40"></div>
+
   <div class="container-content">
     <!-- Main footer -->
     <div class="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4">
       <!-- Brand -->
       <div class="lg:col-span-2">
-        <a  href="/wandasystems-site/" class="flex items-center gap-2.5 no-underline mb-4" aria-label="WandaSystems">
+        <a href="/wandasystems-site/" class="flex items-center gap-2.5 no-underline mb-4 group" aria-label="WandaSystems">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-            <rect width="28" height="28" rx="6" fill="#2563eb"/>
-            <path d="M7 8L14 20L21 8" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M10.5 14L14 20L17.5 14" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+            <rect width="28" height="28" rx="6" fill="#0f172a" stroke="rgba(6,182,212,0.4)" stroke-width="1"/>
+            <path d="M7 8L14 20L21 8" stroke="#00f5ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10.5 14L14 20L17.5 14" stroke="#06b6d4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
           </svg>
-          <span class="text-sm font-semibold text-text-primary">WandaSystems</span>
+          <span class="text-sm font-semibold text-text-primary group-hover:text-accent transition-colors">WandaSystems</span>
         </a>
         <p class="max-w-xs text-small text-text-secondary leading-relaxed">
           Wir bauen AI-Systeme, die tatsächlich arbeiten — messbar, zuverlässig, profitabel.
@@ -35,7 +37,7 @@ const footerLinks = {
         <div class="mt-6">
           <a
             href="mailto:wanda.devops@gmail.com"
-            class="text-small text-text-muted transition-colors hover:text-text-primary"
+            class="text-small text-text-muted transition-colors hover:text-accent"
           >
             wanda.devops@gmail.com
           </a>
@@ -51,7 +53,7 @@ const footerLinks = {
               <li>
                 <a
                   href={link.href}
-                  class="text-small text-text-secondary transition-colors hover:text-text-primary"
+                  class="text-small text-text-secondary transition-colors hover:text-accent"
                 >
                   {link.label}
                 </a>
@@ -68,10 +70,10 @@ const footerLinks = {
         © 2026 WandaSystems · Hamburg · wanda.devops@gmail.com
       </p>
       <div class="flex items-center gap-6">
-        <a href="/wandasystems-site/imprint" class="text-xs text-text-muted transition-colors hover:text-text-secondary">
+        <a href="/wandasystems-site/imprint" class="text-xs text-text-muted transition-colors hover:text-accent">
           Impressum
         </a>
-        <a href="/wandasystems-site/privacy" class="text-xs text-text-muted transition-colors hover:text-text-secondary">
+        <a href="/wandasystems-site/privacy" class="text-xs text-text-muted transition-colors hover:text-accent">
           Datenschutz
         </a>
       </div>

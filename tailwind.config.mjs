@@ -5,23 +5,33 @@ export default {
     extend: {
       colors: {
         bg: {
-          DEFAULT: '#0a0a0a',
-          secondary: '#111111',
-          card: '#141414',
+          DEFAULT: '#0d0816',
+          secondary: '#130e20',
+          card: '#1a1130',
         },
-        surface: '#1a1a1a',
-        border: '#222222',
+        surface: '#1e1535',
+        border: '#2a1f42',
         accent: {
-          DEFAULT: '#2563eb',
-          hover: '#1d4ed8',
-          muted: '#1e3a5f',
+          DEFAULT: '#06b6d4',
+          hover: '#00e5f5',
+          muted: '#0e3a45',
+        },
+        cyan: {
+          glow: '#00f5ff',
+          mid: '#06b6d4',
+          dim: '#0891b2',
+        },
+        indigo: {
+          deep: '#1a0a2e',
+          mid: '#2d1b69',
+          light: '#4c2fa0',
         },
         text: {
-          primary: '#f8f8f5',
-          secondary: '#a3a3a3',
-          muted: '#6b6b6b',
+          primary: '#f0f0ff',
+          secondary: '#9b92c4',
+          muted: '#5c5480',
         },
-        navy: '#050a1a',
+        navy: '#0a0616',
       },
       fontFamily: {
         sans: [
@@ -53,6 +63,8 @@ export default {
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',
         'slide-up': 'slideUp 0.5s ease-out',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'data-stream': 'dataStream 8s linear infinite',
       },
       keyframes: {
         fadeIn: {
@@ -63,6 +75,10 @@ export default {
           '0%': { opacity: '0', transform: 'translateY(16px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
+        dataStream: {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(-50%)' },
+        },
       },
     },
   },
@@ -71,3 +87,4 @@ export default {
     require('@tailwindcss/typography'),
   ],
 };
+

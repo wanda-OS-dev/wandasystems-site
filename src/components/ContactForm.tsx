@@ -87,7 +87,7 @@ export default function ContactForm() {
       <div className="rounded-2xl border border-accent-muted bg-accent/5 p-10 text-center">
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-accent/15">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M5 12l4 4 10-10" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M5 12l4 4 10-10" stroke="#06b6d4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
         <h3 className="text-heading-3 mb-2 text-text-primary">Nachricht erhalten.</h3>

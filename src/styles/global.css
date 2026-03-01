@@ -6,9 +6,11 @@
 
 @layer base {
   :root {
-    --color-bg: #0a0a0a;
-    --color-accent: #2563eb;
-    --color-text: #f8f8f5;
+    --color-bg: #0d0816;
+    --color-accent: #06b6d4;
+    --color-text: #f0f0ff;
+    --glow-cyan: rgba(0, 245, 255, 0.15);
+    --glow-indigo: rgba(45, 27, 105, 0.4);
   }
 
   html {
@@ -20,6 +22,7 @@
 
   body {
     @apply font-sans text-body;
+    background-color: #0d0816;
   }
 
   * {
@@ -27,12 +30,12 @@
   }
 
   ::selection {
-    background: rgba(37, 99, 235, 0.25);
-    color: #f8f8f5;
+    background: rgba(6, 182, 212, 0.25);
+    color: #f0f0ff;
   }
 
   :focus-visible {
-    outline: 2px solid #2563eb;
+    outline: 2px solid #06b6d4;
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -44,15 +47,20 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-white transition-all duration-150 hover:bg-accent-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+    @apply inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-bg transition-all duration-150 hover:bg-accent-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 30px rgba(0, 245, 255, 0.4);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-2 rounded-lg border border-border bg-transparent px-6 py-3 text-sm font-semibold text-text-primary transition-all duration-150 hover:border-text-secondary hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-accent;
+    @apply inline-flex items-center gap-2 rounded-lg border border-border bg-transparent px-6 py-3 text-sm font-semibold text-text-primary transition-all duration-150 hover:border-accent hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent;
   }
 
   .badge {
-    @apply inline-flex items-center rounded-full border border-accent-muted bg-accent/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-accent;
+    @apply inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-accent;
   }
 
   .section {
@@ -64,7 +72,13 @@
   }
 
   .card {
-    @apply rounded-2xl border border-border bg-bg-card p-8 transition-all duration-200 hover:border-text-muted;
+    @apply rounded-2xl border border-border bg-bg-card p-8 transition-all duration-200 hover:border-accent/40;
+    background: linear-gradient(135deg, rgba(26, 17, 48, 0.9) 0%, rgba(13, 8, 22, 0.9) 100%);
+    box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.05);
+  }
+
+  .card:hover {
+    box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.15), 0 0 30px rgba(6, 182, 212, 0.05);
   }
 
   .label-text {
@@ -74,6 +88,20 @@
   .link-underline {
     @apply relative text-text-secondary transition-colors duration-150 hover:text-text-primary after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-accent after:transition-all after:duration-200 hover:after:w-full;
   }
+
+  /* Particle / grid background layer */
+  .wanda-grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(6, 182, 212, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(6, 182, 212, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Glowing section divider */
+  .glow-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.4) 40%, rgba(0, 245, 255, 0.6) 50%, rgba(6, 182, 212, 0.4) 60%, transparent 100%);
+  }
 }
 
 @layer utilities {
@@ -81,12 +109,26 @@
     @apply bg-gradient-to-r from-text-primary via-text-primary to-text-secondary bg-clip-text text-transparent;
   }
 
+  .text-gradient-cyan {
+    @apply bg-gradient-to-r from-white to-accent bg-clip-text text-transparent;
+  }
+
+  /* Keep old blue gradient alias for backward compat */
   .text-gradient-blue {
     @apply bg-gradient-to-r from-white to-accent bg-clip-text text-transparent;
   }
 
   .glow-line {
-    background: linear-gradient(90deg, transparent, #2563eb, transparent);
+    background: linear-gradient(90deg, transparent, #06b6d4, transparent);
     height: 1px;
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.2), 0 0 40px rgba(6, 182, 212, 0.1);
+  }
+
+  .border-glow {
+    border-color: rgba(6, 182, 212, 0.3);
+    box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.15);
   }
 }
