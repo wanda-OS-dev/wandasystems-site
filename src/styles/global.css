@@ -110,12 +110,20 @@
   }
 
   .text-gradient-cyan {
-    @apply bg-gradient-to-r from-white to-accent bg-clip-text text-transparent;
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(90deg, #06b6d4, #8b5cf6, #00f5ff, #06b6d4);
+    background-size: 200% auto;
+    animation: gradient-sweep 3s linear infinite;
   }
 
   /* Keep old blue gradient alias for backward compat */
   .text-gradient-blue {
     @apply bg-gradient-to-r from-white to-accent bg-clip-text text-transparent;
+  }
+
+  @keyframes gradient-sweep {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
   }
 
   .glow-line {
