@@ -1,0 +1,81 @@
+---
+const footerLinks = {
+  Services: [
+    { label: 'AI-Automatisierungen', href: '/services#automation' },
+    { label: 'SaaS-Produkte', href: '/services#saas' },
+    { label: 'Trading-Algorithmen', href: '/services#trading' },
+    { label: 'AI-Agent-Systeme', href: '/services#agents' },
+  ],
+  Unternehmen: [
+    { label: 'About WandaSystems', href: '/company' },
+    { label: 'Case Studies', href: '/cases' },
+    { label: 'Kontakt', href: '/contact' },
+  ],
+};
+
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-auto border-t border-border bg-bg">
+  <div class="container-content">
+    <!-- Main footer -->
+    <div class="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4">
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <a href="/" class="flex items-center gap-2.5 no-underline mb-4" aria-label="WandaSystems">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <rect width="28" height="28" rx="6" fill="#2563eb"/>
+            <path d="M7 8L14 20L21 8" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10.5 14L14 20L17.5 14" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+          </svg>
+          <span class="text-sm font-semibold text-text-primary">WandaSystems</span>
+        </a>
+        <p class="max-w-xs text-small text-text-secondary leading-relaxed">
+          Wir bauen AI-Systeme, die tatsächlich arbeiten — messbar, zuverlässig, profitabel.
+        </p>
+        <div class="mt-6">
+          <a
+            href="mailto:hello@wandasystems.de"
+            class="text-small text-text-muted transition-colors hover:text-text-primary"
+          >
+            hello@wandasystems.de
+          </a>
+        </div>
+      </div>
+
+      <!-- Links -->
+      {Object.entries(footerLinks).map(([category, links]) => (
+        <div>
+          <p class="label-text mb-4">{category}</p>
+          <ul class="flex flex-col gap-2.5" role="list">
+            {links.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-small text-text-secondary transition-colors hover:text-text-primary"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="flex flex-col items-center justify-between gap-4 border-t border-border py-6 sm:flex-row">
+      <p class="text-xs text-text-muted">
+        © {year} WandaSystems. Alle Rechte vorbehalten.
+      </p>
+      <div class="flex items-center gap-6">
+        <a href="/imprint" class="text-xs text-text-muted transition-colors hover:text-text-secondary">
+          Impressum
+        </a>
+        <a href="/privacy" class="text-xs text-text-muted transition-colors hover:text-text-secondary">
+          Datenschutz
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

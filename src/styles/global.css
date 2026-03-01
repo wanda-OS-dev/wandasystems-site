@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #0a0a0a;
+    --color-accent: #2563eb;
+    --color-text: #f8f8f5;
+  }
+
+  html {
+    @apply bg-bg text-text-primary scroll-smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply font-sans text-body;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  ::selection {
+    background: rgba(37, 99, 235, 0.25);
+    color: #f8f8f5;
+  }
+
+  :focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .container-content {
+    @apply mx-auto w-full max-w-content px-6 sm:px-8 lg:px-12;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-white transition-all duration-150 hover:bg-accent-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 rounded-lg border border-border bg-transparent px-6 py-3 text-sm font-semibold text-text-primary transition-all duration-150 hover:border-text-secondary hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-accent;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full border border-accent-muted bg-accent/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-accent;
+  }
+
+  .section {
+    @apply py-section;
+  }
+
+  .divider {
+    @apply h-px w-full bg-border;
+  }
+
+  .card {
+    @apply rounded-2xl border border-border bg-bg-card p-8 transition-all duration-200 hover:border-text-muted;
+  }
+
+  .label-text {
+    @apply text-xs font-semibold uppercase tracking-widest text-text-muted;
+  }
+
+  .link-underline {
+    @apply relative text-text-secondary transition-colors duration-150 hover:text-text-primary after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-accent after:transition-all after:duration-200 hover:after:w-full;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-text-primary via-text-primary to-text-secondary bg-clip-text text-transparent;
+  }
+
+  .text-gradient-blue {
+    @apply bg-gradient-to-r from-white to-accent bg-clip-text text-transparent;
+  }
+
+  .glow-line {
+    background: linear-gradient(90deg, transparent, #2563eb, transparent);
+    height: 1px;
+  }
+}

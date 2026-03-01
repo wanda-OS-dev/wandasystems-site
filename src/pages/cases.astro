@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const cases = [
+  {
+    id: 'lead-automation',
+    tag: 'AI-Automatisierung',
+    industry: 'B2B SaaS',
+    title: 'Lead-Qualifizierung vollständig automatisiert',
+    challenge: 'Ein B2B-SaaS-Unternehmen verbrachte täglich 3+ Stunden damit, eingehende Leads manuell zu prüfen, CRM-Einträge zu erstellen und Folge-E-Mails zu schreiben.',
+    solution: 'Wir bauten einen n8n-Workflow, der Leads automatisch klassifiziert, anreichert (Clearbit, LinkedIn), ins CRM schreibt und personalisierte Erstkontakt-E-Mails versendet.',
+    results: [
+      '94% Reduktion manueller Lead-Bearbeitungszeit',
+      'Response-Zeit von 8 Stunden auf 3 Minuten',
+      'Conversion-Rate +22% durch schnellere Reaktion',
+    ],
+    tech: ['n8n', 'OpenAI', 'HubSpot API', 'Clearbit'],
+  },
+  {
+    id: 'saas-launch',
+    tag: 'SaaS-Produkt',
+    industry: 'PropTech',
+    title: 'SaaS-Plattform in 6 Wochen live',
+    challenge: 'Ein Startup-Gründer hatte eine klare Produktidee für die Immobilienbranche, aber kein Tech-Team und ein knappes Budget für eine 6-monatige Agentur-Entwicklung.',
+    solution: 'Auf SupaStarter-Basis lieferten wir eine vollständige Multi-Tenant-SaaS-Plattform mit Stripe-Subscriptions, Dokumenten-Management und Reporting-Dashboard.',
+    results: [
+      'Live nach 42 Tagen',
+      'Erste zahlende Kunden in Woche 7',
+      '€4.200 MRR nach 3 Monaten',
+    ],
+    tech: ['Next.js', 'Supabase', 'Stripe', 'Vercel'],
+  },
+  {
+    id: 'trading-algo',
+    tag: 'Trading-Algorithmus',
+    industry: 'Crypto / DeFi',
+    title: 'Quantitative Mean-Reversion-Strategie',
+    challenge: 'Ein Crypto-Trader mit bewiesener manueller Strategie wollte diese vollständig automatisieren und skalieren — ohne das Risk-Management-Framework aufzugeben.',
+    solution: 'Wir implementierten die Strategie in Python mit CCXT, bauten ein vollständiges Backtesting-System und deployteten auf VPS mit Live-Monitoring und Telegram-Alerts.',
+    results: [
+      'Sharpe Ratio 1.8 über 18 Monate Backtesting',
+      '100% automatisierter Betrieb seit 6 Monaten',
+      'Max Drawdown innerhalb definierter Parameter',
+    ],
+    tech: ['Python', 'CCXT', 'pandas', 'PostgreSQL'],
+  },
+  {
+    id: 'agent-research',
+    tag: 'AI-Agent-System',
+    industry: 'Consulting',
+    title: 'Research-Agent ersetzt 40h/Woche manuelle Arbeit',
+    challenge: 'Eine Unternehmensberatung erstellte wöchentlich Marktanalysen für Kunden — ein Prozess, der Analysten 40+ Stunden kostete und trotzdem oft zu spät kam.',
+    solution: 'Wir bauten einen Multi-Agenten-System mit LangGraph: Recherche-Agent (Web, News-APIs), Analyse-Agent (Synthese und Bewertung), Report-Agent (Dokument-Generierung).',
+    results: [
+      'Analysezeit von 40h auf 45 Minuten reduziert',
+      'Reports in Kundenformat automatisch generiert',
+      'Vollständig in bestehende Workflow-Tools integriert',
+    ],
+    tech: ['Python', 'LangGraph', 'OpenAI', 'Tavily', 'Notion API'],
+  },
+];
+---
+
+<Layout
+  title="Case Studies"
+  description="Reale Ergebnisse, reale Projekte — wie WandaSystems AI-Systeme für B2B-Kunden baut, die messbaren Unterschied machen."
+>
+  <!-- Header -->
+  <section class="pt-20 pb-16" aria-labelledby="cases-heading">
+    <div class="container-content">
+      <span class="badge mb-4 inline-block">Case Studies</span>
+      <h1 id="cases-heading" class="text-heading-1 mb-5 text-text-primary max-w-2xl">
+        Ergebnisse, keine Versprechen.
+      </h1>
+      <p class="text-body-lg text-text-secondary max-w-xl">
+        Echte Projekte, echte Zahlen. Alle Cases wurden mit Kundenerlaubnis veröffentlicht;
+        Details auf Anfrage.
+      </p>
+    </div>
+  </section>
+
+  <!-- Cases -->
+  <div class="border-t border-border">
+    {cases.map((c, i) => (
+      <article
+        class:list={['section border-b border-border last:border-b-0 scroll-mt-20', i % 2 !== 0 ? 'bg-bg-secondary' : '']}
+        id={c.id}
+      >
+        <div class="container-content">
+          <div class="grid gap-12 lg:grid-cols-3 lg:gap-16">
+            <!-- Meta -->
+            <div class="lg:col-span-1">
+              <span class="badge mb-4 inline-block">{c.tag}</span>
+              <p class="label-text mb-2">{c.industry}</p>
+              <h2 class="text-heading-3 mb-4 text-text-primary">{c.title}</h2>
+              <div class="flex flex-wrap gap-2">
+                {c.tech.map((t) => (
+                  <span class="rounded-md border border-border bg-surface px-2.5 py-1 text-xs text-text-muted">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="lg:col-span-2 grid gap-8 sm:grid-cols-2">
+              <div>
+                <p class="label-text mb-3">Ausgangslage</p>
+                <p class="text-small text-text-secondary leading-relaxed">{c.challenge}</p>
+              </div>
+              <div>
+                <p class="label-text mb-3">Unsere Lösung</p>
+                <p class="text-small text-text-secondary leading-relaxed">{c.solution}</p>
+              </div>
+              <div class="sm:col-span-2">
+                <p class="label-text mb-4">Ergebnisse</p>
+                <ul class="grid gap-3 sm:grid-cols-3" role="list">
+                  {c.results.map((r) => (
+                    <li class="rounded-xl border border-accent-muted bg-accent/5 px-4 py-3">
+                      <p class="text-small font-medium text-text-primary">{r}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <!-- CTA -->
+  <section class="section" aria-labelledby="cases-cta">
+    <div class="container-content">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 id="cases-cta" class="text-heading-2 mb-4 text-text-primary">
+          Ihr nächstes Erfolgsprojekt?
+        </h2>
+        <p class="text-body text-text-secondary mb-8">
+          Lassen Sie uns herausfinden, welche Ergebnisse in Ihrem Kontext möglich sind.
+        </p>
+        <a href="/contact" class="btn-primary">
+          Kostenloses Gespräch buchen
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

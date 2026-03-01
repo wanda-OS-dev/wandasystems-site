@@ -1,0 +1,217 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const metrics = [
+  { value: '40%+', label: 'Ø Kostensenkung durch Automatisierung' },
+  { value: '< 8W', label: 'Time-to-Production für AI-Systeme' },
+  { value: '24/7', label: 'Autonome Agenten ohne Downtime' },
+  { value: '100%', label: 'Custom — kein One-size-fits-all' },
+];
+
+const services = [
+  {
+    id: 'automation',
+    icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L3 6v8l7 4 7-4V6L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 2v12M3 6l7 4 7-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    title: 'AI-Automatisierungen',
+    desc: 'Repetitive Workflows eliminieren. n8n + Python-Pipelines, die Ihre Prozesse rund um die Uhr ausführen — ohne Fehler, ohne Overhead.',
+    href: '/services#automation',
+  },
+  {
+    id: 'saas',
+    icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 17h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 7h4M8 10h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    title: 'SaaS-Produkte',
+    desc: 'Vollständige SaaS-Plattformen auf SupaStarter-Basis. Von der Idee zum marktfähigen Produkt in Wochen, nicht Monaten.',
+    href: '/services#saas',
+  },
+  {
+    id: 'trading',
+    icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 14l4-5 3 3 4-6 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 17H3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    title: 'Trading-Algorithmen',
+    desc: 'Quantitative Strategien für Crypto-Märkte. Backtesting, Live-Execution, Risk-Management — vollständig automatisiert.',
+    href: '/services#trading',
+  },
+  {
+    id: 'agents',
+    icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M5 17c0-2.761 2.239-5 5-5s5 2.239 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M15 5l2-2M15 11l2 2M5 5L3 3M5 11L3 13" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>`,
+    title: 'AI-Agent-Systeme',
+    desc: 'Custom-Agenten, die denken, planen und handeln. Orchestrierte Multi-Agent-Architekturen für komplexe Unternehmensabläufe.',
+    href: '/services#agents',
+  },
+];
+---
+
+<Layout
+  title="AI-Systeme, die arbeiten"
+  description="WandaSystems baut AI-Automatisierungen, SaaS-Produkte und Trading-Algorithmen für B2B-Unternehmen, die Ergebnisse brauchen — keine Versprechen."
+>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden pt-20 pb-24 lg:pt-28 lg:pb-32" aria-labelledby="hero-headline">
+    <!-- Subtle grid background -->
+    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:64px_64px] opacity-40"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bg to-transparent"></div>
+    </div>
+
+    <div class="container-content relative">
+      <div class="mx-auto max-w-[860px]">
+        <!-- Label -->
+        <div class="mb-8 flex items-center gap-3">
+          <span class="badge">B2B AI-Systems</span>
+          <span class="label-text">Hamburg · Remote</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 id="hero-headline" class="text-display mb-6 text-text-primary">
+          Wir bauen AI-Systeme,<br class="hidden sm:block" />
+          <span class="text-gradient-blue">die tatsächlich arbeiten.</span>
+        </h1>
+
+        <!-- Sub -->
+        <p class="mb-10 max-w-[560px] text-body-lg text-text-secondary">
+          Keine Demos. Keine Buzzwords. WandaSystems liefert AI-Automatisierungen,
+          SaaS-Produkte und Trading-Algorithmen, die messbare Ergebnisse produzieren.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="/contact" class="btn-primary">
+            Kostenloses Erstgespräch
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="/services" class="btn-secondary">
+            Leistungen ansehen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Metrics bar -->
+  <section class="border-y border-border bg-bg-secondary py-12" aria-label="Key metrics">
+    <div class="container-content">
+      <dl class="grid grid-cols-2 gap-8 sm:grid-cols-4">
+        {metrics.map((m) => (
+          <div class="text-center">
+            <dt class="text-heading-2 font-semibold text-text-primary">{m.value}</dt>
+            <dd class="mt-1 text-small text-text-muted">{m.label}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- Services Overview -->
+  <section class="section" aria-labelledby="services-heading">
+    <div class="container-content">
+      <div class="mb-14">
+        <p class="label-text mb-3">Was wir bauen</p>
+        <h2 id="services-heading" class="text-heading-1 text-text-primary">
+          Vier Kernkompetenzen.<br class="hidden sm:block" />
+          Ein Ziel: Ihr Wachstum.
+        </h2>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {services.map((s) => (
+          <a href={s.href} class="card group relative flex flex-col gap-4 no-underline">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent transition-colors group-hover:bg-accent/20">
+              <Fragment set:html={s.icon} />
+            </div>
+            <div>
+              <h3 class="mb-2 text-small font-semibold text-text-primary">{s.title}</h3>
+              <p class="text-small text-text-secondary leading-relaxed">{s.desc}</p>
+            </div>
+            <div class="mt-auto flex items-center gap-1.5 text-xs font-medium text-accent">
+              Mehr erfahren
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2.5 6h7M7 3.5l2.5 2.5L7 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Prop / Why WandaSystems -->
+  <section class="section border-t border-border" aria-labelledby="why-heading">
+    <div class="container-content">
+      <div class="grid gap-16 lg:grid-cols-2 lg:gap-24 items-start">
+        <!-- Left: Text -->
+        <div>
+          <p class="label-text mb-4">Warum WandaSystems</p>
+          <h2 id="why-heading" class="text-heading-1 mb-6 text-text-primary">
+            Keine Agentur.<br />Ein technischer Partner.
+          </h2>
+          <p class="text-body-lg text-text-secondary mb-8">
+            WandaSystems ist kein Beratungshaus mit PowerPoint-Decks.
+            Wir schreiben Code, deployen Systeme und liefern Ergebnisse.
+            Unser Team denkt wie Ingenieure — und handelt wie Unternehmer.
+          </p>
+
+          <ul class="flex flex-col gap-4" role="list">
+            {[
+              ['Messbarer ROI', 'Jedes Projekt hat definierte KPIs. Wenn wir nicht liefern, reden wir offen darüber.'],
+              ['Keine Lock-ins', 'Offener Stack. Sie besitzen den Code. Kein Vendor-Lock, keine versteckten Kosten.'],
+              ['Zeit ist Geld', 'Wir liefern in Sprints — nicht nach 6-Monats-Consultingprojekten.'],
+            ].map(([title, text]) => (
+              <li class="flex gap-4">
+                <div class="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-accent/15">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                    <path d="M2 5l2 2 4-4" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-small font-semibold text-text-primary">{title}</p>
+                  <p class="text-small text-text-secondary">{text}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Right: Process steps -->
+        <div class="space-y-6">
+          <p class="label-text mb-6">Unser Prozess</p>
+          {[
+            { step: '01', title: 'Discovery', desc: 'Wir verstehen Ihr Problem. 60-minütiger Deep-Dive, kostenlos.' },
+            { step: '02', title: 'Architektur', desc: 'Klare technische Spezifikation. Was wir bauen und warum.' },
+            { step: '03', title: 'Sprint-Delivery', desc: 'Wöchentliche Deliverables. Kein "Blackbox"-Development.' },
+            { step: '04', title: 'Go-Live & Beyond', desc: 'Deployment, Monitoring, Iteration. Wir bleiben verantwortlich.' },
+          ].map((p) => (
+            <div class="flex gap-5">
+              <div class="label-text text-accent w-6 flex-shrink-0 pt-1">{p.step}</div>
+              <div class="pb-6 border-b border-border last:border-0">
+                <p class="font-semibold text-text-primary text-small mb-1">{p.title}</p>
+                <p class="text-small text-text-secondary">{p.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section border-t border-border" aria-labelledby="cta-heading">
+    <div class="container-content">
+      <div class="mx-auto max-w-2xl rounded-2xl border border-accent-muted bg-gradient-to-br from-accent/10 to-transparent p-12 text-center">
+        <h2 id="cta-heading" class="text-heading-2 mb-4 text-text-primary">
+          Bereit, loszulegen?
+        </h2>
+        <p class="mb-8 text-body text-text-secondary">
+          Erstes Gespräch ist immer kostenlos. Kein Pitch — wir hören zu,
+          dann sagen wir ehrlich ob und wie wir helfen können.
+        </p>
+        <a href="/contact" class="btn-primary">
+          Jetzt Gespräch buchen
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

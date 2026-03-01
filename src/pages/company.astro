@@ -1,0 +1,180 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const values = [
+  {
+    title: 'Ergebnisorientiert',
+    desc: 'Wir messen unseren Erfolg an Ihrem Erfolg. Keine Stunden-Abrechnungen, keine Komplexitätspflege — Outcome first.',
+  },
+  {
+    title: 'Technische Ehrlichkeit',
+    desc: 'Wir sagen Ihnen, wenn etwas keinen Sinn ergibt. Kein Over-Engineering, kein Under-Delivering.',
+  },
+  {
+    title: 'Geschwindigkeit mit System',
+    desc: 'Schnell durch Klarheit, nicht durch Abkürzungen. Solide Architektur ist immer schneller als technische Schulden.',
+  },
+  {
+    title: 'Langfristige Partnerschaft',
+    desc: 'Wir bauen Systeme, die ohne uns funktionieren — und Beziehungen, die uns trotzdem zurückbringen.',
+  },
+];
+
+const capabilities = [
+  'Python Backend-Entwicklung',
+  'n8n Workflow-Automatisierung',
+  'LLM-Integration (OpenAI, Anthropic)',
+  'Multi-Agent-Architekturen',
+  'SaaS-Produktentwicklung',
+  'Supabase / PostgreSQL',
+  'Quantitative Trading-Strategien',
+  'CCXT / Exchange-APIs',
+  'Next.js / Astro Frontend',
+  'CI/CD & DevOps',
+  'REST API Design',
+  'Stripe / Payment-Integration',
+];
+---
+
+<Layout
+  title="Company"
+  description="WandaSystems — wer wir sind, wie wir denken, und warum wir existieren."
+>
+  <!-- Header -->
+  <section class="pt-20 pb-16" aria-labelledby="company-heading">
+    <div class="container-content">
+      <span class="badge mb-4 inline-block">Company</span>
+      <h1 id="company-heading" class="text-heading-1 mb-5 text-text-primary max-w-2xl">
+        Wir bauen Systeme,<br />die arbeiten, wenn wir schlafen.
+      </h1>
+      <p class="text-body-lg text-text-secondary max-w-xl">
+        WandaSystems ist ein technisches Studio für AI-Automatisierung,
+        SaaS und algorithmischen Handel. Remote-first, ergebnisorientiert,
+        keine Spielereien.
+      </p>
+    </div>
+  </section>
+
+  <!-- Origin / Mission -->
+  <section class="section border-t border-border" aria-labelledby="mission-heading">
+    <div class="container-content">
+      <div class="grid gap-16 lg:grid-cols-2 items-start">
+        <div>
+          <p class="label-text mb-4">Mission</p>
+          <h2 id="mission-heading" class="text-heading-2 mb-6 text-text-primary">
+            AI soll für Unternehmen<br />arbeiten — nicht umgekehrt.
+          </h2>
+          <div class="space-y-4 text-body text-text-secondary">
+            <p>
+              WandaSystems wurde gegründet, weil wir das Versprechen von AI-Tools für Unternehmen
+              zu oft gebrochen sahen: Demos, die live versagen. Chatbots, die niemanden entlasten.
+              Beratungsberichte, die in Schubladen landen.
+            </p>
+            <p>
+              Wir glauben, dass AI dann Wert schafft, wenn sie unsichtbar arbeitet —
+              eingebettet in Prozesse, zuverlässig, messbar. Keine Technologie um der
+              Technologie willen.
+            </p>
+            <p>
+              Unser Ansatz: Verstehen, was wirklich gebraucht wird. Dann das Einfachste,
+              was funktioniert. Dann live. Dann iterieren.
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <p class="label-text mb-2">Vision</p>
+          <blockquote class="relative rounded-2xl border border-border bg-bg-card p-8">
+            <p class="text-heading-3 font-medium text-text-primary leading-relaxed">
+              "Das autonome Unternehmen ist kein Konzept für 2035. Wir bauen es jetzt — Prozess für Prozess."
+            </p>
+          </blockquote>
+
+          <div class="rounded-xl border border-border bg-bg-card p-6">
+            <p class="label-text mb-4">Was uns definiert</p>
+            <ul class="space-y-2" role="list">
+              {['Remote-First, async by default', 'Open Source wo möglich', 'Kein Lock-in, kein Bullshit', 'Messbare KPIs für jedes Projekt'].map((item) => (
+                <li class="flex items-center gap-3">
+                  <svg class="text-accent flex-shrink-0" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M2.5 7l3 3 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="text-small text-text-secondary">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section border-t border-border bg-bg-secondary" aria-labelledby="values-heading">
+    <div class="container-content">
+      <p class="label-text mb-4">Werte</p>
+      <h2 id="values-heading" class="text-heading-2 mb-12 text-text-primary max-w-lg">
+        Wie wir denken und handeln.
+      </h2>
+
+      <div class="grid gap-6 sm:grid-cols-2">
+        {values.map((v) => (
+          <div class="card">
+            <h3 class="mb-2 text-small font-semibold text-text-primary">{v.title}</h3>
+            <p class="text-small text-text-secondary leading-relaxed">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities -->
+  <section class="section border-t border-border" aria-labelledby="capabilities-heading">
+    <div class="container-content">
+      <div class="grid gap-16 lg:grid-cols-2 items-start">
+        <div>
+          <p class="label-text mb-4">Kompetenzen</p>
+          <h2 id="capabilities-heading" class="text-heading-2 mb-6 text-text-primary">
+            Technologien, die wir täglich einsetzen.
+          </h2>
+          <p class="text-body text-text-secondary mb-8">
+            Kein Technology-Bingo. Nur Tools, mit denen wir tatsächlich produktive
+            Systeme bauen — und die wir im Schlaf kennen.
+          </p>
+          <a href="/contact" class="btn-primary">
+            Projekt anfragen
+          </a>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          {capabilities.map((cap) => (
+            <div class="flex items-center gap-2 rounded-lg border border-border bg-bg-card px-4 py-3">
+              <div class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent"></div>
+              <span class="text-xs font-medium text-text-secondary">{cap}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Teaser -->
+  <section class="section border-t border-border" aria-labelledby="company-cta">
+    <div class="container-content">
+      <div class="mx-auto max-w-2xl rounded-2xl border border-accent-muted bg-gradient-to-br from-accent/10 to-transparent p-12 text-center">
+        <h2 id="company-cta" class="text-heading-2 mb-4 text-text-primary">
+          Klingt nach dem richtigen Partner?
+        </h2>
+        <p class="text-body text-text-secondary mb-8">
+          Wir freuen uns auf das Gespräch. Kein Pitch, kein Formular-Overhead —
+          direktes Gespräch, ehrliche Einschätzung.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="/contact" class="btn-primary">Gespräch buchen</a>
+          <a href="mailto:hello@wandasystems.de" class="btn-secondary">
+            hello@wandasystems.de
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
