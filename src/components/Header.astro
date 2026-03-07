@@ -1,9 +1,9 @@
 ---
 const navItems = [
-  { label: 'Services', href: '/wandasystems-site/services' },
+  { label: 'Leistungen', href: '/wandasystems-site/services' },
   { label: 'Portfolio', href: '/wandasystems-site/portfolio' },
-  { label: 'Company', href: '/wandasystems-site/company' },
-  { label: 'Contact', href: '/wandasystems-site/contact' },
+  { label: 'Unternehmen', href: '/wandasystems-site/company' },
+  { label: 'Kontakt', href: '/wandasystems-site/contact' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -14,9 +14,9 @@ const currentPath = Astro.url.pathname;
   <div class="absolute bottom-0 left-0 right-0 glow-divider opacity-60"></div>
 
   <div class="container-content">
-    <nav class="flex h-16 items-center justify-between" role="navigation" aria-label="Main navigation">
+    <nav class="flex h-16 items-center justify-between" role="navigation" aria-label="Hauptnavigation">
       <!-- Logo -->
-      <a href="/wandasystems-site/" class="flex items-center gap-2.5 no-underline group" aria-label="WandaSystems Home">
+      <a href="/wandasystems-site/" class="flex items-center gap-2.5 no-underline group" aria-label="WandaSystems Startseite">
         <div class="relative">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
             <rect width="28" height="28" rx="6" fill="#111111" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
@@ -61,7 +61,7 @@ const currentPath = Astro.url.pathname;
         <button
           id="mobile-menu-btn"
           class="flex h-9 w-9 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-white/5 hover:text-brand-gold md:hidden"
-          aria-label="Menu öffnen"
+          aria-label="Menü öffnen"
           aria-expanded="false"
           aria-controls="mobile-menu"
         >
@@ -79,7 +79,7 @@ const currentPath = Astro.url.pathname;
     class="hidden border-t border-border md:hidden"
     style="background: rgba(10, 10, 10, 0.97);"
     role="dialog"
-    aria-label="Mobile navigation"
+    aria-label="Mobile Navigation"
   >
     <div class="container-content py-4">
       <ul class="flex flex-col gap-1" role="list">
@@ -116,6 +116,6 @@ const currentPath = Astro.url.pathname;
     const isOpen = menu?.classList.contains('hidden') === false;
     menu?.classList.toggle('hidden');
     btn.setAttribute('aria-expanded', String(!isOpen));
-    btn.setAttribute('aria-label', isOpen ? 'Menu öffnen' : 'Menu schließen');
+    btn.setAttribute('aria-label', isOpen ? 'Menü öffnen' : 'Menü schließen');
   });
 </script>

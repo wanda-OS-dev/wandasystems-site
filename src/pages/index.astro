@@ -5,7 +5,7 @@ const metrics = [
   { value: '40%+', label: 'Ø Kostensenkung durch Automatisierung' },
   { value: '< 8W', label: 'Time-to-Production für AI-Systeme' },
   { value: '24/7', label: 'Autonome Agenten ohne Downtime' },
-  { value: '100%', label: 'Custom — kein One-size-fits-all' },
+  { value: '100%', label: 'Individuell — kein Standardbaukasten' },
 ];
 
 const services = [
@@ -26,8 +26,8 @@ const services = [
   {
     id: 'web-app',
     icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="3" width="15" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 16.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 13v3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-    title: 'Web & App Development',
-    desc: 'Performante Web-Apps und interne Plattformen mit klarem Fokus auf UX, Geschwindigkeit und messbare Business-Ergebnisse.',
+    title: 'Web- & App-Entwicklung',
+    desc: 'Performante Web-Apps und interne Plattformen mit klarem Fokus auf UX, Geschwindigkeit und messbare Geschäftsergebnisse.',
     href: '/wandasystems-site/services#saas',
   },
   {
@@ -166,7 +166,7 @@ const services = [
           <ul class="flex flex-col gap-4" role="list">
             {[
               ['Messbarer ROI', 'Jedes Projekt hat definierte KPIs. Wenn wir nicht liefern, reden wir offen darüber.'],
-              ['Keine Lock-ins', 'Offener Stack. Sie besitzen den Code. Kein Vendor-Lock, keine versteckten Kosten.'],
+              ['Keine Lock-ins', 'Offener Stack. Sie besitzen den Code. Kein Anbieter-Lock-in, keine versteckten Kosten.'],
               ['Zeit ist Geld', 'Wir liefern in Sprints — nicht nach 6-Monats-Consultingprojekten.'],
             ].map(([title, text]) => (
               <li class="flex gap-4">
@@ -188,10 +188,10 @@ const services = [
         <div class="space-y-6">
           <p class="label-text mb-6">Unser Prozess</p>
           {[
-            { step: '01', title: 'Discovery', desc: 'Wir verstehen Ihr Problem. 60-minütiger Deep-Dive, kostenlos.' },
+            { step: '01', title: 'Analyse', desc: 'Wir verstehen Ihr Problem. 60-minütiger Deep-Dive, kostenlos.' },
             { step: '02', title: 'Architektur', desc: 'Klare technische Spezifikation. Was wir bauen und warum.' },
-            { step: '03', title: 'Sprint-Delivery', desc: 'Wöchentliche Deliverables. Kein "Blackbox"-Development.' },
-            { step: '04', title: 'Go-Live & Beyond', desc: 'Deployment, Monitoring, Iteration. Wir bleiben verantwortlich.' },
+            { step: '03', title: 'Sprint-Umsetzung', desc: 'Wöchentliche Lieferpakete. Keine Blackbox-Entwicklung.' },
+            { step: '04', title: 'Go-Live & Betrieb', desc: 'Deployment, Monitoring, Iteration. Wir bleiben verantwortlich.' },
           ].map((p) => (
             <div class="flex gap-5 group">
               <div class="label-text text-brand-gold w-6 flex-shrink-0 pt-1 group-hover:text-brand-white transition-colors">{p.step}</div>

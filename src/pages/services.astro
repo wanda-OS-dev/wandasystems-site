@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 const products = [
   {
     id: 'data-bot',
-    badge: 'Instant Download · Python CLI Tool',
+    badge: 'Sofort-Download · Python-CLI-Tool',
     price: '€29',
     title: 'Data Cleaning Bot',
     tagline: 'Unstrukturierte CSVs rein. Saubere Daten raus.',
@@ -26,7 +26,7 @@ const products = [
 const services = [
   {
     id: 'automation',
-    badge: 'Custom · Anfrage erforderlich',
+    badge: 'Individuell · Anfrage erforderlich',
     title: 'AI-Automatisierungssysteme',
     priceAnchor: 'Preis nach Scope-Gespräch',
     desc: 'Wir analysieren deinen Workflow und implementieren zuverlässige n8n- + Python-Automatisierungen mit transparenter Übergabedokumentation. Jedes Projekt wird individuell bewertet — kein Standardpreis, kein Blind-Commitment.',
@@ -41,7 +41,7 @@ const services = [
   },
   {
     id: 'agents',
-    badge: 'Custom · Anfrage erforderlich',
+    badge: 'Individuell · Anfrage erforderlich',
     title: 'AI-Agent-Systeme',
     priceAnchor: 'Preis nach Scope-Gespräch',
     desc: 'Keine Chatbot-Demos: echte Agenten, die in deinem Stack recherchieren, entscheiden und ausführen — mit Human-in-the-loop dort, wo es zählt. Nur nach Anfrage und Scope-Klärung.',
@@ -56,7 +56,7 @@ const services = [
   },
   {
     id: 'saas',
-    badge: 'Custom · Anfrage erforderlich',
+    badge: 'Individuell · Anfrage erforderlich',
     title: 'SaaS-Produktentwicklung',
     priceAnchor: 'Preis nach Scope-Gespräch',
     desc: 'Von der Idee zu ersten zahlenden Nutzern auf einem bewährten Stack. Zeitrahmen und Preis hängen vom Scope ab — keine Pauschalaussagen ohne Anfrage-Gespräch.',
@@ -73,8 +73,8 @@ const services = [
 ---
 
 <Layout
-  title="Services"
-  description="Python-Tools und Custom-AI-Systeme von WandaSystems. Data Cleaning Bot sofort verfügbar. Custom Automatisierungen, Agenten und SaaS-Builds auf Anfrage."
+  title="Leistungen"
+  description="Python-Tools und Custom-AI-Systeme von WandaSystems. Data Cleaning Bot sofort verfügbar. Automatisierungen, Agenten und SaaS-Builds auf Anfrage."
 >
   <!-- Page Header -->
   <section class="relative pt-20 pb-16 overflow-hidden" aria-labelledby="services-page-heading">
@@ -84,13 +84,13 @@ const services = [
     </div>
     <div class="container-content relative">
       <div class="mb-4">
-        <span class="badge">Services & Products</span>
+        <span class="badge">Leistungen & Produkte</span>
       </div>
       <h1 id="services-page-heading" class="text-heading-1 mb-5 text-text-primary max-w-2xl">
-        Tools that work.<br />Systems that scale.
+        Tools, die funktionieren.<br />Systeme, die skalieren.
       </h1>
       <p class="text-body-lg text-text-secondary max-w-xl">
-        Buy instant fulfillment bundles now, or book custom AI implementation for your team.
+        Sofort verfügbare Produkt-Bundles kaufen oder Custom-AI-Implementierung für dein Team anfragen.
       </p>
       <div class="mt-6 flex flex-wrap gap-3">
         <a href="#products-heading" class="btn-primary">Sofort kaufen</a>
@@ -181,7 +181,7 @@ const services = [
         </div>
         <div class="flex items-center gap-2 text-text-secondary text-small">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/></svg>
-          Questions? <a href="mailto:wanda.devops@gmail.com" class="text-brand-gold hover:underline ml-1">wanda.devops@gmail.com</a>
+          Fragen? <a href="mailto:wanda.devops@gmail.com" class="text-brand-gold hover:underline ml-1">wanda.devops@gmail.com</a>
         </div>
       </div>
     </div>
@@ -191,8 +191,8 @@ const services = [
   <section class="section border-t border-border" aria-labelledby="custom-heading">
     <div class="container-content">
       <div class="mb-10">
-        <h2 id="custom-heading" class="text-heading-2 text-text-primary mb-2">Custom-Services auf Anfrage</h2>
-        <p class="text-body text-text-secondary">Jedes Custom-Projekt wird individuell bewertet. Kein Festpreis ohne Gespräch — kein Commitment ohne Scope-Klärung.</p>
+        <h2 id="custom-heading" class="text-heading-2 text-text-primary mb-2">Individuelle Leistungen auf Anfrage</h2>
+        <p class="text-body text-text-secondary">Jedes Projekt wird individuell bewertet. Kein Festpreis ohne Gespräch — kein Commitment ohne Scope-Klärung.</p>
       </div>
 
       <div class="space-y-0">
@@ -234,7 +234,7 @@ const services = [
                 </ul>
               </div>
               <div>
-                <p class="label-text mb-2">Stack</p>
+                <p class="label-text mb-2">Technologie-Stack</p>
                 <div class="flex flex-wrap gap-2">
                   {s.stack.map((tech) => (
                     <span class="rounded-md border border-border bg-white/5 px-3 py-1.5 text-xs font-medium text-text-secondary hover:border-brand-gold/40 hover:text-brand-gold transition-colors duration-150">
@@ -263,7 +263,7 @@ const services = [
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center relative">
           <a href="/wandasystems-site/contact" class="btn-primary">
-            Get in touch
+            Kontakt aufnehmen
           </a>
           <a href="mailto:wanda.devops@gmail.com" class="btn-secondary">
             wanda.devops@gmail.com
