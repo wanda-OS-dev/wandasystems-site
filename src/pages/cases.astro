@@ -4,57 +4,57 @@ import Layout from '../layouts/Layout.astro';
 const cases = [
   {
     id: 'lead-automation',
-    tag: 'AI-Automatisierung',
+    tag: 'AI Automation',
     industry: 'B2B SaaS',
-    title: 'Lead-Qualifizierung vollständig automatisiert',
-    challenge: 'Ein B2B-SaaS-Unternehmen verbrachte täglich 3+ Stunden damit, eingehende Leads manuell zu prüfen, CRM-Einträge zu erstellen und Folge-E-Mails zu schreiben.',
-    solution: 'Wir bauten einen n8n-Workflow, der Leads automatisch klassifiziert, anreichert (Clearbit, LinkedIn), ins CRM schreibt und personalisierte Erstkontakt-E-Mails versendet.',
+    title: 'Lead qualification fully automated',
+    challenge: 'A B2B SaaS company spent 3+ hours per day manually reviewing inbound leads, creating CRM entries, and writing follow-up emails.',
+    solution: 'We built an n8n workflow that automatically classifies leads, enriches them (Clearbit, LinkedIn), writes to CRM, and sends personalized first-touch emails.',
     results: [
-      '94% Reduktion manueller Lead-Bearbeitungszeit',
-      'Response-Zeit von 8 Stunden auf 3 Minuten',
-      'Conversion-Rate +22% durch schnellere Reaktion',
+      '94% reduction in manual lead-processing time',
+      'Response time reduced from 8 hours to 3 minutes',
+      'Conversion rate +22% through faster response',
     ],
     tech: ['n8n', 'OpenAI', 'HubSpot API', 'Clearbit'],
   },
   {
     id: 'saas-launch',
-    tag: 'SaaS-Produkt',
+    tag: 'SaaS Product',
     industry: 'PropTech',
-    title: 'SaaS-Plattform in 6 Wochen live',
-    challenge: 'Ein Startup-Gründer hatte eine klare Produktidee für die Immobilienbranche, aber kein Tech-Team und ein knappes Budget für eine 6-monatige Agentur-Entwicklung.',
-    solution: 'Auf SupaStarter-Basis lieferten wir eine vollständige Multi-Tenant-SaaS-Plattform mit Stripe-Subscriptions, Dokumenten-Management und Reporting-Dashboard.',
+    title: 'SaaS platform launched in 6 weeks',
+    challenge: 'A startup founder had a clear product idea for real estate, but no in-house tech team and a tight budget for long agency development cycles.',
+    solution: 'Using SupaStarter, we delivered a full multi-tenant SaaS platform with Stripe subscriptions, document management, and a reporting dashboard.',
     results: [
-      'Live nach 42 Tagen',
-      'Erste zahlende Kunden in Woche 7',
-      '€4.200 MRR nach 3 Monaten',
+      'Live after 42 days',
+      'First paying customers in week 7',
+      '€4,200 MRR after 3 months',
     ],
     tech: ['Next.js', 'Supabase', 'Stripe', 'Vercel'],
   },
   {
     id: 'api-modernization',
-    tag: 'API-Integration',
+    tag: 'API Integration',
     industry: 'E-Commerce',
-    title: 'Bestell-, CRM- und ERP-Daten in Echtzeit synchronisiert',
-    challenge: 'Ein E-Commerce-Unternehmen arbeitete mit drei Datensilos: Shop-System, CRM und ERP. Teamübergreifende Reports waren fehleranfällig und oft einen Tag alt.',
-    solution: 'Wir implementierten robuste API-Integrationen mit Event-Queue, Retry-Logik und Monitoring, sodass Änderungen aus allen Systemen in Echtzeit harmonisiert werden.',
+    title: 'Order, CRM, and ERP data synchronized in real time',
+    challenge: 'An e-commerce company operated across three data silos: shop system, CRM, and ERP. Cross-team reports were error-prone and often a day behind.',
+    solution: 'We implemented robust API integrations with event queues, retry logic, and monitoring so changes across systems were harmonized in real time.',
     results: [
-      'Fehlerhafte Datensätze um 87% reduziert',
-      'Reporting von Tagesbatch auf Echtzeit umgestellt',
-      'Support-Tickets wegen Datenabweichungen deutlich gesenkt',
+      'Invalid data records reduced by 87%',
+      'Reporting moved from daily batches to real-time',
+      'Support tickets for data mismatches significantly reduced',
     ],
-    tech: ['Python', 'FastAPI', 'PostgreSQL', 'Webhook-Architektur'],
+    tech: ['Python', 'FastAPI', 'PostgreSQL', 'Webhook Architecture'],
   },
   {
     id: 'agent-research',
-    tag: 'AI-Agent-System',
+    tag: 'AI Agent System',
     industry: 'Consulting',
-    title: 'Research-Agent ersetzt 40h/Woche manuelle Arbeit',
-    challenge: 'Eine Unternehmensberatung erstellte wöchentlich Marktanalysen für Kunden — ein Prozess, der Analysten 40+ Stunden kostete und trotzdem oft zu spät kam.',
-    solution: 'Wir bauten einen Multi-Agenten-System mit LangGraph: Recherche-Agent (Web, News-APIs), Analyse-Agent (Synthese und Bewertung), Report-Agent (Dokument-Generierung).',
+    title: 'Research agent replaced 40h/week of manual work',
+    challenge: 'A consulting firm produced weekly market analyses for clients — a process that consumed 40+ analyst hours and still ran late.',
+    solution: 'We built a multi-agent system with LangGraph: research agent (web/news APIs), analysis agent (synthesis + evaluation), and report agent (document generation).',
     results: [
-      'Analysezeit von 40h auf 45 Minuten reduziert',
-      'Reports in Kundenformat automatisch generiert',
-      'Vollständig in bestehende Workflow-Tools integriert',
+      'Analysis time reduced from 40h to 45 minutes',
+      'Reports generated automatically in client-ready format',
+      'Fully integrated into existing workflow tools',
     ],
     tech: ['Python', 'LangGraph', 'OpenAI', 'Tavily', 'Notion API'],
   },
@@ -63,18 +63,18 @@ const cases = [
 
 <Layout
   title="Case Studies"
-  description="Reale Ergebnisse, reale Projekte — wie WandaSystems AI-Systeme für B2B-Kunden baut, die messbaren Unterschied machen."
+  description="Real outcomes, real projects — how WandaSystems builds AI systems for B2B clients that make a measurable difference."
 >
   <!-- Header -->
   <section class="pt-20 pb-16" aria-labelledby="cases-heading">
     <div class="container-content">
       <span class="badge mb-4 inline-block">Case Studies</span>
       <h1 id="cases-heading" class="text-heading-1 mb-5 text-text-primary max-w-2xl">
-        Ergebnisse, keine Versprechen.
+        Outcomes, not promises.
       </h1>
       <p class="text-body-lg text-text-secondary max-w-xl">
-        Echte Projekte, echte Zahlen. Alle Cases wurden mit Kundenerlaubnis veröffentlicht;
-        Details auf Anfrage.
+        Real projects, real numbers. All cases are published with client approval;
+        details on request.
       </p>
     </div>
   </section>
@@ -105,15 +105,15 @@ const cases = [
             <!-- Content -->
             <div class="lg:col-span-2 grid gap-8 sm:grid-cols-2">
               <div>
-                <p class="label-text mb-3">Ausgangslage</p>
+                <p class="label-text mb-3">Starting point</p>
                 <p class="text-small text-text-secondary leading-relaxed">{c.challenge}</p>
               </div>
               <div>
-                <p class="label-text mb-3">Unsere Lösung</p>
+                <p class="label-text mb-3">Our solution</p>
                 <p class="text-small text-text-secondary leading-relaxed">{c.solution}</p>
               </div>
               <div class="sm:col-span-2">
-                <p class="label-text mb-4">Ergebnisse</p>
+                <p class="label-text mb-4">Results</p>
                 <ul class="grid gap-3 sm:grid-cols-3" role="list">
                   {c.results.map((r) => (
                     <li class="rounded-xl border border-brand-gold/20 bg-brand-gold/5 px-4 py-3">
@@ -134,13 +134,13 @@ const cases = [
     <div class="container-content">
       <div class="mx-auto max-w-2xl text-center">
         <h2 id="cases-cta" class="text-heading-2 mb-4 text-text-primary">
-          Ihr nächstes Erfolgsprojekt?
+          Your next success project?
         </h2>
         <p class="text-body text-text-secondary mb-8">
-          Lassen Sie uns herausfinden, welche Ergebnisse in Ihrem Kontext möglich sind.
+          Let’s find out what outcomes are possible in your context.
         </p>
         <a href="/wandasystems-site/contact" class="btn-primary">
-          Kostenloses Gespräch buchen
+          Book a free call
         </a>
       </div>
     </div>

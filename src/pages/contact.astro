@@ -4,20 +4,20 @@ import ContactForm from '../components/ContactForm';
 
 const contactInfo = [
   {
-    label: 'E-Mail',
+    label: 'Email',
     value: 'wanda.devops@gmail.com',
     href: 'mailto:wanda.devops@gmail.com',
     icon: `<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 6.5L9 11l7-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
   },
   {
-    label: 'Antwortzeit',
-    value: 'Innerhalb von 24h',
+    label: 'Response time',
+    value: 'Within 24h',
     href: null,
     icon: `<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M9 5.5v3.5l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
   },
   {
-    label: 'Standort',
-    value: 'Hamburg, Deutschland · Remote',
+    label: 'Location',
+    value: 'Hamburg, Germany · Remote',
     href: null,
     icon: `<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2C6.24 2 4 4.24 4 7c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5z" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="7" r="1.5" stroke="currentColor" stroke-width="1.5"/></svg>`,
   },
@@ -25,25 +25,25 @@ const contactInfo = [
 ---
 
 <Layout
-  title="Kontakt"
-  description="Kostenloses Erstgespräch mit WandaSystems. Kein Pitch, keine Verpflichtung — wir hören zu und sagen Ihnen ehrlich, wie wir helfen können."
+  title="Contact"
+  description="Free discovery call with WandaSystems. No pitch, no obligation — we listen first and then tell you honestly how we can help."
 >
   <!-- Header -->
   <section class="pt-20 pb-16" aria-labelledby="contact-heading">
     <div class="container-content">
-      <span class="badge mb-4 inline-block">Kontakt</span>
+      <span class="badge mb-4 inline-block">Contact</span>
       <h1 id="contact-heading" class="text-heading-1 mb-5 text-text-primary max-w-xl">
-        Lassen Sie uns sprechen.
+        Let’s talk.
       </h1>
       <p class="text-body-lg text-text-secondary max-w-lg">
-        Kein Pitch. Kein Template-Angebot. Erstes Gespräch ist immer kostenlos
-        — wir hören zu, dann sagen wir ehrlich was möglich ist.
+        No pitch. No template offer. First call is always free —
+        we listen first, then tell you honestly what is possible.
       </p>
     </div>
   </section>
 
   <!-- Main Content -->
-  <section class="section border-t border-border" aria-label="Kontaktformular und -informationen">
+  <section class="section border-t border-border" aria-label="Contact form and details">
     <div class="container-content">
       <div class="grid gap-16 lg:grid-cols-3 lg:gap-20">
         <!-- Left: Info -->
@@ -73,13 +73,13 @@ const contactInfo = [
 
           <!-- What to expect -->
           <div class="rounded-xl border border-border bg-bg-card p-6">
-            <p class="label-text mb-4">Was Sie erwartet</p>
+            <p class="label-text mb-4">What to expect</p>
             <ol class="space-y-3" role="list">
               {[
-                'Erstes Gespräch: 30-60 Minuten, kostenlos',
-                'Wir stellen Fragen, kein Pitch',
-                'Danach: klare Einschätzung ob + wie wir helfen',
-                'Angebot in 48h wenn Fit besteht',
+                'First call: 30–60 minutes, free',
+                'We ask questions, no pitch',
+                'Then: clear assessment if + how we can help',
+                'Proposal within 48h if there is a fit',
               ].map((step, i) => (
                 <li class="flex items-start gap-3">
                   <span class="label-text text-brand-gold w-4 flex-shrink-0 mt-0.5">{String(i + 1).padStart(2, '0')}</span>

@@ -2,30 +2,30 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Danke" description="Zahlung erhalten. So geht es jetzt weiter.">
+<Layout title="Thank You" description="Payment received. Here is what happens next.">
   <section class="section pt-24" aria-labelledby="thanks-heading">
     <div class="container-content max-w-2xl">
-      <span class="badge">Zahlung bestätigt</span>
-      <h1 id="thanks-heading" class="text-heading-1 mt-4 mb-4">Danke — deine Bestellung ist in der Auslieferung.</h1>
+      <span class="badge">Payment confirmed</span>
+      <h1 id="thanks-heading" class="text-heading-1 mt-4 mb-4">Thank you — your order is being processed.</h1>
       <p class="text-body text-text-secondary mb-6">
-        Du erhältst deinen Fulfillment-Bundle-Link innerhalb von <strong>15 Minuten</strong>.
-        Wenn die Zustellung länger dauert, wird ein manueller Fallback aktiviert und innerhalb von <strong>maximal 60 Minuten</strong> abgeschlossen.
+        You will receive your fulfillment bundle link within <strong>15 minutes</strong>.
+        If delivery takes longer, a manual fallback will be triggered and completed within a <strong>maximum of 60 minutes</strong>.
       </p>
 
       <div class="rounded-xl border border-border p-6 mb-6" style="background: rgba(18,8,32,0.6);">
-        <p class="label-text mb-3">So geht es weiter</p>
+        <p class="label-text mb-3">What happens next</p>
         <ul class="space-y-2 text-small text-text-secondary" role="list">
-          <li>1) Stripe-Zahlung wird verifiziert</li>
-          <li>2) Dein Produkt-Bundle wird vorbereitet und qualitätsgeprüft</li>
-          <li>3) Zustellnachricht mit Bundle-Zugang wird gesendet</li>
-          <li>4) Zustellnachweis wird für Audit-Zwecke protokolliert</li>
+          <li>1) Stripe payment is verified</li>
+          <li>2) Your product bundle is prepared and quality checked</li>
+          <li>3) Delivery message with bundle access is sent</li>
+          <li>4) Proof of delivery is logged for audit purposes</li>
         </ul>
       </div>
 
       <p class="text-small text-text-secondary">
-        Brauchst du sofort Hilfe? Schreibe an
+        Need immediate help? Write to
         <a href="mailto:wanda.devops@gmail.com" class="text-brand-gold hover:underline">wanda.devops@gmail.com</a>
-        mit deiner Bestellreferenz.
+        with your order reference.
       </p>
     </div>
   </section>

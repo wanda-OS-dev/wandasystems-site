@@ -3,54 +3,54 @@ import Layout from '../layouts/Layout.astro';
 
 const values = [
   {
-    title: 'Ergebnisorientiert',
-    desc: 'Wir messen unseren Erfolg an Ihrem Erfolg. Keine Stunden-Abrechnungen, keine Komplexitätspflege — Outcome first.',
+    title: 'Outcome-Driven',
+    desc: 'We measure our success by your success. No hourly billing games, no complexity theater — outcome first.',
   },
   {
-    title: 'Technische Ehrlichkeit',
-    desc: 'Wir sagen Ihnen, wenn etwas keinen Sinn ergibt. Kein Over-Engineering, kein Under-Delivering.',
+    title: 'Technical Honesty',
+    desc: 'We tell you when something does not make sense. No over-engineering, no under-delivery.',
   },
   {
-    title: 'Geschwindigkeit mit System',
-    desc: 'Schnell durch Klarheit, nicht durch Abkürzungen. Solide Architektur ist immer schneller als technische Schulden.',
+    title: 'Speed with Structure',
+    desc: 'Fast through clarity, not shortcuts. Solid architecture is always faster than technical debt.',
   },
   {
-    title: 'Langfristige Partnerschaft',
-    desc: 'Wir bauen Systeme, die ohne uns funktionieren — und Beziehungen, die uns trotzdem zurückbringen.',
+    title: 'Long-Term Partnership',
+    desc: 'We build systems that work without us — and relationships that still bring us back.',
   },
 ];
 
 const capabilities = [
-  'Python Backend-Entwicklung',
-  'n8n Workflow-Automatisierung',
-  'LLM-Integration (OpenAI, Anthropic)',
-  'Multi-Agent-Architekturen',
-  'SaaS-Produktentwicklung',
+  'Python Backend Development',
+  'n8n Workflow Automation',
+  'LLM Integration (OpenAI, Anthropic)',
+  'Multi-Agent Architectures',
+  'SaaS Product Development',
   'Supabase / PostgreSQL',
-  'API-Integrationen',
-  'Business-System-Architektur',
+  'API Integrations',
+  'Business Systems Architecture',
   'Next.js / Astro Frontend',
   'CI/CD & DevOps',
   'REST API Design',
-  'Stripe / Payment-Integration',
+  'Stripe / Payment Integration',
 ];
 ---
 
 <Layout
-  title="Unternehmen"
-  description="WandaSystems — wer wir sind, wie wir denken, und warum wir existieren."
+  title="Company"
+  description="WandaSystems — who we are, how we think, and why we exist."
 >
   <!-- Header -->
   <section class="pt-20 pb-16" aria-labelledby="company-heading">
     <div class="container-content">
-      <span class="badge mb-4 inline-block">Unternehmen</span>
+      <span class="badge mb-4 inline-block">Company</span>
       <h1 id="company-heading" class="text-heading-1 mb-5 text-text-primary max-w-2xl">
-        Wir bauen Systeme,<br />die arbeiten, wenn wir schlafen.
+        We build systems<br />that work while we sleep.
       </h1>
       <p class="text-body-lg text-text-secondary max-w-xl">
-        WandaSystems ist ein technisches Studio für AI-Automatisierung,
-        SaaS und digitale Produktentwicklung. Remote-first, ergebnisorientiert,
-        keine Spielereien.
+        WandaSystems is a technical studio for AI automation,
+        SaaS, and digital product development. Remote-first, outcome-driven,
+        no gimmicks.
       </p>
     </div>
   </section>
@@ -62,22 +62,21 @@ const capabilities = [
         <div>
           <p class="label-text mb-4">Mission</p>
           <h2 id="mission-heading" class="text-heading-2 mb-6 text-text-primary">
-            AI soll für Unternehmen<br />arbeiten — nicht umgekehrt.
+            AI should work for businesses<br />— not the other way around.
           </h2>
           <div class="space-y-4 text-body text-text-secondary">
             <p>
-              WandaSystems wurde gegründet, weil wir das Versprechen von AI-Tools für Unternehmen
-              zu oft gebrochen sahen: Demos, die live versagen. Chatbots, die niemanden entlasten.
-              Beratungsberichte, die in Schubladen landen.
+              WandaSystems was founded because we saw the promise of AI tools for businesses
+              broken too often: demos that fail in production, chatbots that reduce no workload,
+              and consulting decks that end up in drawers.
             </p>
             <p>
-              Wir glauben, dass AI dann Wert schafft, wenn sie unsichtbar arbeitet —
-              eingebettet in Prozesse, zuverlässig, messbar. Keine Technologie um der
-              Technologie willen.
+              We believe AI creates value when it works quietly in the background —
+              embedded into processes, reliable, measurable. No technology for technology’s sake.
             </p>
             <p>
-              Unser Ansatz: Verstehen, was wirklich gebraucht wird. Dann das Einfachste,
-              was funktioniert. Dann live. Dann iterieren.
+              Our approach: understand what is truly needed. Build the simplest thing
+              that works. Ship it. Then iterate.
             </p>
           </div>
         </div>
@@ -86,14 +85,14 @@ const capabilities = [
           <p class="label-text mb-2">Vision</p>
           <blockquote class="relative rounded-2xl border border-border bg-bg-card p-8">
             <p class="text-heading-3 font-medium text-text-primary leading-relaxed">
-              "Das autonome Unternehmen ist kein Konzept für 2035. Wir bauen es jetzt — Prozess für Prozess."
+              "The autonomous company is not a concept for 2035. We build it now — process by process."
             </p>
           </blockquote>
 
           <div class="rounded-xl border border-border bg-bg-card p-6">
-            <p class="label-text mb-4">Was uns definiert</p>
+            <p class="label-text mb-4">What defines us</p>
             <ul class="space-y-2" role="list">
-              {['Remote-First, async by default', 'Open Source wo möglich', 'Kein Lock-in, kein Bullshit', 'Messbare KPIs für jedes Projekt'].map((item) => (
+              {['Remote-first, async by default', 'Open source where practical', 'No lock-in, no nonsense', 'Measurable KPIs for every project'].map((item) => (
                 <li class="flex items-center gap-3">
                   <svg class="text-brand-gold flex-shrink-0" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                     <path d="M2.5 7l3 3 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -111,9 +110,9 @@ const capabilities = [
   <!-- Values -->
   <section class="section border-t border-border bg-bg-secondary" aria-labelledby="values-heading">
     <div class="container-content">
-      <p class="label-text mb-4">Werte</p>
+      <p class="label-text mb-4">Values</p>
       <h2 id="values-heading" class="text-heading-2 mb-12 text-text-primary max-w-lg">
-        Wie wir denken und handeln.
+        How we think and operate.
       </h2>
 
       <div class="grid gap-6 sm:grid-cols-2">
@@ -132,16 +131,16 @@ const capabilities = [
     <div class="container-content">
       <div class="grid gap-16 lg:grid-cols-2 items-start">
         <div>
-          <p class="label-text mb-4">Kompetenzen</p>
+          <p class="label-text mb-4">Capabilities</p>
           <h2 id="capabilities-heading" class="text-heading-2 mb-6 text-text-primary">
-            Technologien, die wir täglich einsetzen.
+            Technologies we use every day.
           </h2>
           <p class="text-body text-text-secondary mb-8">
-            Kein Technology-Bingo. Nur Tools, mit denen wir tatsächlich produktive
-            Systeme bauen — und die wir im Schlaf kennen.
+            No technology bingo. Only tools we actually use to build productive
+            systems — and know deeply.
           </p>
           <a href="/wandasystems-site/contact" class="btn-primary">
-            Projekt anfragen
+            Request project scope
           </a>
         </div>
 
@@ -162,14 +161,14 @@ const capabilities = [
     <div class="container-content">
       <div class="mx-auto max-w-2xl rounded-2xl border border-white/5 bg-gradient-to-br from-brand-gold/5 to-transparent p-12 text-center">
         <h2 id="company-cta" class="text-heading-2 mb-4 text-text-primary">
-          Klingt nach dem richtigen Partner?
+          Sounds like the right partner?
         </h2>
         <p class="text-body text-text-secondary mb-8">
-          Wir freuen uns auf das Gespräch. Kein Pitch, kein Formular-Overhead —
-          direktes Gespräch, ehrliche Einschätzung.
+          Happy to talk. No pitch deck, no form friction —
+          direct conversation, honest assessment.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-          <a href="/wandasystems-site/contact" class="btn-primary">Gespräch buchen</a>
+          <a href="/wandasystems-site/contact" class="btn-primary">Book a call</a>
           <a href="mailto:wanda.devops@gmail.com" class="btn-secondary">
             wanda.devops@gmail.com
           </a>

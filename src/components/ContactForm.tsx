@@ -11,11 +11,11 @@ interface FormData {
 }
 
 const serviceOptions = [
-  { value: '', label: 'Bitte wählen…' },
-  { value: 'automation', label: 'AI-Automatisierungen (n8n + Python)' },
-  { value: 'saas', label: 'SaaS-Produktentwicklung' },
-  { value: 'agents', label: 'AI-Agent-Systeme' },
-  { value: 'other', label: 'Sonstiges / Noch unklar' },
+  { value: '', label: 'Please select...' },
+  { value: 'automation', label: 'AI Automations (n8n + Python)' },
+  { value: 'saas', label: 'SaaS Product Development' },
+  { value: 'agents', label: 'AI Agent Systems' },
+  { value: 'other', label: 'Other / Not sure yet' },
 ];
 
 export default function ContactForm() {
@@ -31,13 +31,13 @@ export default function ContactForm() {
 
   const validate = (): boolean => {
     const newErrors: Partial<FormData> = {};
-    if (!data.name.trim()) newErrors.name = 'Name ist erforderlich';
+    if (!data.name.trim()) newErrors.name = 'Name is required';
     if (!data.email.trim()) {
-      newErrors.email = 'E-Mail ist erforderlich';
+      newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-      newErrors.email = 'Ungültige E-Mail-Adresse';
+      newErrors.email = 'Invalid email address';
     }
-    if (!data.message.trim()) newErrors.message = 'Nachricht ist erforderlich';
+    if (!data.message.trim()) newErrors.message = 'Message is required';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -90,10 +90,10 @@ export default function ContactForm() {
             <path d="M5 12l4 4 10-10" stroke="#c9a84c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
-        <h3 className="text-heading-3 mb-2 text-text-primary">Nachricht erhalten.</h3>
+        <h3 className="text-heading-3 mb-2 text-text-primary">Message received.</h3>
         <p className="text-body text-text-secondary">
-          Wir melden uns innerhalb von 24 Stunden.
-          In dringenden Fällen: <a href="mailto:wanda.devops@gmail.com" className="text-brand-gold hover:underline">wanda.devops@gmail.com</a>
+          We will get back to you within 24 hours.
+          For urgent matters: <a href="mailto:wanda.devops@gmail.com" className="text-brand-gold hover:underline">wanda.devops@gmail.com</a>
         </p>
       </div>
     );
@@ -117,7 +117,7 @@ export default function ContactForm() {
             className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold ${
               errors.name ? 'border-red-500' : 'border-border'
             }`}
-            placeholder="Max Mustermann"
+            placeholder="John Doe"
             aria-describedby={errors.name ? 'name-error' : undefined}
             aria-invalid={!!errors.name}
           />
@@ -130,7 +130,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="email" className="label-text mb-2 block">
-            E-Mail <span className="text-red-400">*</span>
+            Email <span className="text-red-400">*</span>
           </label>
           <input
             type="email"
@@ -142,7 +142,7 @@ export default function ContactForm() {
             className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold ${
               errors.email ? 'border-red-500' : 'border-border'
             }`}
-            placeholder="max@unternehmen.de"
+            placeholder="john@company.com"
             aria-describedby={errors.email ? 'email-error' : undefined}
             aria-invalid={!!errors.email}
           />
@@ -158,7 +158,7 @@ export default function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="company" className="label-text mb-2 block">
-            Unternehmen
+            Company
           </label>
           <input
             type="text"
@@ -168,13 +168,13 @@ export default function ContactForm() {
             onChange={handleChange}
             autoComplete="organization"
             className="w-full rounded-lg border border-border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold"
-            placeholder="Musterfirma GmbH"
+            placeholder="Acme Corp"
           />
         </div>
 
         <div>
           <label htmlFor="service" className="label-text mb-2 block">
-            Service-Interesse
+            Service Interest
           </label>
           <select
             id="service"
@@ -195,7 +195,7 @@ export default function ContactForm() {
       {/* Message */}
       <div>
         <label htmlFor="message" className="label-text mb-2 block">
-          Ihr Anliegen <span className="text-red-400">*</span>
+          Your Request <span className="text-red-400">*</span>
         </label>
         <textarea
           id="message"
@@ -206,7 +206,7 @@ export default function ContactForm() {
           className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold resize-none ${
             errors.message ? 'border-red-500' : 'border-border'
           }`}
-          placeholder="Beschreiben Sie kurz, was Sie automatisieren oder bauen möchten. Je konkreter, desto besser."
+          placeholder="Briefly describe what you want to automate or build. The more specific, the better."
           aria-describedby={errors.message ? 'message-error' : undefined}
           aria-invalid={!!errors.message}
         />
@@ -219,7 +219,7 @@ export default function ContactForm() {
 
       {formState === 'error' && (
         <p className="text-sm text-red-400">
-          Versand fehlgeschlagen. Bitte schreiben Sie direkt an{' '}
+          Submission failed. Please write directly to{' '}
           <a href="mailto:wanda.devops@gmail.com" className="text-brand-gold hover:underline">wanda.devops@gmail.com</a>.
         </p>
       )}
@@ -227,7 +227,7 @@ export default function ContactForm() {
       {/* Submit */}
       <div className="flex items-center justify-between gap-4">
         <p className="text-xs text-text-muted">
-          Ihre Daten werden vertraulich behandelt. Kein Newsletter, kein Spam.
+          Your data is treated confidentially. No newsletter, no spam.
         </p>
         <button
           type="submit"
@@ -239,11 +239,11 @@ export default function ContactForm() {
               <svg className="animate-spin" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.5" strokeDasharray="8 6"/>
               </svg>
-              Senden…
+              Sending...
             </>
           ) : (
             <>
-              Nachricht senden
+              Send message
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
