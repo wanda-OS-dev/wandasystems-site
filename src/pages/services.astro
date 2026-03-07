@@ -4,67 +4,85 @@ import Layout from '../layouts/Layout.astro';
 const products = [
   {
     id: 'data-bot',
-    badge: 'Sofort-Download · Python-CLI-Tool',
+    badge: 'Instant Download · Python CLI Tool',
     price: '€29',
     title: 'Data Cleaning Bot',
-    tagline: 'Unstrukturierte CSVs rein. Saubere Daten raus.',
-    desc: 'Ein Python-CLI-Skript mit README, Beispieldateien und Setup-Anleitung. Geeignet für technisch vertraute Nutzer, die Pandas beherrschen oder bereit sind, eine einfache Python-Umgebung einzurichten.',
+    tagline: 'Messy CSVs in. Clean outputs out.',
+    desc: 'A Python CLI script with README, sample files, and setup steps. Built for technical users who can run a basic Python environment.',
     outcomes: [
-      'Entfernt Duplikate automatisch',
-      'Normalisiert Formatierung (Telefon, E-Mail, Namen)',
-      'Validiert und markiert fehlende oder ungültige Felder',
-      'Exportiert saubere CSV + Excel mit Cleaning-Report',
+      'Removes duplicate rows automatically',
+      'Normalizes formatting (phone, email, names)',
+      'Validates and flags missing or invalid fields',
+      'Exports clean CSV + Excel with a cleaning report',
     ],
-    delivery: 'Nach Zahlung: Stripe-Bestätigung + Fulfillment-E-Mail mit Bundle-Link innerhalb von 15 Minuten (max. 60 Minuten Fallback).',
-    requirements: 'Voraussetzungen: Python 3.9+, pip, CLI-Grundkenntnisse. Kein No-Code-Tool.',
-    cta: 'Data Cleaning Bot kaufen — €29',
+    delivery: 'After payment: Stripe confirmation + fulfillment email with bundle link within 15 minutes (60-minute fallback maximum).',
+    requirements: 'Requirements: Python 3.9+, pip, basic CLI knowledge. Not a no-code tool.',
+    cta: 'Buy Data Cleaning Bot — €29',
     href: 'https://buy.stripe.com/28E14odfd8u6gPqbkQaVa01',
     primary: true,
+  },
+  {
+    id: 'lead-scout',
+    badge: 'Script Product · Sale Paused',
+    price: 'Paused',
+    title: 'Lead-Scout (Google Maps)',
+    tagline: 'Currently not for sale.',
+    desc: 'This script is shown for transparency but is not currently sellable. Last audit failed due to stale selectors and Google Maps JS-rendering changes.',
+    outcomes: [
+      'Current status: paused until technical remediation',
+      'No checkout enabled while audit is failing',
+      'Will only return after clean-env pass + claim-match',
+      'Public status remains visible to avoid hidden product drift',
+    ],
+    requirements: 'Status: not currently runnable to production standard. Do not purchase.',
+    cta: 'Sale paused — join waitlist via contact',
+    href: '',
+    primary: false,
   },
 ];
 
 const services = [
   {
     id: 'automation',
-    badge: 'Individuell · Anfrage erforderlich',
-    title: 'AI-Automatisierungssysteme',
-    priceAnchor: 'Preis nach Scope-Gespräch',
-    desc: 'Wir analysieren deinen Workflow und implementieren zuverlässige n8n- + Python-Automatisierungen mit transparenter Übergabedokumentation. Jedes Projekt wird individuell bewertet — kein Standardpreis, kein Blind-Commitment.',
+    badge: 'Custom · Inquiry Required',
+    title: 'AI Automation Systems',
+    priceAnchor: 'Pricing after scope call',
+    desc: 'We analyze your workflow and implement reliable n8n + Python automations with transparent handover documentation. Every project is scoped individually — no blind commitments.',
     outcomes: [
-      'Manuelle Dateneingabe auf nahe null reduzieren',
-      'API-Integrationen über zentrale Business-Tools',
-      'Monitoring und Alerting auf kritischen Schritten',
-      'Implementierungsdokumentation für dein Team',
+      'Reduce manual data entry close to zero',
+      'API integrations across core business tools',
+      'Monitoring and alerting on critical steps',
+      'Implementation documentation for your team',
     ],
     stack: ['n8n', 'Python', 'FastAPI', 'PostgreSQL', 'Docker'],
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v10l9 5 9-5V7L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 2v14M3 7l9 5 9-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
   },
   {
     id: 'agents',
-    badge: 'Individuell · Anfrage erforderlich',
-    title: 'AI-Agent-Systeme',
-    priceAnchor: 'Preis nach Scope-Gespräch',
-    desc: 'Keine Chatbot-Demos: echte Agenten, die in deinem Stack recherchieren, entscheiden und ausführen — mit Human-in-the-loop dort, wo es zählt. Nur nach Anfrage und Scope-Klärung.',
+    badge: 'Custom · Inquiry Required',
+    title: 'AI Agent Systems',
+    priceAnchor: 'Pricing after scope call',
+    desc: 'No chatbot demos: real agents that research, decide, and execute in your stack — with human-in-the-loop where it matters. Inquiry and scope clarification required.',
     outcomes: [
-      'Agenten abgestimmt auf deine echten Workflows',
-      'Tool-Zugriff: Web, DB, APIs, Code-Ausführung',
-      'Persistentes Memory und Kontext-Management',
-      'Human-in-the-loop an kritischen Entscheidungspunkten',
+      'Agents aligned to your real workflows',
+      'Tool access: web, databases, APIs, code execution',
+      'Persistent memory and context management',
+      'Human-in-the-loop at critical decision points',
     ],
     stack: ['Python', 'LangGraph / CrewAI', 'OpenAI / Anthropic', 'Vector DBs', 'Docker'],
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M6 20c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M18 6l2.5-2.5M18 13l2.5 2.5M6 6L3.5 3.5M6 13L3.5 15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
   },
   {
     id: 'saas',
-    badge: 'Individuell · Anfrage erforderlich',
-    title: 'SaaS-Produktentwicklung',
-    priceAnchor: 'Preis nach Scope-Gespräch',
-    desc: 'Von der Idee zu ersten zahlenden Nutzern auf einem bewährten Stack. Zeitrahmen und Preis hängen vom Scope ab — keine Pauschalaussagen ohne Anfrage-Gespräch.',
+    badge: 'Custom · Inquiry Required',
+    title: 'SaaS Product Development',
+    priceAnchor: 'Pricing after scope call',
+    desc: 'From idea to first paying users on a proven stack. Timeline and pricing depend on scope — no blanket promises without a discovery call.',
     outcomes: [
-      'Vollständiges Auth-Setup (OAuth, MFA)',
-      'Stripe-Integration für Abos und Einmalzahlungen',
-      'Multi-Tenant-Architektur von Anfang an',
-      'Admin-Dashboard und Usage-Analytics',
+      'Full auth setup (OAuth, MFA)',
+      'Stripe integration for subscriptions and one-time payments',
+      'Multi-tenant architecture from day one',
+      'Admin dashboard and usage analytics',
     ],
     stack: ['Next.js / Astro', 'Supabase', 'Stripe', 'TypeScript', 'Tailwind CSS'],
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 8h4M7 11.5h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
@@ -73,8 +91,8 @@ const services = [
 ---
 
 <Layout
-  title="Leistungen"
-  description="Python-Tools und individuelle AI-Systeme von WandaSystems. Data Cleaning Bot sofort verfügbar. Automatisierungen, Agenten und SaaS-Builds auf Anfrage."
+  title="Services"
+  description="Python tools and custom AI systems by WandaSystems. Data Cleaning Bot available now. Automation, agents, and SaaS builds by inquiry."
 >
   <!-- Page Header -->
   <section class="relative pt-20 pb-16 overflow-hidden" aria-labelledby="services-page-heading">
@@ -84,17 +102,17 @@ const services = [
     </div>
     <div class="container-content relative">
       <div class="mb-4">
-        <span class="badge">Leistungen & Produkte</span>
+        <span class="badge">Services & Products</span>
       </div>
       <h1 id="services-page-heading" class="text-heading-1 mb-5 text-text-primary max-w-2xl">
-        Tools, die funktionieren.<br />Systeme, die skalieren.
+        Tools that work.<br />Systems that scale.
       </h1>
       <p class="text-body-lg text-text-secondary max-w-xl">
-        Sofort verfügbare Produkt-Bundles kaufen oder individuelle AI-Implementierung für dein Team anfragen.
+        Buy instant fulfillment bundles now, or request custom AI implementation for your team.
       </p>
       <div class="mt-6 flex flex-wrap gap-3">
-        <a href="#products-heading" class="btn-primary">Sofort kaufen</a>
-        <a href="#custom-heading" class="btn-secondary">Individuelle Implementierung anfragen</a>
+        <a href="#products-heading" class="btn-primary">Buy now</a>
+        <a href="#custom-heading" class="btn-secondary">Request custom implementation</a>
       </div>
     </div>
   </section>
@@ -103,8 +121,8 @@ const services = [
   <section class="section border-t border-border" aria-labelledby="products-heading">
     <div class="container-content">
       <div class="mb-10">
-        <h2 id="products-heading" class="text-heading-2 text-text-primary mb-2">Sofort kaufbar</h2>
-        <p class="text-body text-text-secondary">Python-CLI-Tools mit README, Beispieldateien und Setup-Anleitung. Für technisch vertraute Nutzer — kein No-Code.</p>
+        <h2 id="products-heading" class="text-heading-2 text-text-primary mb-2">Instant Buy Products</h2>
+        <p class="text-body text-text-secondary">Python CLI tools with README, sample files, and setup guidance. For technical users — not no-code.</p>
       </div>
 
       <div class="grid gap-6 lg:grid-cols-2">
@@ -119,7 +137,7 @@ const services = [
             {p.primary && (
               <div class="absolute top-4 right-4">
                 <span class="rounded-full px-3 py-1 text-xs font-semibold" style="background: rgba(201,168,76,0.15); color: #c9a84c; border: 1px solid rgba(201,168,76,0.3);">
-                  Verfügbar
+                  Available
                 </span>
               </div>
             )}
@@ -152,19 +170,29 @@ const services = [
                 ⚠️ {p.requirements}
               </p>
             )}
-            <a
-              href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class={p.primary ? 'btn-primary text-center justify-center' : 'btn-secondary text-center justify-center'}
-              style={p.primary ? '' : 'display: flex; align-items: center;'}
-            >
-              {p.cta}
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="ml-2">
-                <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-            <p class="mt-3 text-xs text-text-secondary">{p.delivery}</p>
+            {p.href ? (
+              <a
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={p.primary ? 'btn-primary text-center justify-center' : 'btn-secondary text-center justify-center'}
+                style={p.primary ? '' : 'display: flex; align-items: center;'}
+              >
+                {p.cta}
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="ml-2">
+                  <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            ) : (
+              <a
+                href="/wandasystems-site/contact"
+                class="btn-secondary text-center justify-center"
+                style="display: flex; align-items: center;"
+              >
+                {p.cta}
+              </a>
+            )}
+            {p.delivery && <p class="mt-3 text-xs text-text-secondary">{p.delivery}</p>}
           </div>
         ))}
       </div>
@@ -173,15 +201,15 @@ const services = [
       <div class="mt-8 flex flex-wrap gap-6 items-center">
         <div class="flex items-center gap-2 text-text-secondary text-small">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7L8 1z" stroke="#c9a84c" stroke-width="1.2" stroke-linejoin="round"/></svg>
-          Lieferung: innerhalb von 15 Minuten
+          Delivery target: within 15 minutes
         </div>
         <div class="flex items-center gap-2 text-text-secondary text-small">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="7" width="12" height="8" rx="2" stroke="#c9a84c" stroke-width="1.2"/><path d="M5 7V5a3 3 0 016 0v2" stroke="#c9a84c" stroke-width="1.2" stroke-linecap="round"/></svg>
-          Sicherer Checkout via Stripe
+          Secure checkout via Stripe
         </div>
         <div class="flex items-center gap-2 text-text-secondary text-small">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/></svg>
-          Fragen? <a href="mailto:wanda.devops@gmail.com" class="text-brand-gold hover:underline ml-1">wanda.devops@gmail.com</a>
+          Questions? <a href="mailto:wanda.devops@gmail.com" class="text-brand-gold hover:underline ml-1">wanda.devops@gmail.com</a>
         </div>
       </div>
     </div>
@@ -191,8 +219,8 @@ const services = [
   <section class="section border-t border-border" aria-labelledby="custom-heading">
     <div class="container-content">
       <div class="mb-10">
-        <h2 id="custom-heading" class="text-heading-2 text-text-primary mb-2">Individuelle Leistungen auf Anfrage</h2>
-        <p class="text-body text-text-secondary">Jedes Projekt wird individuell bewertet. Kein Festpreis ohne Gespräch — kein Commitment ohne Scope-Klärung.</p>
+        <h2 id="custom-heading" class="text-heading-2 text-text-primary mb-2">Custom Services by Inquiry</h2>
+        <p class="text-body text-text-secondary">Every project is scoped individually. No fixed quote without a call — no commitment without scope clarity.</p>
       </div>
 
       <div class="space-y-0">
@@ -211,7 +239,7 @@ const services = [
               <p class="text-small text-brand-gold mb-4">{s.priceAnchor}</p>
               <p class="text-body text-text-secondary mb-6">{s.desc}</p>
               <a href="/wandasystems-site/contact" class="btn-secondary inline-flex items-center gap-2">
-                Anfrage stellen
+                Request project scope
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                   <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -219,7 +247,7 @@ const services = [
             </div>
             <div class="space-y-6">
               <div class="rounded-xl p-5 border border-border" style="background: linear-gradient(135deg, rgba(18, 8, 32, 0.8) 0%, rgba(10, 10, 10, 0.6) 100%);">
-                <p class="label-text mb-3">Was du bekommst</p>
+                <p class="label-text mb-3">What you get</p>
                 <ul class="space-y-2.5" role="list">
                   {s.outcomes.map((o) => (
                     <li class="flex items-start gap-3">
@@ -234,7 +262,7 @@ const services = [
                 </ul>
               </div>
               <div>
-                <p class="label-text mb-2">Technologie-Stack</p>
+                <p class="label-text mb-2">Tech stack</p>
                 <div class="flex flex-wrap gap-2">
                   {s.stack.map((tech) => (
                     <span class="rounded-md border border-border bg-white/5 px-3 py-1.5 text-xs font-medium text-text-secondary hover:border-brand-gold/40 hover:text-brand-gold transition-colors duration-150">
@@ -256,14 +284,14 @@ const services = [
       <div class="mx-auto max-w-2xl text-center rounded-2xl p-10 relative overflow-hidden" style="background: linear-gradient(135deg, rgba(18, 8, 32, 0.9) 0%, rgba(10, 10, 10, 0.2) 50%, rgba(13, 8, 22, 0.9) 100%); border: 1px solid rgba(201, 168, 76, 0.15);">
         <div class="absolute inset-0 pointer-events-none rounded-2xl" style="box-shadow: inset 0 0 40px rgba(201,168,76,0.03);"></div>
         <h2 id="services-cta" class="text-heading-2 mb-4 text-text-primary relative">
-          Nicht sicher, was du brauchst?
+          Not sure what you need?
         </h2>
         <p class="text-body text-text-secondary mb-8 relative">
-          Beschreib dein Problem. Wir sagen dir ehrlich, ob und wie wir es lösen können.
+          Describe your problem. We will tell you honestly if and how we can solve it.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center relative">
           <a href="/wandasystems-site/contact" class="btn-primary">
-            Kontakt aufnehmen
+            Get in touch
           </a>
           <a href="mailto:wanda.devops@gmail.com" class="btn-secondary">
             wanda.devops@gmail.com
