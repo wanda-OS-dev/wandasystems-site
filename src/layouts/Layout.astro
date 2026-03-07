@@ -34,6 +34,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/wandasystems-site/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/wandasystems-site/favicon.svg" />
     <link rel="apple-touch-icon" href="/wandasystems-site/apple-touch-icon.png" />
 
@@ -81,6 +82,32 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
         rel="stylesheet"
       />
     </noscript>
+
+    <!-- WebGL safety gate: immersive layers must never block business content -->
+    <script is:inline>
+      (() => {
+        const hasWebGL = () => {
+          try {
+            const canvas = document.createElement('canvas');
+            return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+          } catch {
+            return false;
+          }
+        };
+
+        if (!hasWebGL()) {
+          document.documentElement.classList.add('no-webgl');
+        }
+
+        window.addEventListener('error', (event) => {
+          const msg = String(event?.message || '').toLowerCase();
+          if (msg.includes('webgl') || msg.includes('three') || msg.includes('renderer')) {
+            document.documentElement.classList.add('no-webgl');
+            document.querySelectorAll('[data-immersive]').forEach((node) => node.remove());
+          }
+        });
+      })();
+    </script>
   </head>
   <body class="flex min-h-full flex-col bg-brand-black">
     <!-- Global atmospheric background -->

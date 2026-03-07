@@ -134,4 +134,8 @@
     border-color: rgba(201, 168, 76, 0.2);
     box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.1);
   }
+
+  html.no-webgl [data-immersive] {
+    display: none !important;
+  }
 }

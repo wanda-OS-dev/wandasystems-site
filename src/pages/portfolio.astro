@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const portfolioItems = [
+  {
+    title: 'Lead Qualification Automation',
+    industry: 'B2B SaaS',
+    summary: 'Automated inbound lead qualification and CRM handoff with measurable response-time reduction.',
+    result: 'Response time reduced from hours to minutes.',
+  },
+  {
+    title: 'SaaS Launch Build',
+    industry: 'PropTech',
+    summary: 'Delivered a production SaaS baseline with payments, auth, and analytics in one sprint track.',
+    result: 'First paying users acquired in week one post-launch.',
+  },
+  {
+    title: 'Real-Time Data Sync Pipeline',
+    industry: 'E-Commerce',
+    summary: 'Connected shop, CRM, and ERP with reliable retry logic and monitoring.',
+    result: 'Data mismatch incidents reduced significantly.',
+  },
+];
+---
+
+<Layout
+  title="Portfolio"
+  description="Selected WandaSystems delivery outcomes across automation, SaaS, and integrations."
+>
+  <section class="pt-20 pb-16" aria-labelledby="portfolio-heading">
+    <div class="container-content">
+      <span class="badge mb-4 inline-block">Portfolio</span>
+      <h1 id="portfolio-heading" class="text-heading-1 mb-5 text-text-primary max-w-2xl">
+        Public delivery surface. No hidden content.
+      </h1>
+      <p class="text-body-lg text-text-secondary max-w-xl">
+        This page is intentionally static-first and reliable. Core portfolio content renders without WebGL or experimental runtime layers.
+      </p>
+    </div>
+  </section>
+
+  <section class="section border-t border-border" aria-labelledby="portfolio-list-heading">
+    <div class="container-content">
+      <h2 id="portfolio-list-heading" class="sr-only">Portfolio highlights</h2>
+      <div class="grid gap-6 md:grid-cols-3">
+        {portfolioItems.map((item) => (
+          <article class="rounded-2xl border border-border p-6" style="background: linear-gradient(135deg, rgba(18, 8, 32, 0.8) 0%, rgba(10, 10, 10, 0.7) 100%);">
+            <p class="label-text mb-3">{item.industry}</p>
+            <h3 class="text-heading-3 mb-3 text-text-primary">{item.title}</h3>
+            <p class="text-small text-text-secondary mb-4">{item.summary}</p>
+            <p class="text-small text-brand-gold">{item.result}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-10 text-center">
+        <a href="/wandasystems-site/contact" class="btn-primary">Discuss your project</a>
+      </div>
+    </div>
+  </section>
+</Layout>
