@@ -6,36 +6,35 @@
 
 @layer base {
   :root {
-    --color-bg: #0d0816;
-    --color-accent: #06b6d4;
-    --color-text: #f0f0ff;
-    --glow-cyan: rgba(0, 245, 255, 0.15);
-    --glow-indigo: rgba(45, 27, 105, 0.4);
+    --color-bg: #0a0a0a;
+    --color-accent: #c9a84c;
+    --color-text: #f5f5f0;
+    --glow-gold: rgba(201, 168, 76, 0.15);
+    --glow-indigo: rgba(26, 10, 46, 0.4);
   }
 
   html {
-    @apply bg-bg text-text-primary scroll-smooth;
+    @apply bg-brand-black text-brand-white scroll-smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 
   body {
-    @apply font-sans text-body;
-    background-color: #0d0816;
+    @apply font-sans text-body bg-brand-black;
   }
 
   * {
-    @apply border-border;
+    @apply border-white/5;
   }
 
   ::selection {
-    background: rgba(6, 182, 212, 0.25);
-    color: #f0f0ff;
+    background: rgba(201, 168, 76, 0.25);
+    color: #f5f5f0;
   }
 
   :focus-visible {
-    outline: 2px solid #06b6d4;
+    outline: 2px solid #c9a84c;
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -47,20 +46,21 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-bg transition-all duration-150 hover:bg-accent-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg;
-    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+    @apply inline-flex items-center gap-2 rounded-sm bg-brand-gold px-6 py-3 text-sm font-semibold text-brand-black transition-all duration-300 hover:bg-brand-gold-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black;
+    box-shadow: 0 4px 14px 0 rgba(201, 168, 76, 0.2);
   }
 
   .btn-primary:hover {
-    box-shadow: 0 0 30px rgba(0, 245, 255, 0.4);
+    box-shadow: 0 6px 20px rgba(201, 168, 76, 0.25);
+    transform: translateY(-1px);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-2 rounded-lg border border-border bg-transparent px-6 py-3 text-sm font-semibold text-text-primary transition-all duration-150 hover:border-accent hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent;
+    @apply inline-flex items-center gap-2 rounded-sm border border-white/20 bg-transparent px-6 py-3 text-sm font-semibold text-brand-white transition-all duration-300 hover:border-brand-gold hover:text-brand-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold;
   }
 
   .badge {
-    @apply inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-accent;
+    @apply inline-flex items-center rounded-full border border-brand-gold/30 bg-brand-gold/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-brand-gold;
   }
 
   .section {
@@ -68,57 +68,52 @@
   }
 
   .divider {
-    @apply h-px w-full bg-border;
+    @apply h-px w-full bg-white/5;
   }
 
   .card {
-    @apply rounded-2xl border border-border bg-bg-card p-8 transition-all duration-200 hover:border-accent/40;
-    background: linear-gradient(135deg, rgba(26, 17, 48, 0.9) 0%, rgba(13, 8, 22, 0.9) 100%);
-    box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.05);
+    @apply rounded-sm border border-white/5 bg-brand-indigo-card p-8 transition-all duration-500 hover:border-brand-gold/20;
+    background: linear-gradient(135deg, rgba(18, 8, 32, 0.9) 0%, rgba(13, 8, 22, 0.95) 100%);
   }
 
   .card:hover {
-    box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.15), 0 0 30px rgba(6, 182, 212, 0.05);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
   }
 
   .label-text {
-    @apply text-xs font-semibold uppercase tracking-widest text-text-muted;
+    @apply text-xs font-semibold uppercase tracking-widest text-brand-gray-500;
   }
 
   .link-underline {
-    @apply relative text-text-secondary transition-colors duration-150 hover:text-text-primary after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-accent after:transition-all after:duration-200 hover:after:w-full;
+    @apply relative text-brand-gray-300 transition-colors duration-300 hover:text-brand-white after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-brand-gold after:transition-all after:duration-300 hover:after:w-full;
   }
 
   /* Particle / grid background layer */
   .wanda-grid-bg {
     background-image:
-      linear-gradient(to right, rgba(6, 182, 212, 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(6, 182, 212, 0.04) 1px, transparent 1px);
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 
   /* Glowing section divider */
   .glow-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.4) 40%, rgba(0, 245, 255, 0.6) 50%, rgba(6, 182, 212, 0.4) 60%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(201, 168, 76, 0.1) 20%, rgba(201, 168, 76, 0.4) 50%, rgba(201, 168, 76, 0.1) 80%, transparent 100%);
   }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-text-primary via-text-primary to-text-secondary bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-brand-white via-brand-white to-brand-gray-500 bg-clip-text text-transparent;
   }
 
-  .text-gradient-cyan {
+  .text-gradient-gold {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(90deg, #06b6d4, #8b5cf6, #00f5ff, #06b6d4);
+    background-image: linear-gradient(90deg, #c9a84c, #f5f5f0, #a8893e, #c9a84c);
     background-size: 200% auto;
-    animation: gradient-sweep 3s linear infinite;
-  }
-
-  /* Keep old blue gradient alias for backward compat */
-  .text-gradient-blue {
-    @apply bg-gradient-to-r from-white to-accent bg-clip-text text-transparent;
+    animation: gradient-sweep 4s linear infinite;
   }
 
   @keyframes gradient-sweep {
@@ -127,16 +122,16 @@
   }
 
   .glow-line {
-    background: linear-gradient(90deg, transparent, #06b6d4, transparent);
+    background: linear-gradient(90deg, transparent, #c9a84c, transparent);
     height: 1px;
   }
 
-  .glow-cyan {
-    box-shadow: 0 0 20px rgba(0, 245, 255, 0.2), 0 0 40px rgba(6, 182, 212, 0.1);
+  .glow-gold {
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.1), 0 0 40px rgba(201, 168, 76, 0.05);
   }
 
   .border-glow {
-    border-color: rgba(6, 182, 212, 0.3);
-    box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.15);
+    border-color: rgba(201, 168, 76, 0.2);
+    box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.1);
   }
 }

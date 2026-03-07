@@ -46,19 +46,17 @@ const services = [
 >
   <!-- Hero Section -->
   <section class="relative overflow-hidden pt-20 pb-24 lg:pt-28 lg:pb-32" aria-labelledby="hero-headline">
-    <!-- Atmospheric aurora effects — deep indigo/cyan -->
+    <!-- Atmospheric aurora effects — premium gold -->
     <div class="pointer-events-none absolute inset-0" aria-hidden="true">
       <!-- Grid pattern -->
-      <div class="absolute inset-0" style="background-image: linear-gradient(to right, rgba(6,182,212,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(6,182,212,0.06) 1px, transparent 1px); background-size: 60px 60px;"></div>
+      <div class="absolute inset-0" style="background-image: linear-gradient(to right, rgba(201,168,76,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(201,168,76,0.03) 1px, transparent 1px); background-size: 60px 60px;"></div>
       <!-- Aurora blobs -->
       <div class="hero-aurora hero-aurora-1"></div>
       <div class="hero-aurora hero-aurora-2"></div>
-      <div class="hero-aurora hero-aurora-3"></div>
       <!-- Radial depth -->
-      <div class="absolute inset-0" style="background: radial-gradient(ellipse at 30% 50%, rgba(45, 27, 105, 0.35) 0%, transparent 60%);"></div>
-      <div class="absolute inset-0" style="background: radial-gradient(ellipse at 70% 30%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);"></div>
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse at 30% 50%, rgba(201, 168, 76, 0.05) 0%, transparent 60%);"></div>
       <!-- Bottom fade -->
-      <div class="absolute bottom-0 left-0 right-0 h-48" style="background: linear-gradient(to top, #0d0816, transparent);"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-48" style="background: linear-gradient(to top, #0a0a0a, transparent);"></div>
     </div>
 
     <div class="container-content relative">
@@ -72,7 +70,7 @@ const services = [
         <!-- Headline -->
         <h1 id="hero-headline" class="text-display mb-6 text-text-primary">
           Wir bauen AI-Systeme,<br class="hidden sm:block" />
-          <span class="text-gradient-cyan">die tatsächlich arbeiten.</span>
+          <span class="text-gradient-gold">die tatsächlich arbeiten.</span>
         </h1>
 
         <!-- Sub -->
@@ -98,13 +96,13 @@ const services = [
   </section>
 
   <!-- Metrics bar -->
-  <section class="border-y border-border py-12 relative" aria-label="Key metrics" style="background: linear-gradient(135deg, rgba(26, 17, 48, 0.6) 0%, rgba(13, 8, 22, 0.8) 100%);">
+  <section class="border-y border-border py-12 relative" aria-label="Key metrics" style="background: linear-gradient(135deg, rgba(18, 8, 32, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%);">
     <div class="absolute top-0 left-0 right-0 glow-divider opacity-30"></div>
     <div class="container-content">
       <dl class="grid grid-cols-2 gap-8 sm:grid-cols-4">
         {metrics.map((m) => (
           <div class="text-center group">
-            <dt class="text-heading-2 font-semibold text-accent group-hover:text-cyan-glow transition-colors duration-300">{m.value}</dt>
+            <dt class="text-heading-2 font-semibold text-brand-gold group-hover:text-brand-white transition-colors duration-300">{m.value}</dt>
             <dd class="mt-1 text-small text-text-muted">{m.label}</dd>
           </div>
         ))}
@@ -128,15 +126,15 @@ const services = [
         {services.map((s) => (
           <a href={s.href} class="card group relative flex flex-col gap-4 no-underline">
             <!-- Glow accent on hover -->
-            <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style="background: linear-gradient(135deg, rgba(6,182,212,0.04) 0%, transparent 60%);"></div>
-            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent transition-colors group-hover:bg-accent/20 relative z-10">
+            <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style="background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);"></div>
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-gold/10 text-brand-gold transition-colors group-hover:bg-brand-gold/20 relative z-10">
               <Fragment set:html={s.icon} />
             </div>
             <div class="relative z-10">
               <h3 class="mb-2 text-small font-semibold text-text-primary">{s.title}</h3>
               <p class="text-small text-text-secondary leading-relaxed">{s.desc}</p>
             </div>
-            <div class="mt-auto flex items-center gap-1.5 text-xs font-medium text-accent relative z-10">
+            <div class="mt-auto flex items-center gap-1.5 text-xs font-medium text-brand-gold relative z-10">
               Mehr erfahren
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                 <path d="M2.5 6h7M7 3.5l2.5 2.5L7 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -150,7 +148,7 @@ const services = [
 
   <!-- Value Prop / Why WandaSystems -->
   <section class="section border-t border-border relative" aria-labelledby="why-heading">
-    <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(180deg, transparent 0%, rgba(45, 27, 105, 0.08) 50%, transparent 100%);"></div>
+    <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(180deg, transparent 0%, rgba(201, 168, 76, 0.03) 50%, transparent 100%);"></div>
     <div class="container-content relative">
       <div class="grid gap-16 lg:grid-cols-2 lg:gap-24 items-start">
         <!-- Left: Text -->
@@ -172,9 +170,9 @@ const services = [
               ['Zeit ist Geld', 'Wir liefern in Sprints — nicht nach 6-Monats-Consultingprojekten.'],
             ].map(([title, text]) => (
               <li class="flex gap-4">
-                <div class="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-accent/15">
+                <div class="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-brand-gold/10">
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                    <path d="M2 5l2 2 4-4" stroke="#06b6d4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 5l2 2 4-4" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </div>
                 <div>
@@ -196,7 +194,7 @@ const services = [
             { step: '04', title: 'Go-Live & Beyond', desc: 'Deployment, Monitoring, Iteration. Wir bleiben verantwortlich.' },
           ].map((p) => (
             <div class="flex gap-5 group">
-              <div class="label-text text-accent w-6 flex-shrink-0 pt-1 group-hover:text-cyan-glow transition-colors">{p.step}</div>
+              <div class="label-text text-brand-gold w-6 flex-shrink-0 pt-1 group-hover:text-brand-white transition-colors">{p.step}</div>
               <div class="pb-6 border-b border-border last:border-0">
                 <p class="font-semibold text-text-primary text-small mb-1">{p.title}</p>
                 <p class="text-small text-text-secondary">{p.desc}</p>
@@ -211,12 +209,12 @@ const services = [
   <!-- CTA Section -->
   <section class="section border-t border-border" aria-labelledby="cta-heading">
     <div class="container-content">
-      <div class="mx-auto max-w-2xl rounded-2xl p-12 text-center relative overflow-hidden" style="background: linear-gradient(135deg, rgba(26, 17, 48, 0.9) 0%, rgba(45, 27, 105, 0.3) 50%, rgba(13, 8, 22, 0.9) 100%); border: 1px solid rgba(6, 182, 212, 0.2);">
+      <div class="mx-auto max-w-2xl rounded-2xl p-12 text-center relative overflow-hidden" style="background: linear-gradient(135deg, rgba(18, 8, 32, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 1px solid rgba(201, 168, 76, 0.1);">
         <!-- Glow effect -->
-        <div class="absolute inset-0 pointer-events-none rounded-2xl" style="box-shadow: inset 0 0 60px rgba(6,182,212,0.04), 0 0 60px rgba(6,182,212,0.08);"></div>
+        <div class="absolute inset-0 pointer-events-none rounded-2xl" style="box-shadow: inset 0 0 60px rgba(201,168,76,0.03), 0 0 60px rgba(201,168,76,0.05);"></div>
         <!-- Corner accents -->
-        <div class="absolute top-0 left-0 w-16 h-16 pointer-events-none" style="background: linear-gradient(135deg, rgba(6,182,212,0.15), transparent);"></div>
-        <div class="absolute bottom-0 right-0 w-16 h-16 pointer-events-none" style="background: linear-gradient(315deg, rgba(6,182,212,0.15), transparent);"></div>
+        <div class="absolute top-0 left-0 w-16 h-16 pointer-events-none" style="background: linear-gradient(135deg, rgba(201,168,76,0.1), transparent);"></div>
+        <div class="absolute bottom-0 right-0 w-16 h-16 pointer-events-none" style="background: linear-gradient(315deg, rgba(201,168,76,0.1), transparent);"></div>
 
         <h2 id="cta-heading" class="text-heading-2 mb-4 text-text-primary relative">
           Bereit, loszulegen?
@@ -249,7 +247,7 @@ const services = [
       height: 32rem;
       left: -8rem;
       top: -6rem;
-      background: radial-gradient(circle, rgba(45, 27, 105, 0.7) 0%, rgba(45, 27, 105, 0) 70%);
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.1) 0%, rgba(201, 168, 76, 0) 70%);
       opacity: 0.5;
       animation-delay: -2s;
     }
@@ -259,20 +257,9 @@ const services = [
       height: 28rem;
       right: -6rem;
       top: 0rem;
-      background: radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, rgba(6, 182, 212, 0) 70%);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
       opacity: 0.3;
       animation-duration: 18s;
-    }
-
-    .hero-aurora-3 {
-      width: 22rem;
-      height: 22rem;
-      left: 45%;
-      bottom: -6rem;
-      background: radial-gradient(circle, rgba(0, 245, 255, 0.25) 0%, rgba(0, 245, 255, 0) 70%);
-      opacity: 0.2;
-      animation-duration: 16s;
-      animation-delay: -5s;
     }
 
     @keyframes floatAurora {

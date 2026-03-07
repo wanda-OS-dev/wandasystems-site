@@ -4,34 +4,39 @@ export default {
   theme: {
     extend: {
       colors: {
+        brand: {
+          black: '#0a0a0a',
+          white: '#f5f5f0',
+          gold: '#c9a84c',
+          'gold-muted': '#a8893e',
+          'gray-900': '#111111',
+          'gray-800': '#1a1a1a',
+          'gray-700': '#242424',
+          'gray-500': '#6b6b6b',
+          'gray-300': '#a0a0a0',
+          'indigo-deep': '#0d0816',
+          'indigo-mid': '#1a0a2e',
+          'indigo-card': '#120820',
+          cyan: '#06b6d4',
+          'cyan-bright': '#00f5ff',
+        },
         bg: {
-          DEFAULT: '#0d0816',
-          secondary: '#130e20',
-          card: '#1a1130',
+          DEFAULT: '#0a0a0a',
+          secondary: '#111111',
+          card: '#1a1a1a',
         },
-        surface: '#1e1535',
-        border: '#2a1f42',
+        surface: '#111111',
+        border: 'rgba(255, 255, 255, 0.08)',
         accent: {
-          DEFAULT: '#06b6d4',
-          hover: '#00e5f5',
-          muted: '#0e3a45',
-        },
-        cyan: {
-          glow: '#00f5ff',
-          mid: '#06b6d4',
-          dim: '#0891b2',
-        },
-        indigo: {
-          deep: '#1a0a2e',
-          mid: '#2d1b69',
-          light: '#4c2fa0',
+          DEFAULT: '#c9a84c',
+          hover: '#a8893e',
+          muted: 'rgba(201, 168, 76, 0.1)',
         },
         text: {
-          primary: '#f0f0ff',
-          secondary: '#9b92c4',
-          muted: '#5c5480',
+          primary: '#f5f5f0',
+          secondary: '#a0a0a0',
+          muted: '#6b6b6b',
         },
-        navy: '#0a0616',
       },
       fontFamily: {
         sans: [
@@ -44,8 +49,8 @@ export default {
         mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace'],
       },
       fontSize: {
-        'display': ['clamp(2.5rem, 6vw, 5rem)', { lineHeight: '1.05', letterSpacing: '-0.03em' }],
-        'heading-1': ['clamp(2rem, 4vw, 3.5rem)', { lineHeight: '1.1', letterSpacing: '-0.025em' }],
+        'display': ['clamp(3rem, 8vw, 7rem)', { lineHeight: '0.95', letterSpacing: '-0.03em' }],
+        'heading-1': ['clamp(2rem, 4vw, 3.5rem)', { lineHeight: '1.05', letterSpacing: '-0.025em' }],
         'heading-2': ['clamp(1.5rem, 3vw, 2.5rem)', { lineHeight: '1.2', letterSpacing: '-0.02em' }],
         'heading-3': ['clamp(1.25rem, 2vw, 1.75rem)', { lineHeight: '1.25', letterSpacing: '-0.015em' }],
         'body-lg': ['1.125rem', { lineHeight: '1.7' }],

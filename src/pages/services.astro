@@ -90,8 +90,8 @@ const services = [
       <!-- Per-section depth gradient -->
       <div class="pointer-events-none absolute inset-0" aria-hidden="true"
         style={i % 2 !== 0
-          ? 'background: linear-gradient(135deg, rgba(26, 17, 48, 0.5) 0%, rgba(13, 8, 22, 0.3) 100%);'
-          : 'background: linear-gradient(225deg, rgba(6, 182, 212, 0.03) 0%, transparent 50%);'
+          ? 'background: linear-gradient(135deg, rgba(18, 8, 32, 0.5) 0%, rgba(10, 10, 10, 0.3) 100%);'
+          : 'background: linear-gradient(225deg, rgba(201, 168, 76, 0.03) 0%, transparent 50%);'
         }
       ></div>
 
@@ -100,7 +100,7 @@ const services = [
           <!-- Left: Content -->
           <div>
             <div class="mb-5 flex items-center gap-3">
-              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent" style="box-shadow: 0 0 20px rgba(6,182,212,0.15);">
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-gold/10 text-brand-gold" style="box-shadow: 0 0 20px rgba(201,168,76,0.15);">
                 <Fragment set:html={s.icon} />
               </div>
               <span class="badge">{s.badge}</span>
@@ -124,14 +124,14 @@ const services = [
           <!-- Right: Stack + Outcomes -->
           <div class="space-y-8">
             <!-- Outcomes -->
-            <div class="rounded-xl p-6 border border-border" style="background: linear-gradient(135deg, rgba(26, 17, 48, 0.8) 0%, rgba(13, 8, 22, 0.6) 100%);">
+            <div class="rounded-xl p-6 border border-border" style="background: linear-gradient(135deg, rgba(18, 8, 32, 0.8) 0%, rgba(10, 10, 10, 0.6) 100%);">
               <p class="label-text mb-4">Was Sie erhalten</p>
               <ul class="space-y-3" role="list">
                 {s.outcomes.map((o) => (
                   <li class="flex items-start gap-3">
-                    <div class="mt-1 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-accent/15">
+                    <div class="mt-1 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-brand-gold/15">
                       <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
-                        <path d="M1.5 4l1.5 1.5 3-3" stroke="#06b6d4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M1.5 4l1.5 1.5 3-3" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                     </div>
                     <span class="text-small text-text-secondary">{o}</span>
@@ -145,7 +145,7 @@ const services = [
               <p class="label-text mb-3">Tech-Stack</p>
               <div class="flex flex-wrap gap-2">
                 {s.stack.map((tech) => (
-                  <span class="rounded-md border border-border bg-surface px-3 py-1.5 text-xs font-medium text-text-secondary hover:border-accent/40 hover:text-accent transition-colors duration-150">
+                  <span class="rounded-md border border-border bg-white/5 px-3 py-1.5 text-xs font-medium text-text-secondary hover:border-brand-gold/40 hover:text-brand-gold transition-colors duration-150">
                     {tech}
                   </span>
                 ))}
@@ -160,8 +160,8 @@ const services = [
   <!-- Bottom CTA -->
   <section class="section border-t border-border" aria-labelledby="services-cta">
     <div class="container-content">
-      <div class="mx-auto max-w-2xl text-center rounded-2xl p-10 relative overflow-hidden" style="background: linear-gradient(135deg, rgba(26, 17, 48, 0.9) 0%, rgba(45, 27, 105, 0.2) 50%, rgba(13, 8, 22, 0.9) 100%); border: 1px solid rgba(6, 182, 212, 0.15);">
-        <div class="absolute inset-0 pointer-events-none rounded-2xl" style="box-shadow: inset 0 0 40px rgba(6,182,212,0.03);"></div>
+      <div class="mx-auto max-w-2xl text-center rounded-2xl p-10 relative overflow-hidden" style="background: linear-gradient(135deg, rgba(18, 8, 32, 0.9) 0%, rgba(10, 10, 10, 0.2) 50%, rgba(13, 8, 22, 0.9) 100%); border: 1px solid rgba(201, 168, 76, 0.15);">
+        <div class="absolute inset-0 pointer-events-none rounded-2xl" style="box-shadow: inset 0 0 40px rgba(201,168,76,0.03);"></div>
         <h2 id="services-cta" class="text-heading-2 mb-4 text-text-primary relative">
           Ihr Projekt passt nicht in eine Kategorie?
         </h2>

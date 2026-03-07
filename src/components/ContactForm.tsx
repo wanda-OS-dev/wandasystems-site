@@ -84,16 +84,16 @@ export default function ContactForm() {
 
   if (formState === 'success') {
     return (
-      <div className="rounded-2xl border border-accent-muted bg-accent/5 p-10 text-center">
-        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-accent/15">
+      <div className="rounded-2xl border border-white/5 bg-brand-gold/5 p-10 text-center">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-gold/15">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M5 12l4 4 10-10" stroke="#06b6d4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M5 12l4 4 10-10" stroke="#c9a84c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
         <h3 className="text-heading-3 mb-2 text-text-primary">Nachricht erhalten.</h3>
         <p className="text-body text-text-secondary">
           Wir melden uns innerhalb von 24 Stunden.
-          In dringenden Fällen: <a href="mailto:wanda.devops@gmail.com" className="text-accent hover:underline">wanda.devops@gmail.com</a>
+          In dringenden Fällen: <a href="mailto:wanda.devops@gmail.com" className="text-brand-gold hover:underline">wanda.devops@gmail.com</a>
         </p>
       </div>
     );
@@ -114,7 +114,7 @@ export default function ContactForm() {
             value={data.name}
             onChange={handleChange}
             autoComplete="name"
-            className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent ${
+            className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold ${
               errors.name ? 'border-red-500' : 'border-border'
             }`}
             placeholder="Max Mustermann"
@@ -139,7 +139,7 @@ export default function ContactForm() {
             value={data.email}
             onChange={handleChange}
             autoComplete="email"
-            className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent ${
+            className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold ${
               errors.email ? 'border-red-500' : 'border-border'
             }`}
             placeholder="max@unternehmen.de"
@@ -167,7 +167,7 @@ export default function ContactForm() {
             value={data.company}
             onChange={handleChange}
             autoComplete="organization"
-            className="w-full rounded-lg border border-border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+            className="w-full rounded-lg border border-border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold"
             placeholder="Musterfirma GmbH"
           />
         </div>
@@ -181,7 +181,7 @@ export default function ContactForm() {
             name="service"
             value={data.service}
             onChange={handleChange}
-            className="w-full rounded-lg border border-border bg-bg-card px-4 py-3 text-small text-text-primary transition-colors focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+            className="w-full rounded-lg border border-border bg-bg-card px-4 py-3 text-small text-text-primary transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold"
           >
             {serviceOptions.map((opt) => (
               <option key={opt.value} value={opt.value} className="bg-bg-card">
@@ -203,7 +203,7 @@ export default function ContactForm() {
           value={data.message}
           onChange={handleChange}
           rows={5}
-          className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent resize-none ${
+          className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold resize-none ${
             errors.message ? 'border-red-500' : 'border-border'
           }`}
           placeholder="Beschreiben Sie kurz, was Sie automatisieren oder bauen möchten. Je konkreter, desto besser."
@@ -220,7 +220,7 @@ export default function ContactForm() {
       {formState === 'error' && (
         <p className="text-sm text-red-400">
           Versand fehlgeschlagen. Bitte schreiben Sie direkt an{' '}
-          <a href="mailto:wanda.devops@gmail.com" className="text-accent hover:underline">wanda.devops@gmail.com</a>.
+          <a href="mailto:wanda.devops@gmail.com" className="text-brand-gold hover:underline">wanda.devops@gmail.com</a>.
         </p>
       )}
 

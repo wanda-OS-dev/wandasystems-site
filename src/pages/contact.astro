@@ -51,7 +51,7 @@ const contactInfo = [
           <div class="space-y-6 mb-10">
             {contactInfo.map((item) => (
               <div class="flex items-start gap-4">
-                <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-brand-gold/10 text-brand-gold">
                   <Fragment set:html={item.icon} />
                 </div>
                 <div>
@@ -59,7 +59,7 @@ const contactInfo = [
                   {item.href ? (
                     <a
                       href={item.href}
-                      class="text-small text-text-primary transition-colors hover:text-accent"
+                      class="text-small text-text-primary transition-colors hover:text-brand-gold"
                     >
                       {item.value}
                     </a>
@@ -82,7 +82,7 @@ const contactInfo = [
                 'Angebot in 48h wenn Fit besteht',
               ].map((step, i) => (
                 <li class="flex items-start gap-3">
-                  <span class="label-text text-accent w-4 flex-shrink-0 mt-0.5">{String(i + 1).padStart(2, '0')}</span>
+                  <span class="label-text text-brand-gold w-4 flex-shrink-0 mt-0.5">{String(i + 1).padStart(2, '0')}</span>
                   <span class="text-small text-text-secondary">{step}</span>
                 </li>
               ))}
