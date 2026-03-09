@@ -41,6 +41,30 @@ const products = [
   },
 ];
 
+const rapidOffers = [
+  {
+    id: 'workflow-fix',
+    title: 'Workflow Fix Pack (24h)',
+    priceAnchor: 'from €149 (scope-confirmed)',
+    desc: 'Repair of one broken automation/workflow path (trigger, routing, edge-cases, retries) with handover notes.',
+    deliverable: 'Patched flow + test proof + rollback notes in <24h.',
+  },
+  {
+    id: 'data-cleanup-sprint',
+    title: 'Data Cleanup Sprint (24h)',
+    priceAnchor: 'from €99 (scope-confirmed)',
+    desc: 'One-time cleanup of CSV/CRM exports (dedupe, normalization, field validation) plus import-ready output.',
+    deliverable: 'Clean dataset + change report + run command in <24h.',
+  },
+  {
+    id: 'redirect-routing-repair',
+    title: 'Redirect / Webhook Repair (24h)',
+    priceAnchor: 'from €129 (scope-confirmed)',
+    desc: 'Fix broken redirects/webhook glue paths, validate endpoint behavior, and add operational fallback notes.',
+    deliverable: 'Working route/webhook + verification log + fallback path in <24h.',
+  },
+];
+
 const services = [
   {
     id: 'automation',
@@ -74,10 +98,10 @@ const services = [
   },
   {
     id: 'saas',
-    badge: 'Custom · Inquiry Required',
+    badge: 'Long Scope · Not actively pitched',
     title: 'SaaS Product Development',
-    priceAnchor: 'Pricing after scope call',
-    desc: 'From idea to first paying users on a proven stack. Timeline and pricing depend on scope — no blanket promises without a discovery call.',
+    priceAnchor: 'Only after scoped roadmap (not 24h deliverable)',
+    desc: 'Available selectively for longer engagements. This is not part of our active rapid-delivery outreach offers.',
     outcomes: [
       'Full auth setup (OAuth, MFA)',
       'Stripe integration for subscriptions and one-time payments',
@@ -211,6 +235,27 @@ const services = [
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/></svg>
           Questions? <a href="mailto:wanda.devops@gmail.com" class="text-brand-gold hover:underline ml-1">wanda.devops@gmail.com</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rapid Delivery Offers (24h) -->
+  <section class="section border-t border-border" aria-labelledby="rapid-heading">
+    <div class="container-content">
+      <div class="mb-10">
+        <h2 id="rapid-heading" class="text-heading-2 text-text-primary mb-2">Rapid Delivery Offers (under 24h)</h2>
+        <p class="text-body text-text-secondary">Active outreach focuses only on tightly scoped technical work we can deliver fast and safely.</p>
+      </div>
+      <div class="grid gap-6 lg:grid-cols-3">
+        {rapidOffers.map((o) => (
+          <article class="rounded-xl border border-border p-6" style="background: linear-gradient(135deg, rgba(18, 8, 32, 0.8) 0%, rgba(10, 10, 10, 0.5) 100%);">
+            <h3 class="text-heading-3 text-text-primary mb-2">{o.title}</h3>
+            <p class="text-small text-brand-gold mb-3">{o.priceAnchor}</p>
+            <p class="text-body text-text-secondary mb-4">{o.desc}</p>
+            <p class="text-xs text-text-muted mb-4">{o.deliverable}</p>
+            <a href="/wandasystems-site/contact" class="btn-secondary inline-flex">Request scope</a>
+          </article>
+        ))}
       </div>
     </div>
   </section>
