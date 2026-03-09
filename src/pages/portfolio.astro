@@ -1,61 +1,18 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
-const portfolioItems = [
-  {
-    title: 'Lead Qualification Automation',
-    industry: 'B2B SaaS',
-    summary: 'Automated inbound lead qualification and CRM handoff with measurable response-time reduction.',
-    result: 'Response time reduced from hours to minutes.',
-  },
-  {
-    title: 'SaaS Product Build',
-    industry: 'PropTech',
-    summary: 'Production-ready SaaS foundation with payments, auth, and analytics delivered in a sprint track.',
-    result: 'First paying users in week one after launch.',
-  },
-  {
-    title: 'Real-Time Data Sync Pipeline',
-    industry: 'E-Commerce',
-    summary: 'Shop, CRM, and ERP connected with reliable retry logic and monitoring.',
-    result: 'Data-error incidents significantly reduced.',
-  },
-];
 ---
 
-<Layout
-  title="Portfolio (Legacy Alias)"
-  description="Legacy alias page. Canonical case studies are under /cases."
->
-  <section class="pt-20 pb-16" aria-labelledby="portfolio-heading">
-    <div class="container-content">
-      <span class="badge mb-4 inline-block">Legacy alias</span>
-      <h1 id="portfolio-heading" class="text-heading-1 mb-5 text-text-primary max-w-2xl">
-        This page is deprecated. Use Case Studies.
-      </h1>
-      <p class="text-body-lg text-text-secondary max-w-xl">
-        Canonical path: /cases
-      </p>
-    </div>
-  </section>
-
-  <section class="section border-t border-border" aria-labelledby="portfolio-list-heading">
-    <div class="container-content">
-      <h2 id="portfolio-list-heading" class="sr-only">Portfolio highlights</h2>
-      <div class="grid gap-6 md:grid-cols-3">
-        {portfolioItems.map((item) => (
-          <article class="rounded-2xl border border-border p-6" style="background: linear-gradient(135deg, rgba(18, 8, 32, 0.8) 0%, rgba(10, 10, 10, 0.7) 100%);">
-            <p class="label-text mb-3">{item.industry}</p>
-            <h3 class="text-heading-3 mb-3 text-text-primary">{item.title}</h3>
-            <p class="text-small text-text-secondary mb-4">{item.summary}</p>
-            <p class="text-small text-brand-gold">{item.result}</p>
-          </article>
-        ))}
-      </div>
-
-      <div class="mt-10 text-center">
-        <a href="/wandasystems-site/contact" class="btn-primary">Discuss your project</a>
-      </div>
-    </div>
-  </section>
-</Layout>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Moved — Case Studies</title>
+    <meta http-equiv="refresh" content="0;url=/wandasystems-site/cases" />
+    <link rel="canonical" href="https://wanda-os-dev.github.io/wandasystems-site/cases/" />
+    <script>
+      window.location.replace('/wandasystems-site/cases');
+    </script>
+  </head>
+  <body style="background:#0a0a0a;color:#f5f5f0;font-family:Inter,system-ui;padding:32px;">
+    <p>This page moved to <a href="/wandasystems-site/cases" style="color:#c9a84c;">Case Studies</a>.</p>
+  </body>
+</html>
