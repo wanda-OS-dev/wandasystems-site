@@ -17,7 +17,8 @@ const {
   canonical,
 } = Astro.props;
 
-const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'https://wandasystems.de');
+const siteBase = Astro.site ?? 'https://wanda-os-dev.github.io/wandasystems-site/';
+const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
 ---
 
 <!doctype html>
@@ -58,7 +59,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "WandaSystems",
-      "url": "https://wandasystems.de",
+      "url": "https://wanda-os-dev.github.io/wandasystems-site/",
       "description": description,
       "contactPoint": {
         "@type": "ContactPoint",
