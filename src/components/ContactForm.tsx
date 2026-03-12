@@ -84,7 +84,7 @@ export default function ContactForm() {
 
   if (formState === 'success') {
     return (
-      <div className="rounded-2xl border border-white/5 bg-brand-gold/5 p-10 text-center">
+      <div className="rounded-2xl border border-white/5 bg-brand-gold/5 p-10 text-center" aria-live="assertive">
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-gold/15">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M5 12l4 4 10-10" stroke="#c9a84c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -122,7 +122,7 @@ export default function ContactForm() {
             aria-invalid={!!errors.name}
           />
           {errors.name && (
-            <p id="name-error" className="mt-1.5 text-xs text-red-400" role="alert">
+            <p id="name-error" className="mt-1.5 text-xs text-red-400" role="alert" aria-live="polite">
               {errors.name}
             </p>
           )}
@@ -147,7 +147,7 @@ export default function ContactForm() {
             aria-invalid={!!errors.email}
           />
           {errors.email && (
-            <p id="email-error" className="mt-1.5 text-xs text-red-400" role="alert">
+            <p id="email-error" className="mt-1.5 text-xs text-red-400" role="alert" aria-live="polite">
               {errors.email}
             </p>
           )}
@@ -211,14 +211,14 @@ export default function ContactForm() {
           aria-invalid={!!errors.message}
         />
         {errors.message && (
-          <p id="message-error" className="mt-1.5 text-xs text-red-400" role="alert">
+          <p id="message-error" className="mt-1.5 text-xs text-red-400" role="alert" aria-live="polite">
             {errors.message}
           </p>
         )}
       </div>
 
       {formState === 'error' && (
-        <p className="text-sm text-red-400">
+        <p className="text-sm text-red-400" aria-live="assertive">
           Submission failed. Please write directly to{' '}
           <a href="mailto:wanda.devops@gmail.com" className="text-brand-gold hover:underline">wanda.devops@gmail.com</a>.
         </p>
@@ -231,6 +231,7 @@ export default function ContactForm() {
         </p>
         <button
           type="submit"
+          aria-busy={formState === 'loading'}
           disabled={formState === 'loading'}
           className="btn-primary flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
         >
