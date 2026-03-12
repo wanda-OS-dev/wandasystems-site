@@ -25,21 +25,22 @@ const products = [
   },
   {
     id: 'lead-scout',
-    badge: 'Script Product · Sale Paused',
-    price: 'Paused',
-    title: 'Lead-Scout (Google Maps)',
-    tagline: 'Currently not for sale.',
-    desc: 'This script is shown for transparency but is not currently sellable. Last audit failed due to stale selectors and Google Maps JS-rendering changes.',
+    badge: 'Instant Download · Bring Your Own API Key',
+    price: '€35',
+    title: 'Lead-Scout (Google Places)',
+    tagline: 'Works with your own Google Places API key.',
+    desc: 'A Python CLI lead-extraction tool for technical users. The product path is API-first and no longer depends on brittle Google Maps selectors. Buyer provides their own Google Places API key.',
     outcomes: [
-      'Current status: paused until technical remediation',
-      'No checkout enabled while audit is failing',
-      'Will only return after clean-env pass + claim-match',
-      'Public status remains visible to avoid hidden product drift',
+      'Google Places API v1 path instead of selector scraping',
+      'Simple local setup via `.env` or one setup command',
+      'Exports CRM-ready CSV + JSON output',
+      'Website and ad-signal check remains included',
     ],
-    requirements: 'Status: not currently runnable to production standard. Do not purchase.',
-    cta: 'Sale paused — join waitlist via contact',
-    href: '',
-    primary: false,
+    delivery: 'After payment: fulfillment bundle with setup helper, `.env.example`, and buyer guide. You bring your own Google Places API key.',
+    requirements: 'Requirements: Python 3.10+, requests, and your own Google Places API key with billing enabled on your Google Cloud project.',
+    cta: 'Buy Lead-Scout — €35',
+    href: 'https://buy.stripe.com/bJe00k0sr5hU1Uw60waVa00',
+    primary: true,
   },
 ];
 
@@ -321,46 +322,6 @@ const services = [
               </div>
             </div>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section border-t border-border" aria-labelledby="paused-products-heading">
-    <div class="container-content">
-      <div class="mb-8">
-        <h2 id="paused-products-heading" class="text-heading-3 text-text-primary mb-2">Paused products and transparency</h2>
-        <p class="text-body text-text-secondary">Paused offers stay visible for honesty, but they do not sit in the live buy path.</p>
-      </div>
-      <div class="grid gap-6 lg:grid-cols-2">
-        {products.filter((p) => !p.primary).map((p) => (
-          <article class="rounded-2xl border border-border p-8" style="background: linear-gradient(135deg, rgba(18, 8, 32, 0.9) 0%, rgba(10, 10, 10, 0.6) 100%);">
-            <span class="badge mb-3 inline-block">{p.badge}</span>
-            <div class="flex items-baseline gap-3 mb-2">
-              <h3 class="text-heading-3 text-text-primary">{p.title}</h3>
-              <span class="text-xl font-semibold text-text-muted">{p.price}</span>
-            </div>
-            <p class="text-body text-brand-gold font-medium mb-3">{p.tagline}</p>
-            <p class="text-body text-text-secondary mb-5">{p.desc}</p>
-            <ul class="space-y-2.5 mb-6" role="list">
-              {p.outcomes.map((o) => (
-                <li class="flex items-start gap-3">
-                  <div class="mt-1 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full" style="background: rgba(201,168,76,0.15);">
-                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
-                      <path d="M1.5 4l1.5 1.5 3-3" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                  <span class="text-small text-text-secondary">{o}</span>
-                </li>
-              ))}
-            </ul>
-            <p class="mb-4 text-xs text-text-muted border border-border rounded-lg px-4 py-2" style="background: rgba(255,255,255,0.02);">
-              ⚠️ {p.requirements}
-            </p>
-            <a href={contactHref} class="btn-secondary inline-flex items-center justify-center">
-              {p.cta}
-            </a>
-          </article>
         ))}
       </div>
     </div>
