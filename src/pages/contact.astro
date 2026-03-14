@@ -92,7 +92,8 @@ const contactInfo = [
 
         <!-- Right: Form (React Island) -->
         <div class="lg:col-span-2">
-          <ContactForm client:load />
+          {/* ⚡ Bolt Optimization: Changed from client:load to client:visible to lazy-load the React framework and form logic until it enters the viewport. Reduces initial JS payload and speeds up page load. */}
+          <ContactForm client:visible />
         </div>
       </div>
     </div>
