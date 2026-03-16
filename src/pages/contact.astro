@@ -92,7 +92,11 @@ const contactInfo = [
 
         <!-- Right: Form (React Island) -->
         <div class="lg:col-span-2">
-          <ContactForm client:load />
+          {/* ⚡ Bolt: Use client:visible instead of client:load */}
+          {/* 💡 What: Changed hydration strategy for ContactForm. */}
+          {/* 🎯 Why: Form is lower on the page; downloading React and hydrating immediately blocks the main thread. */}
+          {/* 📊 Impact: Significantly speeds up initial page load by deferring React/form bundle until scrolled into view. */}
+          <ContactForm client:visible />
         </div>
       </div>
     </div>
