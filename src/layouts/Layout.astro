@@ -111,6 +111,9 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
     </script>
   </head>
   <body class="flex min-h-full flex-col bg-brand-black">
+    <a href="#main-content" class="absolute -translate-y-full focus:translate-y-0 z-[100] bg-brand-gold text-brand-black px-4 py-2 font-semibold transition-transform duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black">
+      Skip to main content
+    </a>
     <!-- Global atmospheric background -->
     <div class="pointer-events-none fixed inset-0 z-0 wanda-grid-bg opacity-30" aria-hidden="true"></div>
     <div class="pointer-events-none fixed inset-0 z-0" aria-hidden="true">
@@ -118,7 +121,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
       <div class="absolute bottom-1/4 left-0 w-80 h-80 rounded-full blur-[120px] opacity-[0.06]" style="background: radial-gradient(circle, #c9a84c 0%, transparent 70%);"></div>
     </div>
     <Header />
-    <main class="relative z-10 flex-1">
+    <main id="main-content" class="relative z-10 flex-1" tabindex="-1" style="outline: none;">
       <slot />
     </main>
     <Footer />
