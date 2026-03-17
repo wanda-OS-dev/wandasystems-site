@@ -31,13 +31,30 @@ export default function ContactForm() {
 
   const validate = (): boolean => {
     const newErrors: Partial<FormData> = {};
-    if (!data.name.trim()) newErrors.name = 'Name is required';
+    if (!data.name.trim()) {
+      newErrors.name = 'Name is required';
+    } else if (data.name.length > 100) {
+      newErrors.name = 'Name must be less than 100 characters';
+    }
+
     if (!data.email.trim()) {
       newErrors.email = 'Email is required';
+    } else if (data.email.length > 255) {
+      newErrors.email = 'Email must be less than 255 characters';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
       newErrors.email = 'Invalid email address';
     }
-    if (!data.message.trim()) newErrors.message = 'Message is required';
+
+    if (data.company && data.company.length > 100) {
+      newErrors.company = 'Company name must be less than 100 characters';
+    }
+
+    if (!data.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (data.message.length > 1000) {
+      newErrors.message = 'Message must be less than 1000 characters';
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -114,6 +131,7 @@ export default function ContactForm() {
             value={data.name}
             onChange={handleChange}
             autoComplete="name"
+            maxLength={100}
             className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold ${
               errors.name ? 'border-red-500' : 'border-border'
             }`}
@@ -139,6 +157,7 @@ export default function ContactForm() {
             value={data.email}
             onChange={handleChange}
             autoComplete="email"
+            maxLength={255}
             className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold ${
               errors.email ? 'border-red-500' : 'border-border'
             }`}
@@ -167,9 +186,19 @@ export default function ContactForm() {
             value={data.company}
             onChange={handleChange}
             autoComplete="organization"
-            className="w-full rounded-lg border border-border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold"
+            maxLength={100}
+            className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold ${
+              errors.company ? 'border-red-500' : 'border-border'
+            }`}
             placeholder="Acme Corp"
+            aria-describedby={errors.company ? 'company-error' : undefined}
+            aria-invalid={!!errors.company}
           />
+          {errors.company && (
+            <p id="company-error" className="mt-1.5 text-xs text-red-400" role="alert" aria-live="polite">
+              {errors.company}
+            </p>
+          )}
         </div>
 
         <div>
@@ -203,6 +232,7 @@ export default function ContactForm() {
           value={data.message}
           onChange={handleChange}
           rows={5}
+          maxLength={1000}
           className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold resize-none ${
             errors.message ? 'border-red-500' : 'border-border'
           }`}
