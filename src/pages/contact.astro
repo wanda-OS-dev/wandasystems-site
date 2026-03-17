@@ -92,7 +92,11 @@ const contactInfo = [
 
         <!-- Right: Form (React Island) -->
         <div class="lg:col-span-2">
-          <ContactForm client:load />
+          <!-- ⚡ Bolt: Lazy load the form using client:visible -->
+          <!-- 💡 What: Defer React hydration until the form is in the viewport -->
+          <!-- 🎯 Why: Reduces initial main thread blocking since form is below fold -->
+          <!-- 📊 Impact: Faster Time to Interactive (TTI) for initial page load -->
+          <ContactForm client:visible />
         </div>
       </div>
     </div>
