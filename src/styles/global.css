@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/*
+ * ⚡ Bolt Performance Optimization:
+ * Removed @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+ * from CSS because it blocks rendering. Fonts are loaded via <link> tags in Layout.astro instead,
+ * which supports preloading and doesn't block the initial CSS parse.
+ */
 
 @tailwind base;
 @tailwind components;
