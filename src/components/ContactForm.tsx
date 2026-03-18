@@ -31,13 +31,24 @@ export default function ContactForm() {
 
   const validate = (): boolean => {
     const newErrors: Partial<FormData> = {};
+
+    // Security: Input length validation to prevent payload DoS
     if (!data.name.trim()) newErrors.name = 'Name is required';
+    else if (data.name.length > 100) newErrors.name = 'Name is too long';
+
     if (!data.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
       newErrors.email = 'Invalid email address';
+    } else if (data.email.length > 100) {
+      newErrors.email = 'Email is too long';
     }
+
+    if (data.company.length > 100) newErrors.company = 'Company is too long';
+
     if (!data.message.trim()) newErrors.message = 'Message is required';
+    else if (data.message.length > 2000) newErrors.message = 'Message is too long';
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -66,11 +77,18 @@ export default function ContactForm() {
       payload.append('service', data.service);
       payload.append('message', data.message);
 
+      // Security: Add timeout to prevent hanging requests
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+
       const response = await fetch('https://formspree.io/f/xpwzogdb', {
         method: 'POST',
         headers: { Accept: 'application/json' },
         body: payload,
+        signal: controller.signal,
       });
+
+      clearTimeout(timeoutId);
 
       if (response.ok) {
         setFormState('success');
@@ -113,6 +131,7 @@ export default function ContactForm() {
             name="name"
             value={data.name}
             onChange={handleChange}
+            maxLength={100}
             autoComplete="name"
             className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold ${
               errors.name ? 'border-red-500' : 'border-border'
@@ -138,6 +157,7 @@ export default function ContactForm() {
             name="email"
             value={data.email}
             onChange={handleChange}
+            maxLength={100}
             autoComplete="email"
             className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold ${
               errors.email ? 'border-red-500' : 'border-border'
@@ -166,10 +186,20 @@ export default function ContactForm() {
             name="company"
             value={data.company}
             onChange={handleChange}
+            maxLength={100}
             autoComplete="organization"
-            className="w-full rounded-lg border border-border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold"
+            className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold ${
+              errors.company ? 'border-red-500' : 'border-border'
+            }`}
             placeholder="Acme Corp"
+            aria-describedby={errors.company ? 'company-error' : undefined}
+            aria-invalid={!!errors.company}
           />
+          {errors.company && (
+            <p id="company-error" className="mt-1.5 text-xs text-red-400" role="alert" aria-live="polite">
+              {errors.company}
+            </p>
+          )}
         </div>
 
         <div>
@@ -202,6 +232,7 @@ export default function ContactForm() {
           name="message"
           value={data.message}
           onChange={handleChange}
+          maxLength={2000}
           rows={5}
           className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold resize-none ${
             errors.message ? 'border-red-500' : 'border-border'
