@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* ⚡ Bolt: Removed @import for Google Fonts */
+/* 💡 What: Removed CSS @import url(...) and instead rely entirely on the <link rel="preload"> setup in Layout.astro. */
+/* 🎯 Why: @import within a CSS file blocks rendering and negates the benefits of async <link> preloading in the HTML head. */
+/* 📊 Impact: Faster First Contentful Paint (FCP) and prevents the CSS parser from halting to fetch external fonts. */
 
 @tailwind base;
 @tailwind components;
