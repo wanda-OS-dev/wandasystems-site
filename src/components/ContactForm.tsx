@@ -66,11 +66,18 @@ export default function ContactForm() {
       payload.append('service', data.service);
       payload.append('message', data.message);
 
+      // Security: Add timeout to external API calls to prevent hanging and resource exhaustion
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
+
       const response = await fetch('https://formspree.io/f/xpwzogdb', {
         method: 'POST',
         headers: { Accept: 'application/json' },
         body: payload,
+        signal: controller.signal,
       });
+
+      clearTimeout(timeoutId);
 
       if (response.ok) {
         setFormState('success');
