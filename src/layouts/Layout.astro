@@ -71,6 +71,12 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- ⚡ Bolt: Added preconnect for Formspree and Stripe -->
+    <!-- 💡 What: Establishing early network connections to critical third-party domains. -->
+    <!-- 🎯 Why: DNS/TCP/TLS handshakes take time. Preconnecting reduces latency when the user clicks a checkout link or submits the form. -->
+    <!-- 📊 Impact: Faster time-to-interactive for form submissions and checkout navigations. -->
+    <link rel="preconnect" href="https://buy.stripe.com" crossorigin />
+    <link rel="preconnect" href="https://formspree.io" crossorigin />
     <link
       rel="preload"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
