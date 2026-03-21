@@ -225,11 +225,18 @@ export default function ContactForm() {
           aria-describedby={errors.message ? 'message-error' : undefined}
           aria-invalid={!!errors.message}
         />
-        {errors.message && (
-          <p id="message-error" className="mt-1.5 text-xs text-red-400" role="alert" aria-live="polite">
-            {errors.message}
+        <div className="mt-1.5 flex items-center justify-between">
+          {errors.message ? (
+            <p id="message-error" className="text-xs text-red-400" role="alert" aria-live="polite">
+              {errors.message}
+            </p>
+          ) : (
+            <div />
+          )}
+          <p className="text-[10px] font-medium uppercase tracking-widest text-text-muted" aria-hidden="true">
+            {data.message.length} / 2000
           </p>
-        )}
+        </div>
       </div>
 
       {formState === 'error' && (
