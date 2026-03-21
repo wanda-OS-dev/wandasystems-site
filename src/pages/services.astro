@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { sanitizeSVG } from '../utils/sanitize';
 
 const contactHref = `${import.meta.env.BASE_URL}contact/`;
 
@@ -335,7 +336,7 @@ const pausedProducts = products.filter((p) => !p.primary);
             <div>
               <div class="mb-4 flex items-center gap-3">
                 <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-gold/10 text-brand-gold" style="box-shadow: 0 0 20px rgba(201,168,76,0.15);">
-                  <Fragment set:html={s.icon} />
+                  <Fragment set:html={sanitizeSVG(s.icon)} />
                 </div>
                 <span class="badge">{s.badge}</span>
               </div>
