@@ -1,5 +1,4 @@
-
-## 2024-03-19 - Missing Content Security Policy
-**Vulnerability:** The application was missing a Content-Security-Policy header in its deployment configurations (`vercel.json` and `netlify.toml`).
-**Learning:** Even static/Jamstack applications need CSP to mitigate XSS and data injection attacks. The policy must account for external services like Google Fonts and Formspree.
-**Prevention:** Ensure deployment configuration files include a restrictive CSP that only allows necessary external domains and inline scripts/styles required by the framework (Astro).
+## 2026-03-21 - [Hardened Content-Security-Policy Headers]
+**Vulnerability:** The `Content-Security-Policy` headers in both `vercel.json` and `netlify.toml` were missing important directives such as `frame-ancestors 'none'`, `object-src 'none'`, `base-uri 'self'`, and `upgrade-insecure-requests`.
+**Learning:** Even when a basic CSP exists, it may lack modern defense-in-depth protections. Configuration for security headers was duplicated across two different hosting providers (Vercel and Netlify), meaning both files must be updated simultaneously to ensure consistent security posture.
+**Prevention:** Always verify that CSP configurations include protections against clickjacking (`frame-ancestors`), mixed content (`upgrade-insecure-requests`), plugin-based attacks (`object-src`), and base URI injection (`base-uri`). Ensure all deployment configurations are kept in sync.
