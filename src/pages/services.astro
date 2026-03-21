@@ -122,6 +122,13 @@ const services = [
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 8h4M7 11.5h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
   },
 ];
+
+// ⚡ Bolt: Pre-calculate filtered arrays in Astro frontmatter
+// 💡 What: Moved `.filter()` calls from the JSX/template markup into the static setup block.
+// 🎯 Why: Calculating derived state here ensures the filter operation runs only once during the build process, preventing redundant evaluations during template rendering and keeping the template logic clean.
+// 📊 Impact: Micro-optimization for build speed and cleaner component architecture by separating logic from presentation.
+const primaryProducts = products.filter((p) => p.primary);
+const pausedProducts = products.filter((p) => !p.primary);
 ---
 
 <Layout
@@ -160,7 +167,7 @@ const services = [
       </div>
 
       <div class="grid gap-6 lg:grid-cols-2">
-        {products.filter((p) => p.primary).map((p) => (
+        {primaryProducts.map((p) => (
           <div
             class="rounded-2xl border p-8 flex flex-col relative overflow-hidden"
             style={p.primary
@@ -257,7 +264,7 @@ const services = [
         <p class="text-body text-text-secondary">Paused offers stay visible for honesty, but they do not sit in the live buy path.</p>
       </div>
       <div class="grid gap-6 lg:grid-cols-2">
-        {products.filter((p) => !p.primary).map((p) => (
+        {pausedProducts.map((p) => (
           <article class="rounded-2xl border border-border p-8" style="background: linear-gradient(135deg, rgba(18, 8, 32, 0.9) 0%, rgba(10, 10, 10, 0.6) 100%);">
             <span class="badge mb-3 inline-block">{p.badge}</span>
             <div class="flex items-baseline gap-3 mb-2">
