@@ -124,10 +124,46 @@ const currentPath = Astro.url.pathname;
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
 
-  btn?.addEventListener('click', () => {
-    const isOpen = menu?.classList.contains('hidden') === false;
-    menu?.classList.toggle('hidden');
-    btn.setAttribute('aria-expanded', String(!isOpen));
-    btn.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+  function toggleMenu(forceClose?: boolean) {
+    if (!btn || !menu) return;
+
+    const isOpen = menu.classList.contains('hidden') === false;
+
+    if (forceClose && !isOpen) return;
+
+    const willOpen = forceClose ? false : !isOpen;
+
+    if (willOpen) {
+      menu.classList.remove('hidden');
+    } else {
+      menu.classList.add('hidden');
+    }
+
+    btn.setAttribute('aria-expanded', String(willOpen));
+    btn.setAttribute('aria-label', willOpen ? 'Close menu' : 'Open menu');
+  }
+
+  btn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  // 🎨 Palette: Close menu on Escape key for better keyboard accessibility
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const isOpen = menu?.classList.contains('hidden') === false;
+      if (isOpen) {
+        toggleMenu(true);
+        btn?.focus(); // Return focus to the trigger button
+      }
+    }
+  });
+
+  // 🎨 Palette: Close menu when clicking outside of it for standard mobile UX
+  document.addEventListener('click', (e) => {
+    const target = e.target as Node;
+    if (menu && btn && !menu.contains(target) && !btn.contains(target)) {
+      toggleMenu(true);
+    }
   });
 </script>

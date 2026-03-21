@@ -1,6 +1,3 @@
-## 2024-03-12 - Accessible Button States
-**Learning:** Icon-only buttons or interactive elements like 'loading' states need proper `aria-live` and `aria-busy` attributes, and the mobile menu needs proper `aria-expanded` on the menu element if it is a dialog.
-**Action:** Add proper `aria` labels to loading spinners and disabled buttons across the app.
-## 2026-03-19 - Skip Links in Astro Layouts
-**Learning:** When dealing with Astro and sites with persistent and sticky headers, adding a visually hidden skip-to-content link right after the `<body>` opening tag is crucial for keyboard navigation and screen reader users. It ensures they don't have to tab through the navigation menu on every page load.
-**Action:** Add a `<a href="#main-content" class="sr-only focus:not-sr-only...">Skip to content</a>` and apply `id="main-content" tabindex="-1"` to the `<main>` element in layout templates.
+## 2026-03-21 - [Tailwind Mobile Menu A11y & UX]
+**Learning:** Testing dynamic Tailwind classes (like 'hidden') with strict string assertions in Playwright is brittle due to class ordering. A safer way to test class presence is to use `classList.contains('hidden')` via JavaScript execution within the page context. Also, keyboard accessibility on a mobile menu isn't just about pressing 'Escape'—it requires explicit focus restoration to the trigger element (`btn.focus()`) to maintain screen reader continuity.
+**Action:** When testing dynamic UI states reliant on CSS frameworks like Tailwind, evaluate class presence directly in the browser context rather than using absolute string matching. Always manually restore focus to the trigger button when a modal/menu is dismissed via keyboard interaction.
