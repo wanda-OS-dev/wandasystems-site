@@ -66,7 +66,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
         "contactType": "sales",
         "email": "wanda.devops@gmail.com"
       }
-    })} />
+    }).replace(/</g, '\\u003c')} />
 
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
