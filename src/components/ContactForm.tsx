@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
 
@@ -28,6 +28,15 @@ export default function ContactForm() {
     message: '',
   });
   const [errors, setErrors] = useState<Partial<FormData>>({});
+
+  useEffect(() => {
+    // Check if there is a 'service' query parameter to pre-fill intent
+    const params = new URLSearchParams(window.location.search);
+    const serviceParam = params.get('service');
+    if (serviceParam && serviceOptions.some((opt) => opt.value === serviceParam)) {
+      setData((prev) => ({ ...prev, service: serviceParam }));
+    }
+  }, []);
 
   const validate = (): boolean => {
     const newErrors: Partial<FormData> = {};

@@ -311,7 +311,9 @@ const pausedProducts = products.filter((p) => !p.primary);
             <p class="text-small text-brand-gold mb-3">{o.priceAnchor}</p>
             <p class="text-body text-text-secondary mb-4">{o.desc}</p>
             <p class="text-xs text-text-muted mb-4">{o.deliverable}</p>
-            <a href={contactHref} class="btn-secondary inline-flex">Request scope</a>
+            <a href={`${contactHref}?service=other`} class="btn-secondary inline-flex">
+              Request scope<span class="sr-only"> for {o.title}</span>
+            </a>
           </article>
         ))}
       </div>
@@ -342,8 +344,8 @@ const pausedProducts = products.filter((p) => !p.primary);
               <h3 class="text-heading-3 mb-2 text-text-primary">{s.title}</h3>
               <p class="text-small text-brand-gold mb-4">{s.priceAnchor}</p>
               <p class="text-body text-text-secondary mb-6">{s.desc}</p>
-              <a href={contactHref} class="btn-secondary inline-flex items-center gap-2">
-                Request project scope
+              <a href={`${contactHref}?service=${s.id}`} class="btn-secondary inline-flex items-center gap-2">
+                Request project scope<span class="sr-only"> for {s.title}</span>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                   <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
