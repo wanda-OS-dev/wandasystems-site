@@ -106,9 +106,17 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
           document.documentElement.classList.add('no-webgl');
         }
 
+        /**
+         * ⚡ Bolt: Caching WebGL fallback state.
+         * 💡 What: Added a flag to prevent multiple executions of the fallback logic.
+         * 🎯 Why: querySelectorAll is expensive. The fallback only needs to remove immersive layers once. Repeated triggers (e.g., from an animation loop) would cause unnecessary DOM querying.
+         */
+        let webglFailed = false;
         window.addEventListener('error', (event) => {
+          if (webglFailed) return;
           const msg = String(event?.message || '').toLowerCase();
           if (msg.includes('webgl') || msg.includes('three') || msg.includes('renderer')) {
+            webglFailed = true;
             document.documentElement.classList.add('no-webgl');
             document.querySelectorAll('[data-immersive]').forEach((node) => node.remove());
           }
