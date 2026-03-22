@@ -283,11 +283,30 @@ const services = [
     // This adds a mouse-following glow that makes the "boring" cards feel dynamic.
     const cards = document.querySelectorAll('.spotlight-card');
 
+    // ⚡ Bolt: Cache getBoundingClientRect() to prevent layout thrashing on high-frequency mousemove events.
+    // 💡 What: Cached DOM rects in a WeakMap and invalidated them on scroll/resize.
+    // 🎯 Why: getBoundingClientRect() forces synchronous layout recalculation. Calling it on every mousemove degrades performance.
+    // 📊 Impact: Smoother 60fps animations and reduced main-thread blocking time during interaction.
+    const rectCache = new WeakMap<HTMLElement, DOMRect>();
+
+    const invalidateCache = () => {
+      cards.forEach(card => rectCache.delete(card as HTMLElement));
+    };
+
+    window.addEventListener('resize', invalidateCache, { passive: true });
+    window.addEventListener('scroll', invalidateCache, { passive: true });
+
     cards.forEach((card) => {
       card.addEventListener('mousemove', (e) => {
         const mouseEvent = e as MouseEvent;
         const target = card as HTMLElement;
-        const rect = target.getBoundingClientRect();
+
+        let rect = rectCache.get(target);
+        if (!rect) {
+          rect = target.getBoundingClientRect();
+          rectCache.set(target, rect);
+        }
+
         const x = mouseEvent.clientX - rect.left;
         const y = mouseEvent.clientY - rect.top;
 
