@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { sanitizeSVG } from '../utils/sanitize';
 
 const metrics = [
   { value: '40%+', label: 'Ø Cost reduction through automation' },
@@ -132,7 +133,7 @@ const services = [
             <!-- Glow accent on hover -->
             <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style="background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(201,168,76,0.12), transparent 40%);"></div>
             <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-gold/10 text-brand-gold transition-colors group-hover:bg-brand-gold/20 relative z-10">
-              <Fragment set:html={s.icon} />
+              <Fragment set:html={sanitizeSVG(s.icon)} />
             </div>
             <div class="relative z-10">
               <h3 class="mb-2 text-small font-semibold text-text-primary">{s.title}</h3>
