@@ -70,8 +70,11 @@ const currentPath = Astro.url.pathname;
           aria-expanded="false"
           aria-controls="mobile-menu"
         >
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <svg id="menu-icon-open" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" class="block">
             <path d="M3 5h12M3 9h12M3 13h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <svg id="menu-icon-close" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" class="hidden">
+            <path d="M4 4l10 10M14 4L4 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
       </div>
@@ -120,11 +123,36 @@ const currentPath = Astro.url.pathname;
 <script>
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
 
-  btn?.addEventListener('click', () => {
-    const isOpen = menu?.classList.contains('hidden') === false;
-    menu?.classList.toggle('hidden');
-    btn.setAttribute('aria-expanded', String(!isOpen));
-    btn.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+  const toggleMenu = (forceClose = false) => {
+    if (!menu || !btn || !iconOpen || !iconClose) return;
+
+    const isOpen = !menu.classList.contains('hidden');
+    const willBeOpen = forceClose ? false : !isOpen;
+
+    if (willBeOpen) {
+      menu.classList.remove('hidden');
+      iconOpen.classList.replace('block', 'hidden');
+      iconClose.classList.replace('hidden', 'block');
+    } else {
+      menu.classList.add('hidden');
+      iconOpen.classList.replace('hidden', 'block');
+      iconClose.classList.replace('block', 'hidden');
+    }
+
+    btn.setAttribute('aria-expanded', String(willBeOpen));
+    btn.setAttribute('aria-label', willBeOpen ? 'Close menu' : 'Open menu');
+  };
+
+  btn?.addEventListener('click', () => toggleMenu());
+
+  // Close on Escape key press and return focus to button
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu && !menu.classList.contains('hidden')) {
+      toggleMenu(true);
+      btn?.focus();
+    }
   });
 </script>
