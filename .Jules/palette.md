@@ -7,3 +7,6 @@
 ## 2024-03-20 - Contextual Link Labels & Intent Passing
 **Learning:** Generic call-to-action links (like "Request scope") fail WCAG criteria for link purpose in context. Furthermore, dropping users onto a generic form after they clicked a specific service creates friction.
 **Action:** Added `sr-only` context spans to generic links, and implemented URL query parameter parsing in the Contact form to pre-fill the selected service, bridging the user's intent from the referring page.
+## 2024-05-24 - Mobile Menu Accessibility Enhancements
+**Learning:** Toggleable mobile menus often lack clear visual state feedback and keyboard accessibility (like standard shortcuts to close them), which causes poor UX for keyboard users and those with visual impairments.
+**Action:** Always provide explicit visual state feedback (e.g., swapping a menu icon for a close icon), manage `aria-expanded` attributes correctly, and implement `Escape` key support to improve accessibility and interaction flow. Ensure focus is returned to the trigger button when the menu is closed via keyboard.
