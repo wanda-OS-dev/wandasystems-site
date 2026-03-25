@@ -7,3 +7,7 @@
 ## 2025-02-14 - Throttle mousemove style updates with requestAnimationFrame
 **Learning:** Updating CSS custom properties synchronously inside high-frequency event handlers like `mousemove` causes layout thrashing and blocks the main thread because these events often fire faster than the screen refresh rate (e.g., 1000Hz vs 60Hz).
 **Action:** Always wrap DOM style updates tied to continuous events in `requestAnimationFrame` and use a frame cache (`cancelAnimationFrame`) to match the display refresh rate and ensure smooth 60fps rendering without main thread blocking.
+
+## 2026-03-20 - Expensive synchronous DOM operations in the <head> block rendering
+**Learning:** Creating a `<canvas>` element and requesting a WebGL context (`canvas.getContext('webgl')`) is an expensive and synchronous operation. When placed inline within the document `<head>`, it forces the browser to initialize the graphics pipeline immediately, delaying First Paint (FP) and First Contentful Paint (FCP) noticeably on subsequent page loads.
+**Action:** Cache the result of expensive capability checks (like WebGL support) in `sessionStorage` so the operation only executes once per user session, keeping the critical rendering path fast on subsequent navigations.

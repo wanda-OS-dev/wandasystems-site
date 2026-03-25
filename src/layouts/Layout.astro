@@ -93,13 +93,32 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
     <!-- WebGL safety gate: immersive layers must never block business content -->
     <script is:inline>
       (() => {
-        const hasWebGL = () => {
+        const checkWebGL = () => {
           try {
             const canvas = document.createElement('canvas');
             return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
           } catch {
             return false;
           }
+        };
+
+        // ⚡ Bolt: Cache WebGL capability check to improve First Paint
+        // 💡 What: Store the result of the expensive WebGL context creation in sessionStorage.
+        // 🎯 Why: `canvas.getContext('webgl')` is a synchronous, expensive operation that delays rendering when executed in the `<head>`.
+        // 📊 Impact: Improves First Paint (FP) and First Contentful Paint (FCP) on subsequent page loads by skipping the canvas context initialization.
+        const hasWebGL = () => {
+          try {
+            const cached = sessionStorage.getItem('has-webgl');
+            if (cached !== null) return cached === 'true';
+          } catch (e) {}
+
+          const result = checkWebGL();
+
+          try {
+            sessionStorage.setItem('has-webgl', String(result));
+          } catch (e) {}
+
+          return result;
         };
 
         if (!hasWebGL()) {
