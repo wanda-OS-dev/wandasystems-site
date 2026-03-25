@@ -10,3 +10,6 @@
 ## 2024-05-24 - Mobile Menu Accessibility Enhancements
 **Learning:** Toggleable mobile menus often lack clear visual state feedback and keyboard accessibility (like standard shortcuts to close them), which causes poor UX for keyboard users and those with visual impairments.
 **Action:** Always provide explicit visual state feedback (e.g., swapping a menu icon for a close icon), manage `aria-expanded` attributes correctly, and implement `Escape` key support to improve accessibility and interaction flow. Ensure focus is returned to the trigger button when the menu is closed via keyboard.
+## 2026-10-31 - React Error State Auto-Focusing
+**Learning:** When programmatically focusing invalid inputs on form submission in React, executing `.focus()` synchronously can cause screen readers to announce the input *before* React has rendered the accompanying error message or updated the `aria-invalid` state.
+**Action:** Wrap `.focus()` calls in `setTimeout(..., 0)` during submission validation. This defers the focus shift until the next macrotask, ensuring the component has fully re-rendered its error state, allowing screen readers to accurately announce the newly rendered error context.
