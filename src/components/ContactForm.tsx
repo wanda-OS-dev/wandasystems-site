@@ -80,7 +80,19 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (!validate()) {
+      // 🎨 Palette: Accessibility Enhancement
+      // 💡 What: Auto-focus the first invalid input on form submission failure.
+      // 🎯 Why: Improves keyboard navigation and assists screen reader users by immediately directing them to the error.
+      // ⚡ Bolt: Wrapped in setTimeout to defer execution until after React has rendered the error states and aria-invalid attributes.
+      setTimeout(() => {
+        const firstInvalidElement = document.querySelector('[aria-invalid="true"]');
+        if (firstInvalidElement instanceof HTMLElement) {
+          firstInvalidElement.focus();
+        }
+      }, 0);
+      return;
+    }
 
     setFormState('loading');
 
