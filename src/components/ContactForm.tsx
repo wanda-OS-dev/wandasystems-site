@@ -65,6 +65,15 @@ export default function ContactForm() {
     }
 
     setErrors(newErrors);
+
+    const firstErrorKey = Object.keys(newErrors)[0];
+    if (firstErrorKey) {
+      // Defer focus slightly so screen readers announce the newly rendered error state
+      setTimeout(() => {
+        document.getElementById(firstErrorKey)?.focus();
+      }, 0);
+    }
+
     return Object.keys(newErrors).length === 0;
   };
 
