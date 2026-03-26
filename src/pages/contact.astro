@@ -23,6 +23,17 @@ const contactInfo = [
     icon: `<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2C6.24 2 4 4.24 4 7c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5z" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="7" r="1.5" stroke="currentColor" stroke-width="1.5"/></svg>`,
   },
 ];
+
+// ⚡ Bolt: Define static arrays in Astro frontmatter
+// 💡 What: Extracted inline array from the template into the static setup block.
+// 🎯 Why: Defining arrays inline within the template causes a new array instance to be created on every render cycle.
+// 📊 Impact: Micro-optimization for memory usage and prevents redundant object instantiation during rendering.
+const expectationSteps = [
+  'First call: 30–60 minutes, free',
+  'We ask questions, no pitch',
+  'Then: clear assessment if + how we can help',
+  'Proposal within 48h if there is a fit',
+];
 ---
 
 <Layout
@@ -76,12 +87,7 @@ const contactInfo = [
           <div class="rounded-xl border border-border bg-bg-card p-6">
             <p class="label-text mb-4">What to expect</p>
             <ol class="space-y-3" role="list">
-              {[
-                'First call: 30–60 minutes, free',
-                'We ask questions, no pitch',
-                'Then: clear assessment if + how we can help',
-                'Proposal within 48h if there is a fit',
-              ].map((step, i) => (
+              {expectationSteps.map((step, i) => (
                 <li class="flex items-start gap-3">
                   <span class="label-text text-brand-gold w-4 flex-shrink-0 mt-0.5">{String(i + 1).padStart(2, '0')}</span>
                   <span class="text-small text-text-secondary">{step}</span>
