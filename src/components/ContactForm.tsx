@@ -20,6 +20,17 @@ const serviceOptions = [
 
 export default function ContactForm() {
   const [formState, setFormState] = useState<FormState>('idle');
+  const successRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // 🎨 Palette: Accessibility Enhancement
+    // 💡 What: Programmatically focus the success message container upon form success.
+    // 🎯 Why: When the form is submitted and unmounted, focus is lost, resetting to the body. This prevents keyboard/screen reader users from losing their context.
+    if (formState === 'success' && successRef.current) {
+      successRef.current.focus();
+    }
+  }, [formState]);
+
   const [data, setData] = useState<FormData>({
     name: '',
     email: '',
@@ -28,17 +39,6 @@ export default function ContactForm() {
     message: '',
   });
   const [errors, setErrors] = useState<Partial<FormData>>({});
-  const successContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (formState === 'success') {
-      // 🎨 Palette: Accessibility Enhancement
-      // 💡 What: Programmatically focus the success container when the form component is replaced.
-      // 🎯 Why: Prevents keyboard focus from inadvertently dropping to the document body when the submit button unmounts.
-      // 📊 Impact: Screen readers immediately announce the success message, and keyboard navigation remains logical.
-      successContainerRef.current?.focus();
-    }
-  }, [formState]);
 
   useEffect(() => {
     // Check if there is a 'service' query parameter to pre-fill intent
@@ -141,7 +141,7 @@ export default function ContactForm() {
   if (formState === 'success') {
     return (
       <div
-        ref={successContainerRef}
+        ref={successRef}
         tabIndex={-1}
         className="rounded-2xl border border-white/5 bg-brand-gold/5 p-10 text-center focus:outline-none"
         aria-live="assertive"
@@ -177,6 +177,7 @@ export default function ContactForm() {
             autoComplete="name"
             // Security: Limit input length to prevent excessively large payloads
             maxLength={100}
+            aria-required="true"
             className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold ${
               errors.name ? 'border-red-500' : 'border-border'
             }`}
@@ -204,6 +205,7 @@ export default function ContactForm() {
             autoComplete="email"
             // Security: Limit input length to prevent excessively large payloads
             maxLength={254}
+            aria-required="true"
             className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold ${
               errors.email ? 'border-red-500' : 'border-border'
             }`}
@@ -281,6 +283,7 @@ export default function ContactForm() {
           rows={5}
           // Security: Limit input length to prevent excessively large payloads
           maxLength={2000}
+          aria-required="true"
           className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold resize-none ${
             errors.message ? 'border-red-500' : 'border-border'
           }`}

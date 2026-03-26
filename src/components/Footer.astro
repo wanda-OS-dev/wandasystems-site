@@ -14,6 +14,12 @@ const footerLinks = {
     { label: 'Contact', href: '/wandasystems-site/contact' },
   ],
 };
+
+// ⚡ Bolt: Pre-calculate data transformations in Astro frontmatter
+// 💡 What: Extracted `Object.entries(footerLinks)` from the template into the static setup block.
+// 🎯 Why: Performing object iterations or data transformations within the template causes redundant recalculations during the rendering phase. Moving it to the frontmatter ensures it executes only once during build time.
+// 📊 Impact: Micro-optimization for build speed and reduces template complexity.
+const footerLinksEntries = Object.entries(footerLinks);
 ---
 
 <footer class="mt-auto relative border-t border-border" style="background: rgba(10, 10, 10, 0.97);">
@@ -43,7 +49,7 @@ const footerLinks = {
       </div>
 
       <!-- Links -->
-      {Object.entries(footerLinks).map(([category, links]) => (
+      {footerLinksEntries.map(([category, links]) => (
         <div>
           <p class="label-text mb-4">{category}</p>
           <ul class="flex flex-col gap-2.5" role="list">

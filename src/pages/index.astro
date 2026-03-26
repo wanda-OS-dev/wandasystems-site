@@ -39,6 +39,23 @@ const services = [
     href: '/wandasystems-site/services#agents',
   },
 ];
+
+// ⚡ Bolt: Define static arrays in Astro frontmatter
+// 💡 What: Extracted inline arrays from the template into the static setup block.
+// 🎯 Why: Defining arrays inline within the template (e.g., in a `.map()` call) causes a new array instance to be created on every render cycle, unnecessarily increasing memory allocation and garbage collection overhead.
+// 📊 Impact: Micro-optimization for memory usage and prevents redundant object instantiation during rendering.
+const whyWandaSystemsTraits = [
+  ['Measurable ROI', 'Every project has defined KPIs. If we cannot deliver, we talk about it openly.'],
+  ['No lock-ins', 'Open stack. You own the code. No vendor lock-in, no hidden costs.'],
+  ['Time is money', 'We deliver in sprints — not after 6-month consulting projects.'],
+];
+
+const processSteps = [
+  { step: '01', title: 'Analysis', desc: 'We understand your problem. 60-minute deep dive, free of charge.' },
+  { step: '02', title: 'Architecture', desc: 'Clear technical specification. What we build and why.' },
+  { step: '03', title: 'Sprint Execution', desc: 'Weekly delivery packages. No black-box development.' },
+  { step: '04', title: 'Go-Live & Operations', desc: 'Deployment, monitoring, iteration. We stay accountable.' },
+];
 ---
 
 <Layout
@@ -169,11 +186,7 @@ const services = [
           </p>
 
           <ul class="flex flex-col gap-4" role="list">
-            {[
-              ['Measurable ROI', 'Every project has defined KPIs. If we cannot deliver, we talk about it openly.'],
-              ['No lock-ins', 'Open stack. You own the code. No vendor lock-in, no hidden costs.'],
-              ['Time is money', 'We deliver in sprints — not after 6-month consulting projects.'],
-            ].map(([title, text]) => (
+            {whyWandaSystemsTraits.map(([title, text]) => (
               <li class="flex gap-4">
                 <div class="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-brand-gold/10">
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
@@ -192,12 +205,7 @@ const services = [
         <!-- Right: Process steps -->
         <div class="space-y-6">
           <p class="label-text mb-6">Our Process</p>
-          {[
-            { step: '01', title: 'Analysis', desc: 'We understand your problem. 60-minute deep dive, free of charge.' },
-            { step: '02', title: 'Architecture', desc: 'Clear technical specification. What we build and why.' },
-            { step: '03', title: 'Sprint Execution', desc: 'Weekly delivery packages. No black-box development.' },
-            { step: '04', title: 'Go-Live & Operations', desc: 'Deployment, monitoring, iteration. We stay accountable.' },
-          ].map((p) => (
+          {processSteps.map((p) => (
             <div class="flex gap-5 group">
               <div class="label-text text-brand-gold w-6 flex-shrink-0 pt-1 group-hover:text-brand-white transition-colors">{p.step}</div>
               <div class="pb-6 border-b border-border last:border-0">
