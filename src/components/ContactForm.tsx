@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
 
@@ -28,6 +28,17 @@ export default function ContactForm() {
     message: '',
   });
   const [errors, setErrors] = useState<Partial<FormData>>({});
+  const successContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (formState === 'success') {
+      // 🎨 Palette: Accessibility Enhancement
+      // 💡 What: Programmatically focus the success container when the form component is replaced.
+      // 🎯 Why: Prevents keyboard focus from inadvertently dropping to the document body when the submit button unmounts.
+      // 📊 Impact: Screen readers immediately announce the success message, and keyboard navigation remains logical.
+      successContainerRef.current?.focus();
+    }
+  }, [formState]);
 
   useEffect(() => {
     // Check if there is a 'service' query parameter to pre-fill intent
@@ -129,7 +140,12 @@ export default function ContactForm() {
 
   if (formState === 'success') {
     return (
-      <div className="rounded-2xl border border-white/5 bg-brand-gold/5 p-10 text-center" aria-live="assertive">
+      <div
+        ref={successContainerRef}
+        tabIndex={-1}
+        className="rounded-2xl border border-white/5 bg-brand-gold/5 p-10 text-center focus:outline-none"
+        aria-live="assertive"
+      >
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-gold/15">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M5 12l4 4 10-10" stroke="#c9a84c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
