@@ -13,3 +13,6 @@
 ## 2026-10-31 - React Error State Auto-Focusing
 **Learning:** When programmatically focusing invalid inputs on form submission in React, executing `.focus()` synchronously can cause screen readers to announce the input *before* React has rendered the accompanying error message or updated the `aria-invalid` state.
 **Action:** Wrap `.focus()` calls in `setTimeout(..., 0)` during submission validation. This defers the focus shift until the next macrotask, ensuring the component has fully re-rendered its error state, allowing screen readers to accurately announce the newly rendered error context.
+## 2024-03-26 - Focus Management on Dynamic Form Success
+**Learning:** When a form is successfully submitted and replaced by a success message, the submit button is unmounted, causing keyboard focus to drop to the document `body`. This forces keyboard users to start navigating from the top of the page again.
+**Action:** Apply `tabIndex={-1}` to the dynamically rendered success container and programmatically focus it using a `ref` and `useEffect` when the form state changes. This preserves the user's navigational context.
