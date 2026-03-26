@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
 
@@ -20,6 +20,17 @@ const serviceOptions = [
 
 export default function ContactForm() {
   const [formState, setFormState] = useState<FormState>('idle');
+  const successRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // 🎨 Palette: Accessibility Enhancement
+    // 💡 What: Programmatically focus the success message container upon form success.
+    // 🎯 Why: When the form is submitted and unmounted, focus is lost, resetting to the body. This prevents keyboard/screen reader users from losing their context.
+    if (formState === 'success' && successRef.current) {
+      successRef.current.focus();
+    }
+  }, [formState]);
+
   const [data, setData] = useState<FormData>({
     name: '',
     email: '',
@@ -129,7 +140,12 @@ export default function ContactForm() {
 
   if (formState === 'success') {
     return (
-      <div className="rounded-2xl border border-white/5 bg-brand-gold/5 p-10 text-center" aria-live="assertive">
+      <div
+        ref={successRef}
+        tabIndex={-1}
+        className="rounded-2xl border border-white/5 bg-brand-gold/5 p-10 text-center focus:outline-none"
+        aria-live="assertive"
+      >
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-gold/15">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M5 12l4 4 10-10" stroke="#c9a84c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -161,6 +177,7 @@ export default function ContactForm() {
             autoComplete="name"
             // Security: Limit input length to prevent excessively large payloads
             maxLength={100}
+            aria-required="true"
             className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold ${
               errors.name ? 'border-red-500' : 'border-border'
             }`}
@@ -188,6 +205,7 @@ export default function ContactForm() {
             autoComplete="email"
             // Security: Limit input length to prevent excessively large payloads
             maxLength={254}
+            aria-required="true"
             className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold ${
               errors.email ? 'border-red-500' : 'border-border'
             }`}
@@ -265,6 +283,7 @@ export default function ContactForm() {
           rows={5}
           // Security: Limit input length to prevent excessively large payloads
           maxLength={2000}
+          aria-required="true"
           className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold resize-none ${
             errors.message ? 'border-red-500' : 'border-border'
           }`}
