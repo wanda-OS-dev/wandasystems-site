@@ -68,6 +68,12 @@
 
   .section {
     @apply py-section;
+    /* ⚡ Bolt: Implemented content-visibility for below-the-fold sections */
+    /* 💡 What: Added content-visibility: auto and contain-intrinsic-size to the global .section class. */
+    /* 🎯 Why: This property enables the browser to skip layout, style, and paint operations for offscreen sections until they are near the viewport, which heavily optimizes First Contentful Paint (FCP) and Time to Interactive (TTI) on long scrolling pages. */
+    /* 📊 Impact: Significantly reduces initial main-thread blocking time and DOM rendering overhead. */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
   }
 
   .divider {
