@@ -166,7 +166,7 @@ export default function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className="label-text mb-2 block">
-            Name <span className="text-red-400">*</span>
+            Name <span className="text-red-400" aria-hidden="true">*</span>
           </label>
           <input
             type="text"
@@ -194,7 +194,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="email" className="label-text mb-2 block">
-            Email <span className="text-red-400">*</span>
+            Email <span className="text-red-400" aria-hidden="true">*</span>
           </label>
           <input
             type="email"
@@ -273,7 +273,7 @@ export default function ContactForm() {
       {/* Message */}
       <div>
         <label htmlFor="message" className="label-text mb-2 block">
-          Your Request <span className="text-red-400">*</span>
+          Your Request <span className="text-red-400" aria-hidden="true">*</span>
         </label>
         <textarea
           id="message"
@@ -299,7 +299,12 @@ export default function ContactForm() {
           ) : (
             <div />
           )}
-          <p className="text-[10px] font-medium uppercase tracking-widest text-text-muted" aria-hidden="true">
+          <p
+            className={`text-[10px] font-medium uppercase tracking-widest transition-colors ${
+              data.message.length >= 1900 ? 'text-red-400' : 'text-text-muted'
+            }`}
+            aria-hidden="true"
+          >
             {data.message.length} / 2000
           </p>
         </div>
