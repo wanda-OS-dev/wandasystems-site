@@ -300,7 +300,9 @@ export default function ContactForm() {
             <div />
           )}
           <p
-            className={`text-[10px] font-medium uppercase tracking-widest ${data.message.length >= 1900 ? 'text-red-400' : 'text-text-muted'}`}
+            className={`text-[10px] font-medium uppercase tracking-widest transition-colors ${
+              data.message.length >= 1900 ? 'text-red-400' : 'text-text-muted'
+            }`}
             aria-hidden="true"
           >
             {data.message.length} / 2000
