@@ -3,9 +3,7 @@
 /* 🎯 Why: @import within a CSS file blocks rendering and negates the benefits of async <link> preloading in the HTML head. */
 /* 📊 Impact: Faster First Contentful Paint (FCP) and prevents the CSS parser from halting to fetch external fonts. */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
   :root {
