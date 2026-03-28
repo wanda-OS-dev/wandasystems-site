@@ -1,5 +1,6 @@
 ---
 import Logo from "./Logo.astro";
+import NavItem from "./NavItem.astro";
 const navItems = [
   { label: 'Services', href: '/wandasystems-site/services' },
   { label: 'Case Studies', href: '/wandasystems-site/cases' },
@@ -32,25 +33,9 @@ const currentPath = Astro.url.pathname;
 
       <!-- Desktop Nav -->
       <ul class="hidden items-center gap-1 md:flex" role="list">
-        {navItems.map((item) => {
-          const isActive = currentPath === item.href || currentPath === item.href + '/' || currentPath.startsWith(item.href + '/');
-          return (
-            <li>
-              <a
-                href={item.href}
-                class:list={[
-                  'rounded-lg px-4 py-2 text-small font-medium transition-colors duration-150',
-                  isActive
-                    ? 'bg-brand-indigo-card text-brand-gold border border-brand-gold/20'
-                    : 'text-text-secondary hover:bg-white/5 hover:text-text-primary',
-                ]}
-                aria-current={isActive ? 'page' : undefined}
-              >
-                {item.label}
-              </a>
-            </li>
-          );
-        })}
+        {navItems.map((item) => (
+          <NavItem href={item.href} label={item.label} currentPath={currentPath} isMobile={false} />
+        ))}
       </ul>
 
       <!-- CTA -->
@@ -91,25 +76,9 @@ const currentPath = Astro.url.pathname;
   >
     <div class="container-content py-4">
       <ul class="flex flex-col gap-1" role="list">
-        {navItems.map((item) => {
-          const isActive = currentPath === item.href || currentPath === item.href + '/' || currentPath.startsWith(item.href + '/');
-          return (
-            <li>
-              <a
-                href={item.href}
-                class:list={[
-                  'block rounded-lg px-4 py-3 text-small font-medium transition-colors',
-                  isActive
-                    ? 'bg-brand-indigo-card text-brand-gold'
-                    : 'text-text-secondary hover:bg-white/5 hover:text-text-primary',
-                ]}
-                aria-current={isActive ? 'page' : undefined}
-              >
-                {item.label}
-              </a>
-            </li>
-          );
-        })}
+        {navItems.map((item) => (
+          <NavItem href={item.href} label={item.label} currentPath={currentPath} isMobile={true} />
+        ))}
         <li class="mt-2 pt-2 border-t border-border">
           <a href="/wandasystems-site/contact" class="btn-primary w-full justify-center text-xs">
             Book a call
