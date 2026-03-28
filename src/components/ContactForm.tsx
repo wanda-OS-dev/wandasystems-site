@@ -8,6 +8,7 @@ interface FormData {
   company: string;
   service: string;
   message: string;
+  _gotcha: string;
 }
 
 const serviceOptions = [
@@ -37,6 +38,7 @@ export default function ContactForm() {
     company: '',
     service: '',
     message: '',
+    _gotcha: '',
   });
   const [errors, setErrors] = useState<Partial<FormData>>({});
 
@@ -107,6 +109,14 @@ export default function ContactForm() {
 
     setFormState('loading');
 
+    // Security: Honeypot check to prevent automated spam bot submissions.
+    // Real users will not see or fill this visually hidden field.
+    if (data._gotcha) {
+      // Simulate successful submission to fool the bot without sending real data
+      setTimeout(() => setFormState('success'), 1000);
+      return;
+    }
+
     try {
       const payload = new FormData();
       payload.append('name', data.name);
@@ -162,6 +172,17 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-6">
+      {/* Security: Honeypot field. Must remain empty. */}
+      <input
+        type="text"
+        name="_gotcha"
+        value={data._gotcha}
+        onChange={handleChange}
+        style={{ display: 'none' }}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
       {/* Name + Email */}
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
