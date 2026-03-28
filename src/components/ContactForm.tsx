@@ -162,6 +162,10 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-6">
+      {/* 🎨 Palette: Form Accessibility Enhancement */}
+      {/* 💡 What: Wrapped form fields in a disabled fieldset during submission and added a visual opacity transition. */}
+      {/* 🎯 Why: Using a <fieldset disabled> automatically locks all child inputs, preventing duplicate submissions or edits while loading, and implicitly communicates the disabled state to screen readers without needing to map 'disabled' onto every single element. */}
+      <fieldset disabled={formState === 'loading'} className="space-y-6 disabled:opacity-60 transition-opacity duration-300">
       {/* Name + Email */}
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
@@ -325,7 +329,6 @@ export default function ContactForm() {
         <button
           type="submit"
           aria-busy={formState === 'loading'}
-          disabled={formState === 'loading'}
           className="btn-primary flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {formState === 'loading' ? (
@@ -345,6 +348,7 @@ export default function ContactForm() {
           )}
         </button>
       </div>
+      </fieldset>
     </form>
   );
 }
