@@ -19,3 +19,6 @@
 ## 2026-03-27 - Character Limit Warnings & Required Asterisks
 **Learning:** Screen readers announce the '*' character for required fields as "star", creating auditory noise when `aria-required` is already present. Additionally, character limits without visual feedback cause users to hit a hard stop unexpectedly when typing long inputs.
 **Action:** Add `aria-hidden="true"` to required asterisks to clean up screen reader output. Implement dynamic visual feedback (like changing text color to warning/red) on character counters when users approach the maximum length limit.
+## 2026-03-28 - Form Fieldset Disabling
+**Learning:** Wrapping an entire form's inputs in a `<fieldset disabled>` automatically locks all child inputs during submission, preventing duplicate submissions and implicitly communicating the disabled state to screen readers without needing to manually map `disabled` states onto every single form element.
+**Action:** When creating forms with loading states, use `<fieldset disabled={isLoading}>` to handle global form locking and apply a visual CSS transition (e.g. `disabled:opacity-60`) on the fieldset container for immediate, accessible visual feedback.
