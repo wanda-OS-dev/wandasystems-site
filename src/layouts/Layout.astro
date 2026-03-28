@@ -1,0 +1,165 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description = 'WandaSystems — AI-Automatisierungen, SaaS-Produkte und API-Integrationen für B2B.',
+  ogImage = '/wandasystems-site/og-image.png',
+  canonical,
+} = Astro.props;
+
+const siteBase = Astro.site ?? 'https://wanda-os-dev.github.io/wandasystems-site/';
+const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
+---
+
+<!doctype html>
+<html lang="de" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title} | WandaSystems</title>
+    <meta name="title" content={`${title} | WandaSystems`} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/wandasystems-site/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/wandasystems-site/favicon.svg" />
+    <link rel="apple-touch-icon" href="/wandasystems-site/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={`${title} | WandaSystems`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="WandaSystems" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={`${title} | WandaSystems`} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "WandaSystems",
+      "url": "https://wanda-os-dev.github.io/wandasystems-site/",
+      "description": description,
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "email": "wanda.devops@gmail.com"
+      }
+    }).replace(/</g, '\\u003c')} />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- ⚡ Bolt: Added preconnect for Formspree and Stripe -->
+    <!-- 💡 What: Establishing early network connections to critical third-party domains. -->
+    <!-- 🎯 Why: DNS/TCP/TLS handshakes take time. Preconnecting reduces latency when the user clicks a checkout link or submits the form. -->
+    <!-- 📊 Impact: Faster time-to-interactive for form submissions and checkout navigations. -->
+    <link rel="preconnect" href="https://buy.stripe.com" crossorigin />
+    <link rel="preconnect" href="https://formspree.io" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <!-- WebGL safety gate: immersive layers must never block business content -->
+    <script is:inline>
+      (() => {
+        const checkWebGL = () => {
+          try {
+            const canvas = document.createElement('canvas');
+            return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+          } catch {
+            return false;
+          }
+        };
+
+        // ⚡ Bolt: Cache WebGL capability check to improve First Paint
+        // 💡 What: Store the result of the expensive WebGL context creation in sessionStorage.
+        // 🎯 Why: `canvas.getContext('webgl')` is a synchronous, expensive operation that delays rendering when executed in the `<head>`.
+        // 📊 Impact: Improves First Paint (FP) and First Contentful Paint (FCP) on subsequent page loads by skipping the canvas context initialization.
+        const hasWebGL = () => {
+          try {
+            const cached = sessionStorage.getItem('has-webgl');
+            if (cached !== null) return cached === 'true';
+          } catch (e) {}
+
+          const result = checkWebGL();
+
+          try {
+            sessionStorage.setItem('has-webgl', String(result));
+          } catch (e) {}
+
+          return result;
+        };
+
+        if (!hasWebGL()) {
+          document.documentElement.classList.add('no-webgl');
+        }
+
+        /**
+         * ⚡ Bolt: Caching WebGL fallback state.
+         * 💡 What: Added a flag to prevent multiple executions of the fallback logic.
+         * 🎯 Why: querySelectorAll is expensive. The fallback only needs to remove immersive layers once. Repeated triggers (e.g., from an animation loop) would cause unnecessary DOM querying.
+         */
+        let webglFailed = false;
+        window.addEventListener('error', (event) => {
+          if (webglFailed) return;
+          const msg = String(event?.message || '').toLowerCase();
+          if (msg.includes('webgl') || msg.includes('three') || msg.includes('renderer')) {
+            webglFailed = true;
+            document.documentElement.classList.add('no-webgl');
+            document.querySelectorAll('[data-immersive]').forEach((node) => node.remove());
+          }
+        });
+      })();
+    </script>
+  </head>
+  <body class="flex min-h-full flex-col bg-brand-black">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-[100] btn-primary"
+    >
+      Skip to content
+    </a>
+    <!-- Global atmospheric background -->
+    <div class="pointer-events-none fixed inset-0 z-0 wanda-grid-bg opacity-30" aria-hidden="true"></div>
+    <div class="pointer-events-none fixed inset-0 z-0" aria-hidden="true">
+      <div class="absolute top-0 right-0 w-[600px] h-[400px] rounded-full blur-[140px] opacity-[0.08]" style="background: radial-gradient(circle, #1a0a2e 0%, transparent 70%);"></div>
+      <div class="absolute bottom-1/4 left-0 w-80 h-80 rounded-full blur-[120px] opacity-[0.06]" style="background: radial-gradient(circle, #c9a84c 0%, transparent 70%);"></div>
+    </div>
+    <Header />
+    <main id="main-content" tabindex="-1" class="relative z-10 flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
