@@ -19,3 +19,6 @@
 ## 2026-03-27 - Character Limit Warnings & Required Asterisks
 **Learning:** Screen readers announce the '*' character for required fields as "star", creating auditory noise when `aria-required` is already present. Additionally, character limits without visual feedback cause users to hit a hard stop unexpectedly when typing long inputs.
 **Action:** Add `aria-hidden="true"` to required asterisks to clean up screen reader output. Implement dynamic visual feedback (like changing text color to warning/red) on character counters when users approach the maximum length limit.
+## 2026-03-28 - Global Scroll Padding for Sticky Headers
+**Learning:** When using anchor links on a site with a sticky header, applying `scroll-mt-*` utility classes to every individual target element is brittle, repetitive, and prone to being forgotten.
+**Action:** Always apply a global scroll padding class (e.g., `scroll-pt-24`) to the root `html` element in `global.css`. This ensures the browser accounts for the sticky header height consistently across all anchor link jumps natively, improving UX and codebase maintainability.

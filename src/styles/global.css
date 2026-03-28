@@ -4,6 +4,7 @@
 /* 📊 Impact: Faster First Contentful Paint (FCP) and prevents the CSS parser from halting to fetch external fonts. */
 
 @import "tailwindcss";
+@config "../../tailwind.config.mjs";
 
 @layer base {
   :root {
@@ -15,7 +16,7 @@
   }
 
   html {
-    @apply bg-brand-black text-brand-white scroll-smooth;
+    @apply bg-brand-black text-brand-white scroll-smooth scroll-pt-24;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
