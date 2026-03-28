@@ -1,0 +1,12 @@
+---
+import { sanitizeSVG } from '../utils/sanitize';
+
+interface Props {
+  svg: string;
+}
+
+const { svg } = Astro.props;
+const sanitized = sanitizeSVG(svg);
+---
+
+<Fragment set:html={sanitized} />

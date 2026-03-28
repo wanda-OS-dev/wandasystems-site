@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { sanitizeSVG } from '../utils/sanitize';
+import Icon from '../components/Icon.astro';
 import ContactForm from '../components/ContactForm';
 
 const contactInfo = [
@@ -64,7 +64,7 @@ const expectationSteps = [
             {contactInfo.map((item) => (
               <div class="flex items-start gap-4">
                 <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-brand-gold/10 text-brand-gold">
-                  <Fragment set:html={sanitizeSVG(item.icon)} />
+                  <Icon svg={item.icon} />
                 </div>
                 <div>
                   <p class="label-text mb-1">{item.label}</p>
