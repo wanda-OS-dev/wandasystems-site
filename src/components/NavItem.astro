@@ -1,0 +1,26 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  isMobile: boolean;
+  currentPath: string;
+}
+
+const { href, label, isMobile, currentPath } = Astro.props;
+const isActive = currentPath === href || currentPath === href + '/' || currentPath.startsWith(href + '/');
+---
+
+<li>
+  <a
+    href={href}
+    class:list={[
+      isMobile ? 'block rounded-lg px-4 py-3 text-small font-medium transition-colors' : 'rounded-lg px-4 py-2 text-small font-medium transition-colors duration-150',
+      isMobile
+        ? (isActive ? 'bg-brand-indigo-card text-brand-gold' : 'text-text-secondary hover:bg-white/5 hover:text-text-primary')
+        : (isActive ? 'bg-brand-indigo-card text-brand-gold border border-brand-gold/20' : 'text-text-secondary hover:bg-white/5 hover:text-text-primary')
+    ]}
+    aria-current={isActive ? 'page' : undefined}
+  >
+    {label}
+  </a>
+</li>
