@@ -1,0 +1,24 @@
+---
+const metrics = [
+  { value: '40%+', label: 'Ø Cost reduction through automation' },
+  { value: '< 8W', label: 'Time-to-Production for AI systems' },
+  { value: '24/7', label: 'Autonomous agents without downtime' },
+  { value: '100%', label: 'Custom built — no generic templates' },
+];
+---
+
+<!-- Metrics bar -->
+<section class="border-y border-border py-12 relative" aria-label="Key metrics" style="background: linear-gradient(135deg, rgba(18, 8, 32, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%);">
+  <div class="absolute top-0 left-0 right-0 glow-divider opacity-30"></div>
+  <div class="container-content">
+    <dl class="grid grid-cols-2 gap-8 sm:grid-cols-4">
+      {metrics.map((m) => (
+        <div class="text-center group">
+          <dt class="text-heading-2 font-semibold text-brand-gold group-hover:text-brand-white transition-colors duration-300">{m.value}</dt>
+          <dd class="mt-1 text-small text-text-muted">{m.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 glow-divider opacity-30"></div>
+</section>

@@ -1,0 +1,97 @@
+---
+---
+
+<section class="relative overflow-hidden pt-20 pb-24 lg:pt-28 lg:pb-32" aria-labelledby="hero-headline">
+  <!-- Atmospheric aurora effects — premium gold -->
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <!-- Grid pattern -->
+    <div class="absolute inset-0" style="background-image: linear-gradient(to right, rgba(201,168,76,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(201,168,76,0.03) 1px, transparent 1px); background-size: 60px 60px;"></div>
+    <!-- Aurora blobs -->
+    <div class="hero-aurora hero-aurora-1"></div>
+    <div class="hero-aurora hero-aurora-2"></div>
+    <!-- Radial depth -->
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 30% 50%, rgba(201, 168, 76, 0.05) 0%, transparent 60%);"></div>
+    <!-- Bottom fade -->
+    <div class="absolute bottom-0 left-0 right-0 h-48" style="background: linear-gradient(to top, #0a0a0a, transparent);"></div>
+  </div>
+
+  <div class="container-content relative">
+    <div class="mx-auto max-w-[860px]">
+      <!-- Label -->
+      <div class="mb-8 flex items-center gap-3">
+        <span class="badge">B2B AI Systems</span>
+        <span class="label-text text-text-muted">Hamburg · Remote</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 id="hero-headline" class="text-display mb-6 text-text-primary">
+        We build AI systems<br class="hidden sm:block" />
+        <span class="text-gradient-gold">that actually work.</span>
+      </h1>
+
+      <!-- Sub -->
+      <p class="mb-10 max-w-[560px] text-body-lg text-text-secondary">
+        No demos. No buzzwords. WandaSystems delivers AI automations,
+        SaaS products, and API integrations that produce measurable results — with visible proof, not empty claims.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="https://buy.stripe.com/28E14odfd8u6gPqbkQaVa01" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Buy Data Cleaning Bot — €29
+          <span class="sr-only">(opens in a new tab)</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="/wandasystems-site/services#products-heading" class="btn-secondary">
+          View instant products
+        </a>
+      </div>
+      <p class="mt-4 max-w-[560px] text-small text-text-muted">
+        Fastest live path right now: direct-buy utility tools with fulfillment email after Stripe confirmation.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-aurora {
+    position: absolute;
+    filter: blur(80px);
+    border-radius: 9999px;
+    animation: floatAurora 14s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .hero-aurora-1 {
+    width: 32rem;
+    height: 32rem;
+    left: -8rem;
+    top: -6rem;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.1) 0%, rgba(201, 168, 76, 0) 70%);
+    opacity: 0.5;
+    animation-delay: -2s;
+  }
+
+  .hero-aurora-2 {
+    width: 28rem;
+    height: 28rem;
+    right: -6rem;
+    top: 0rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+    opacity: 0.3;
+    animation-duration: 18s;
+  }
+
+  @keyframes floatAurora {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(0, -14px, 0) scale(1.06); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-aurora {
+      animation: none;
+    }
+  }
+</style>
