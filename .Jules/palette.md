@@ -19,3 +19,7 @@
 ## 2026-03-27 - Character Limit Warnings & Required Asterisks
 **Learning:** Screen readers announce the '*' character for required fields as "star", creating auditory noise when `aria-required` is already present. Additionally, character limits without visual feedback cause users to hit a hard stop unexpectedly when typing long inputs.
 **Action:** Add `aria-hidden="true"` to required asterisks to clean up screen reader output. Implement dynamic visual feedback (like changing text color to warning/red) on character counters when users approach the maximum length limit.
+
+## 2026-03-29 - [Lang Attribute Fix]
+**Learning:** The entire site was written in English, but the base Layout had `lang="de"` and a default German description. Screen readers use the `lang` attribute to determine pronunciation; reading English text with German rules causes severe accessibility issues and unintelligible speech.
+**Action:** Always verify that the `lang` attribute matches the primary language of the content, especially on boilerplate templates or translated sites.
