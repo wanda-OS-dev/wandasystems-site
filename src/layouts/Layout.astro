@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import checkWebGLScript from '../scripts/check-webgl.js?raw';
 
 export interface Props {
   title: string;
@@ -12,7 +13,7 @@ export interface Props {
 
 const {
   title,
-  description = 'WandaSystems — AI-Automatisierungen, SaaS-Produkte und API-Integrationen für B2B.',
+  description = 'WandaSystems — AI Automations, SaaS Products, and API Integrations for B2B.',
   ogImage = '/wandasystems-site/og-image.png',
   canonical,
 } = Astro.props;
@@ -22,7 +23,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
 ---
 
 <!doctype html>
-<html lang="de" class="h-full">
+<html lang="en" class="h-full">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -55,7 +56,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
     <meta property="twitter:image" content={ogImage} />
 
     <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "WandaSystems",
@@ -78,10 +79,10 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
     <link rel="preconnect" href="https://buy.stripe.com" crossorigin />
     <link rel="preconnect" href="https://formspree.io" crossorigin />
     <link
-      rel="preload"
+      rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
+      media="print"
+      onload="this.media='all'"
     />
     <noscript>
       <link
@@ -91,57 +92,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
     </noscript>
 
     <!-- WebGL safety gate: immersive layers must never block business content -->
-    <script is:inline>
-      (() => {
-        const checkWebGL = () => {
-          try {
-            const canvas = document.createElement('canvas');
-            return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
-          } catch {
-            return false;
-          }
-        };
-
-        // ⚡ Bolt: Cache WebGL capability check to improve First Paint
-        // 💡 What: Store the result of the expensive WebGL context creation in sessionStorage.
-        // 🎯 Why: `canvas.getContext('webgl')` is a synchronous, expensive operation that delays rendering when executed in the `<head>`.
-        // 📊 Impact: Improves First Paint (FP) and First Contentful Paint (FCP) on subsequent page loads by skipping the canvas context initialization.
-        const hasWebGL = () => {
-          try {
-            const cached = sessionStorage.getItem('has-webgl');
-            if (cached !== null) return cached === 'true';
-          } catch (e) {}
-
-          const result = checkWebGL();
-
-          try {
-            sessionStorage.setItem('has-webgl', String(result));
-          } catch (e) {}
-
-          return result;
-        };
-
-        if (!hasWebGL()) {
-          document.documentElement.classList.add('no-webgl');
-        }
-
-        /**
-         * ⚡ Bolt: Caching WebGL fallback state.
-         * 💡 What: Added a flag to prevent multiple executions of the fallback logic.
-         * 🎯 Why: querySelectorAll is expensive. The fallback only needs to remove immersive layers once. Repeated triggers (e.g., from an animation loop) would cause unnecessary DOM querying.
-         */
-        let webglFailed = false;
-        window.addEventListener('error', (event) => {
-          if (webglFailed) return;
-          const msg = String(event?.message || '').toLowerCase();
-          if (msg.includes('webgl') || msg.includes('three') || msg.includes('renderer')) {
-            webglFailed = true;
-            document.documentElement.classList.add('no-webgl');
-            document.querySelectorAll('[data-immersive]').forEach((node) => node.remove());
-          }
-        });
-      })();
-    </script>
+    <script is:inline set:html={checkWebGLScript}></script>
   </head>
   <body class="flex min-h-full flex-col bg-brand-black">
     <a

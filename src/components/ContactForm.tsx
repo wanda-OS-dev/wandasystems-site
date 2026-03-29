@@ -8,6 +8,7 @@ interface FormData {
   company: string;
   service: string;
   message: string;
+  _gotcha: string;
 }
 
 const serviceOptions = [
@@ -37,6 +38,7 @@ export default function ContactForm() {
     company: '',
     service: '',
     message: '',
+    _gotcha: '',
   });
   const [errors, setErrors] = useState<Partial<FormData>>({});
 
@@ -107,6 +109,14 @@ export default function ContactForm() {
 
     setFormState('loading');
 
+    // Security: Honeypot check to prevent automated spam bot submissions.
+    // Real users will not see or fill this visually hidden field.
+    if (data._gotcha) {
+      // Simulate successful submission to fool the bot without sending real data
+      setTimeout(() => setFormState('success'), 1000);
+      return;
+    }
+
     try {
       const payload = new FormData();
       payload.append('name', data.name);
@@ -162,11 +172,22 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-6">
+      {/* Security: Honeypot field. Must remain empty. */}
+      <input
+        type="text"
+        name="_gotcha"
+        value={data._gotcha}
+        onChange={handleChange}
+        style={{ display: 'none' }}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
       {/* Name + Email */}
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className="label-text mb-2 block">
-            Name <span className="text-red-400">*</span>
+            Name <span className="text-red-400" aria-hidden="true">*</span>
           </label>
           <input
             type="text"
@@ -194,7 +215,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="email" className="label-text mb-2 block">
-            Email <span className="text-red-400">*</span>
+            Email <span className="text-red-400" aria-hidden="true">*</span>
           </label>
           <input
             type="email"
@@ -273,7 +294,7 @@ export default function ContactForm() {
       {/* Message */}
       <div>
         <label htmlFor="message" className="label-text mb-2 block">
-          Your Request <span className="text-red-400">*</span>
+          Your Request <span className="text-red-400" aria-hidden="true">*</span>
         </label>
         <textarea
           id="message"
@@ -299,7 +320,12 @@ export default function ContactForm() {
           ) : (
             <div />
           )}
-          <p className="text-[10px] font-medium uppercase tracking-widest text-text-muted" aria-hidden="true">
+          <p
+            className={`text-[10px] font-medium uppercase tracking-widest transition-colors ${
+              data.message.length >= 1900 ? 'text-red-400' : 'text-text-muted'
+            }`}
+            aria-hidden="true"
+          >
             {data.message.length} / 2000
           </p>
         </div>
