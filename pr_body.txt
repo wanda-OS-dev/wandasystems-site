@@ -1,0 +1,9 @@
+🧹 [Extract inline WebGL checking logic to separate file]
+
+🎯 **What:** The large `<script is:inline>` block containing the WebGL capability check logic was extracted from `src/layouts/Layout.astro` into a dedicated file at `src/scripts/check-webgl.js`. The script is then imported using Vite's `?raw` import syntax and safely injected back into the document `<head>` via `<script is:inline set:html={checkWebGLScript}></script>`.
+
+💡 **Why:** By extracting this logic, the core layout file becomes cleaner and easier to read. Moving complex script logic out of `.astro` files and into dedicated `.js`/`.ts` modules improves maintainability, enabling proper IDE syntax highlighting, linting, and eventually easier unit testing for the WebGL capability check function.
+
+✅ **Verification:** Verified that building the project (`npm run build`) correctly outputs the exact same inline script inside the `dist` index.html file, preserving the critical requirement that this script runs early in the head (synchronously) to prevent FOUC without adding an extra network request.
+
+✨ **Result:** The codebase health is improved by cleanly decoupling the imperative WebGL capability caching logic from the declarative UI layout, with zero change in runtime behavior.

@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { sanitizeSVG } from '../utils/sanitize';
+import Icon from '../components/Icon.astro';
 
 const metrics = [
   { value: '40%+', label: 'Ø Cost reduction through automation' },
@@ -12,32 +12,49 @@ const metrics = [
 const services = [
   {
     id: 'automation',
-    icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L3 6v8l7 4 7-4V6L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 2v12M3 6l7 4 7-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2L3 6v8l7 4 7-4V6L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 2v12M3 6l7 4 7-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
     title: 'AI Automations',
     desc: 'Eliminate repetitive workflows. n8n + Python pipelines that execute your processes around the clock — without errors, without overhead.',
     href: '/wandasystems-site/services#automation',
   },
   {
     id: 'saas',
-    icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 17h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 7h4M8 10h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2" y="3" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 17h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 7h4M8 10h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
     title: 'SaaS Products',
     desc: 'Complete SaaS platforms based on SupaStarter. From idea to market-ready product in weeks, not months.',
     href: '/wandasystems-site/services#saas',
   },
   {
     id: 'web-app',
-    icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="3" width="15" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 16.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 13v3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2.5" y="3" width="15" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 16.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 13v3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
     title: 'Web & App Development',
     desc: 'High-performance web apps and internal platforms with a clear focus on UX, speed, and measurable business results.',
     href: '/wandasystems-site/services#saas',
   },
   {
     id: 'agents',
-    icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M5 17c0-2.761 2.239-5 5-5s5 2.239 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M15 5l2-2M15 11l2 2M5 5L3 3M5 11L3 13" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>`,
+    icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M5 17c0-2.761 2.239-5 5-5s5 2.239 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M15 5l2-2M15 11l2 2M5 5L3 3M5 11L3 13" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>`,
     title: 'AI Agent Systems',
     desc: 'Custom agents that think, plan, and act. Orchestrated multi-agent architectures for complex enterprise operations.',
     href: '/wandasystems-site/services#agents',
   },
+];
+
+// ⚡ Bolt: Define static arrays in Astro frontmatter
+// 💡 What: Extracted inline arrays from the template into the static setup block.
+// 🎯 Why: Defining arrays inline within the template (e.g., in a `.map()` call) causes a new array instance to be created on every render cycle, unnecessarily increasing memory allocation and garbage collection overhead.
+// 📊 Impact: Micro-optimization for memory usage and prevents redundant object instantiation during rendering.
+const whyWandaSystemsTraits = [
+  ['Measurable ROI', 'Every project has defined KPIs. If we cannot deliver, we talk about it openly.'],
+  ['No lock-ins', 'Open stack. You own the code. No vendor lock-in, no hidden costs.'],
+  ['Time is money', 'We deliver in sprints — not after 6-month consulting projects.'],
+];
+
+const processSteps = [
+  { step: '01', title: 'Analysis', desc: 'We understand your problem. 60-minute deep dive, free of charge.' },
+  { step: '02', title: 'Architecture', desc: 'Clear technical specification. What we build and why.' },
+  { step: '03', title: 'Sprint Execution', desc: 'Weekly delivery packages. No black-box development.' },
+  { step: '04', title: 'Go-Live & Operations', desc: 'Deployment, monitoring, iteration. We stay accountable.' },
 ];
 ---
 
@@ -133,7 +150,7 @@ const services = [
             <!-- Glow accent on hover -->
             <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style="background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(201,168,76,0.12), transparent 40%);"></div>
             <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-gold/10 text-brand-gold transition-colors group-hover:bg-brand-gold/20 relative z-10">
-              <Fragment set:html={sanitizeSVG(s.icon)} />
+              <Icon svg={s.icon} />
             </div>
             <div class="relative z-10">
               <h3 class="mb-2 text-small font-semibold text-text-primary">{s.title}</h3>
@@ -169,11 +186,7 @@ const services = [
           </p>
 
           <ul class="flex flex-col gap-4" role="list">
-            {[
-              ['Measurable ROI', 'Every project has defined KPIs. If we cannot deliver, we talk about it openly.'],
-              ['No lock-ins', 'Open stack. You own the code. No vendor lock-in, no hidden costs.'],
-              ['Time is money', 'We deliver in sprints — not after 6-month consulting projects.'],
-            ].map(([title, text]) => (
+            {whyWandaSystemsTraits.map(([title, text]) => (
               <li class="flex gap-4">
                 <div class="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-brand-gold/10">
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
@@ -192,12 +205,7 @@ const services = [
         <!-- Right: Process steps -->
         <div class="space-y-6">
           <p class="label-text mb-6">Our Process</p>
-          {[
-            { step: '01', title: 'Analysis', desc: 'We understand your problem. 60-minute deep dive, free of charge.' },
-            { step: '02', title: 'Architecture', desc: 'Clear technical specification. What we build and why.' },
-            { step: '03', title: 'Sprint Execution', desc: 'Weekly delivery packages. No black-box development.' },
-            { step: '04', title: 'Go-Live & Operations', desc: 'Deployment, monitoring, iteration. We stay accountable.' },
-          ].map((p) => (
+          {processSteps.map((p) => (
             <div class="flex gap-5 group">
               <div class="label-text text-brand-gold w-6 flex-shrink-0 pt-1 group-hover:text-brand-white transition-colors">{p.step}</div>
               <div class="pb-6 border-b border-border last:border-0">
