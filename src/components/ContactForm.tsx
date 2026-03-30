@@ -320,14 +320,24 @@ export default function ContactForm() {
           ) : (
             <div />
           )}
-          <p
-            className={`text-[10px] font-medium uppercase tracking-widest transition-colors ${
-              data.message.length >= 1900 ? 'text-red-400' : 'text-text-muted'
-            }`}
-            aria-hidden="true"
-          >
-            {data.message.length} / 2000
-          </p>
+          <div className="flex flex-col items-end">
+            <p
+              className={`text-[10px] font-medium uppercase tracking-widest transition-colors ${
+                data.message.length >= 1900 ? 'text-red-400' : 'text-text-muted'
+              }`}
+              aria-hidden="true"
+            >
+              {data.message.length} / 2000
+            </p>
+            {/* 🎨 Palette: Accessibility Enhancement */}
+            {/* 💡 What: Added an sr-only live region to announce character limits. */}
+            {/* 🎯 Why: Warns screen reader users dynamically when they approach the max length without being overly verbose on every keystroke. */}
+            <span className="sr-only" aria-live="polite">
+              {data.message.length >= 1900
+                ? `${2000 - data.message.length} characters remaining`
+                : ''}
+            </span>
+          </div>
         </div>
       </div>
 
