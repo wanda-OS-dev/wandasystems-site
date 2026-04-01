@@ -2,11 +2,13 @@ import sanitizeHtml from 'sanitize-html';
 
 export function sanitizeSVG(html: string): string {
   return sanitizeHtml(html, {
-    allowedTags: sanitizeHtml.defaults.allowedTags.concat([
+    // 🛡️ Sentinel: XSS Prevention
+    // 💡 What: Completely overridden default allowed tags and attributes instead of merging them.
+    // 🎯 Why: sanitizeHtml.defaults includes elements like <a> and attributes like 'href' which could allow malicious links (javascript:...) inside an SVG payload.
+    allowedTags: [
       'svg', 'path', 'circle', 'rect', 'polygon', 'polyline', 'line', 'g', 'defs', 'clipPath', 'use'
-    ]),
+    ],
     allowedAttributes: {
-      ...sanitizeHtml.defaults.allowedAttributes,
       'svg': ['width', 'height', 'viewBox', 'viewbox', 'fill', 'xmlns', 'class', 'aria-hidden'],
       'path': ['d', 'fill', 'stroke', 'stroke-width', 'stroke-linecap', 'stroke-linejoin', 'clip-rule', 'fill-rule'],
       'rect': ['x', 'y', 'width', 'height', 'rx', 'ry', 'fill', 'stroke', 'stroke-width'],
