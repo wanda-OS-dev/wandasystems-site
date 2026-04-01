@@ -23,3 +23,7 @@
 ## 2026-03-29 - [Lang Attribute Fix]
 **Learning:** The entire site was written in English, but the base Layout had `lang="de"` and a default German description. Screen readers use the `lang` attribute to determine pronunciation; reading English text with German rules causes severe accessibility issues and unintelligible speech.
 **Action:** Always verify that the `lang` attribute matches the primary language of the content, especially on boilerplate templates or translated sites.
+
+## 2024-05-30 - Global Sticky Header Anchor Link Offset
+**Learning:** When navigating via anchor links on a page with a fixed or sticky header, the browser's default scroll behavior places the target element at the very top of the viewport, causing the header to obscure the section's title.
+**Action:** Apply a global `scroll-padding-top` (e.g., `scroll-pt-24`) to the `html` element rather than adding individual `scroll-mt-*` classes to every section. This ensures all anchor links consistently account for the sticky header offset globally.
