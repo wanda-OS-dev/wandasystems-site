@@ -23,3 +23,7 @@
 ## 2026-03-29 - [Lang Attribute Fix]
 **Learning:** The entire site was written in English, but the base Layout had `lang="de"` and a default German description. Screen readers use the `lang` attribute to determine pronunciation; reading English text with German rules causes severe accessibility issues and unintelligible speech.
 **Action:** Always verify that the `lang` attribute matches the primary language of the content, especially on boilerplate templates or translated sites.
+
+## 2024-04-01 - [ARIA Dialog Triggers]
+**Learning:** For custom interactive components like mobile menus or modal overlays using `role="dialog"`, it is critical to always apply `aria-haspopup="dialog"` to the corresponding trigger button. This correctly informs assistive technologies of the interaction pattern ahead of time, ensuring users know what to expect before interacting.
+**Action:** Always verify `aria-haspopup` is set appropriately on buttons that toggle overlays or complex menus.
