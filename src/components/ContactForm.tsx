@@ -328,6 +328,14 @@ export default function ContactForm() {
           >
             {data.message.length} / 2000
           </p>
+          {/* 🎨 Palette: Accessibility Enhancement
+              Conditionally render visually hidden text for screen readers when approaching the limit.
+              This prevents overwhelming the user with announcements on every keystroke. */}
+          {data.message.length >= 1900 && (
+            <p className="sr-only" aria-live="polite">
+              {2000 - data.message.length} characters remaining
+            </p>
+          )}
         </div>
       </div>
 
