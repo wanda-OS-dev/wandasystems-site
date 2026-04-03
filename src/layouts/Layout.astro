@@ -78,6 +78,11 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
     <!-- 📊 Impact: Faster time-to-interactive for form submissions and checkout navigations. -->
     <link rel="preconnect" href="https://buy.stripe.com" crossorigin />
     <link rel="preconnect" href="https://formspree.io" crossorigin />
+    <!-- ⚡ Bolt: Preload Google Fonts CSS -->
+    <!-- 💡 What: Explicitly preload the CSS file for the Google Fonts. -->
+    <!-- 🎯 Why: The media="print" pattern prevents render blocking, but initially assigns the CSS a low download priority. Preloading ensures the browser fetches the CSS with high priority immediately. -->
+    <!-- 📊 Impact: Accelerates First Contentful Paint (FCP) by making the font stylesheet available sooner. -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"

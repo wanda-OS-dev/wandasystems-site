@@ -14,3 +14,7 @@
 ## 2026-03-22 - Inline object instantiation and data transformation in Astro templates
 **Learning:** Defining objects, arrays, or performing data transformations like `Object.entries()` inline within an Astro template's markup (e.g., inside curly braces `{}`) causes these objects and computations to be redundantly evaluated on every render cycle.
 **Action:** Extract all static data declarations and data transformations into the Astro component's frontmatter (the `---` block at the top). This ensures they execute only once at build time, optimizing memory usage and keeping the template logic clean.
+
+## 2026-04-03 - Preloading async font stylesheets
+**Learning:** While the `media="print" onload="this.media='all'"` pattern effectively prevents render-blocking for Google Fonts CSS, the browser assigns the stylesheet a lower download priority initially. This can delay the fetching of the CSS file.
+**Action:** Always pair the async `media="print"` trick with an explicit `<link rel="preload" as="style" href="...">` for the same CSS URL. This ensures the critical font CSS is fetched immediately with high priority, accelerating First Contentful Paint (FCP).
