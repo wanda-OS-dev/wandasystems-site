@@ -93,6 +93,40 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
 
     <!-- WebGL safety gate: immersive layers must never block business content -->
     <script is:inline set:html={checkWebGLScript}></script>
+
+    <!-- WandaSystems Analytics (DSGVO-konform, kein Cookie, kein PII) -->
+    <script is:inline>
+      const SB_URL = 'https://xotcufmlrfdthnpeasqi.supabase.co';
+      const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvdGN1Zm1scmZkdGhucGVhc3FpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxMjE0NjUsImV4cCI6MjA4MzY5NzQ2NX0.BhjCvvGW5xI-1Q9tXOFHHg3lTE73fso7V8vp6DgxSK4';
+
+      function track(eventType, data) {
+        data = data || {};
+        fetch(SB_URL + '/rest/v1/conversion_events', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SB_KEY,
+            'Authorization': 'Bearer ' + SB_KEY
+          },
+          body: JSON.stringify({
+            event_type: eventType,
+            source: document.referrer || 'direct',
+            product_id: data.product || null,
+            metadata: { page: window.location.pathname, ua: navigator.userAgent.substring(0, 100) }
+          })
+        }).catch(function() {});
+      }
+
+      track('page_view');
+
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('a[href*=gumroad.com], a[href*=buy.stripe.com]').forEach(function(el) {
+          el.addEventListener('click', function() {
+            track('product_click', { product: el.textContent.trim().substring(0, 50), url: el.href });
+          });
+        });
+      });
+    </script>
   </head>
   <body class="flex min-h-full flex-col bg-brand-black">
     <a
