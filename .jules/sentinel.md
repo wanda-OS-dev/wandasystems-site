@@ -18,3 +18,7 @@
 **Vulnerability:** XSS risk via SVG rendering due to expanding upon `sanitizeHtml.defaults` in `src/utils/sanitize.ts` rather than overriding it. Default allowed tags like `<a>` and attributes like `href` could permit `javascript:` payloads nested inside SVGs.
 **Learning:** `sanitize-html` defaults are not safe for isolated SVG rendering contexts as they allow active navigation elements that shouldn't be permitted in simple icons.
 **Prevention:** When sanitizing specifically for an SVG context, define strict, exhaustive allowlists for `allowedTags` and `allowedAttributes`, omitting the spread of default permissions entirely.
+## 2024-04-03 - Npm Overrides vs Pnpm Overrides
+**Vulnerability:** A moderate vulnerability in `yaml` (Stack Overflow via deeply nested YAML collections) was not being mitigated because the project was using `npm`, but the `package.json` was using a `"pnpm": { "overrides": { ... } }` block which npm ignores.
+**Learning:** `npm` uses an `overrides` field at the root level of `package.json`, whereas `pnpm` nests it inside a `"pnpm"` object. The mismatch caused the security patch to be silently bypassed.
+**Prevention:** Always verify that dependency overrides and resolutions match the package manager configured for the project (in this case, npm, indicated by `package-lock.json`).
