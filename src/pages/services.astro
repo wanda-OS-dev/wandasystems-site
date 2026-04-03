@@ -43,8 +43,45 @@ const products = [
     href: 'https://buy.stripe.com/bJe00k0sr5hU1Uw60waVa00',
     primary: true,
   },
+  {
+    id: 'seo-analyzer',
+    badge: 'Instant Download · Python CLI Tool',
+    price: '€49',
+    title: 'Keyword SEO Analyzer',
+    tagline: 'Analyze keyword difficulty and search intent in seconds.',
+    desc: 'A Python CLI tool that pulls keyword metrics, scores difficulty, and maps search intent — without expensive SaaS subscriptions. Built for technical SEO operators and agency staff.',
+    outcomes: [
+      'Keyword difficulty scoring without third-party SaaS costs',
+      'Search intent classification (informational, transactional, navigational)',
+      'Batch processing for multiple keywords in one run',
+      'Export-ready CSV output for agency workflows',
+    ],
+    delivery: 'After payment: Gumroad download link available immediately.',
+    requirements: 'Requirements: Python 3.9+, pip. No external API subscription required.',
+    cta: 'Buy Keyword SEO Analyzer — €49',
+    href: 'https://wandasystems.gumroad.com/l/vsiexz',
+    primary: true,
+  },
+  {
+    id: 'invoice-pdf-generator',
+    badge: 'Instant Download · Python Bundle',
+    price: '€49',
+    title: 'Invoice PDF Generator',
+    tagline: 'Generate clean invoice PDFs from structured JSON — no SaaS required.',
+    desc: 'A local Python bundle that generates invoice PDFs from structured JSON input. QA-verified sample PDF included. Good fit when you need simple invoice generation without buying a whole billing platform.',
+    outcomes: [
+      'PDF generation from JSON input — no cloud dependency',
+      'Customizable invoice template with your branding',
+      'Sample JSON + buyer guide + QA-verified sample PDF included',
+      'Works fully offline — no subscription, no recurring cost',
+    ],
+    delivery: 'After payment: Gumroad download link available immediately.',
+    requirements: 'Requirements: Python 3.9+, pip. Runs fully local.',
+    cta: 'Buy Invoice PDF Generator — €49',
+    href: 'https://wandasystems.gumroad.com/l/fwqfmm',
+    primary: true,
+  },
 ];
-
 const rapidOffers = [
   {
     id: 'workflow-fix',
@@ -66,13 +103,6 @@ const rapidOffers = [
     priceAnchor: 'from €129 (scope-confirmed)',
     desc: 'Fix broken redirects/webhook glue paths, validate endpoint behavior, and add operational fallback notes.',
     deliverable: 'Working route/webhook + verification log + fallback path in <24h.',
-  },
-  {
-    id: 'invoice-pdf-generator',
-    title: 'Invoice PDF Generator Bundle (24h)',
-    priceAnchor: '€49 fixed',
-    desc: 'A local Python bundle that generates invoice PDFs from structured JSON input. Good fit when you need simple invoice generation without buying a whole billing platform.',
-    deliverable: 'Python bundle + sample JSON + buyer guide + QA-verified sample PDF in <24h.',
   },
 ];
 
@@ -248,7 +278,7 @@ const pausedProducts = products.filter((p) => !p.primary);
         </div>
         <div class="flex items-center gap-2 text-text-secondary text-small">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2" y="7" width="12" height="8" rx="2" stroke="#c9a84c" stroke-width="1.2"/><path d="M5 7V5a3 3 0 016 0v2" stroke="#c9a84c" stroke-width="1.2" stroke-linecap="round"/></svg>
-          Secure checkout via Stripe
+          Secure checkout via Stripe & Gumroad
         </div>
         <div class="flex items-center gap-2 text-text-secondary text-small">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/></svg>
