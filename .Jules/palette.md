@@ -27,3 +27,7 @@
 ## 2024-05-30 - Global Sticky Header Anchor Link Offset
 **Learning:** When navigating via anchor links on a page with a fixed or sticky header, the browser's default scroll behavior places the target element at the very top of the viewport, causing the header to obscure the section's title.
 **Action:** Apply a global `scroll-padding-top` (e.g., `scroll-pt-24`) to the `html` element rather than adding individual `scroll-mt-*` classes to every section. This ensures all anchor links consistently account for the sticky header offset globally.
+
+## 2025-04-03 - Text contrast and interactive element focus fallbacks
+**Learning:** Gray text variations (like `#6b6b6b`) on pure black backgrounds (`#0a0a0a`) often fail WCAG AA contrast requirements. Additionally, CSS variables relying on mouse movement events (`var(--mouse-x)`) will fail for keyboard-only users navigating interactive elements like `.spotlight-card` or logo links.
+**Action:** When defining text colors on dark mode layouts, ensure contrast ratios meet at least 4.5:1 (e.g., boosting to `#8a8a8a`). For interactive elements relying on mouse events for styling (like cursor-following gradients), always provide fallback values (`var(--mouse-x, 50%)`) and explicitly define `group-focus-visible` styles to ensure visual feedback is equivalent for keyboard users.

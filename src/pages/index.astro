@@ -147,9 +147,9 @@ const processSteps = [
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {services.map((s) => (
           <a href={s.href} class="card spotlight-card group relative flex flex-col gap-4 no-underline">
-            <!-- Glow accent on hover -->
-            <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style="background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(201,168,76,0.12), transparent 40%);"></div>
-            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-gold/10 text-brand-gold transition-colors group-hover:bg-brand-gold/20 relative z-10">
+            <!-- Glow accent on hover/focus -->
+            <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 pointer-events-none" style="background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(201,168,76,0.12), transparent 40%);"></div>
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-gold/10 text-brand-gold transition-colors group-hover:bg-brand-gold/20 group-focus-visible:bg-brand-gold/20 relative z-10">
               <Icon svg={s.icon} />
             </div>
             <div class="relative z-10">
