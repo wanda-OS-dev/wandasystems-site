@@ -14,3 +14,7 @@
 ## 2026-03-22 - Inline object instantiation and data transformation in Astro templates
 **Learning:** Defining objects, arrays, or performing data transformations like `Object.entries()` inline within an Astro template's markup (e.g., inside curly braces `{}`) causes these objects and computations to be redundantly evaluated on every render cycle.
 **Action:** Extract all static data declarations and data transformations into the Astro component's frontmatter (the `---` block at the top). This ensures they execute only once at build time, optimizing memory usage and keeping the template logic clean.
+
+## 2026-04-04 - Preload tag must be paired with async loading pattern
+**Learning:** Adding an explicit `<link rel="preload" as="style">` tag right before a synchronous `<link rel="stylesheet">` tag provides zero performance benefit because the browser's preload scanner discovers both simultaneously. The preload pattern is only effective when paired with an asynchronous loading pattern like `media="print" onload="this.media='all'"`.
+**Action:** When adding a preload tag to accelerate font loading, make sure the corresponding stylesheet fetch actually uses the async onload pattern so that the preload actually forces a high priority fetch for what the browser would otherwise assign a low priority to.
