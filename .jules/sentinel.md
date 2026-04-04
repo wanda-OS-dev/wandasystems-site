@@ -18,3 +18,7 @@
 **Vulnerability:** XSS risk via SVG rendering due to expanding upon `sanitizeHtml.defaults` in `src/utils/sanitize.ts` rather than overriding it. Default allowed tags like `<a>` and attributes like `href` could permit `javascript:` payloads nested inside SVGs.
 **Learning:** `sanitize-html` defaults are not safe for isolated SVG rendering contexts as they allow active navigation elements that shouldn't be permitted in simple icons.
 **Prevention:** When sanitizing specifically for an SVG context, define strict, exhaustive allowlists for `allowedTags` and `allowedAttributes`, omitting the spread of default permissions entirely.
+## 2024-04-04 - [Hardcoded API Key in Astro Layout]
+**Vulnerability:** A hardcoded Supabase API key (SB_KEY) was found in an inline script within src/layouts/Layout.astro.
+**Learning:** Inline scripts (is:inline) in Astro templates can expose secrets directly to the client.
+**Prevention:** Use import.meta.env with PUBLIC_ prefix for client-safe keys, and inject them into inline scripts using Astro's define:vars directive.
