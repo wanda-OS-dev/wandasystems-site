@@ -27,3 +27,7 @@
 ## 2024-05-30 - Global Sticky Header Anchor Link Offset
 **Learning:** When navigating via anchor links on a page with a fixed or sticky header, the browser's default scroll behavior places the target element at the very top of the viewport, causing the header to obscure the section's title.
 **Action:** Apply a global `scroll-padding-top` (e.g., `scroll-pt-24`) to the `html` element rather than adding individual `scroll-mt-*` classes to every section. This ensures all anchor links consistently account for the sticky header offset globally.
+
+## 2026-03-30 - Interactive Elements with `group-hover` lacking `group-focus-visible`
+**Learning:** When using Tailwind's `group-hover` to style complex interactive components (like links with internal hover states, or custom interactive elements), failing to pair them with `group-focus-visible` creates a disparity between mouse users and keyboard users. Keyboard users navigating via Tab do not receive the same visual cues.
+**Action:** Always map `group-hover` utility classes to corresponding `group-focus-visible` classes (e.g. `group-focus-visible:opacity-100`, `group-focus-visible:text-brand-gold`) on interactive elements to ensure equivalent visual state feedback for keyboard navigation.
