@@ -95,11 +95,11 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
     <script is:inline set:html={checkWebGLScript}></script>
 
     <!-- WandaSystems Analytics (DSGVO-konform, kein Cookie, kein PII) -->
-    <script is:inline>
-      const SB_URL = 'https://xotcufmlrfdthnpeasqi.supabase.co';
-      const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvdGN1Zm1scmZkdGhucGVhc3FpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxMjE0NjUsImV4cCI6MjA4MzY5NzQ2NX0.BhjCvvGW5xI-1Q9tXOFHHg3lTE73fso7V8vp6DgxSK4';
-
+    <!-- 🛡️ Sentinel: Hardcoded Supabase API key removed from source. Uses environment variables injected via define:vars instead to prevent secret leakage in version control. -->
+    <script is:inline define:vars={{ SB_URL: 'https://xotcufmlrfdthnpeasqi.supabase.co', SB_KEY: import.meta.env.PUBLIC_SUPABASE_ANON_KEY }}>
       function track(eventType, data) {
+        if (!SB_KEY) return; // Fail securely without making a request or exposing an undefined token
+
         data = data || {};
         fetch(SB_URL + '/rest/v1/conversion_events', {
           method: 'POST',
