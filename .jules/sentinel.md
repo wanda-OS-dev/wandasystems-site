@@ -18,3 +18,8 @@
 **Vulnerability:** XSS risk via SVG rendering due to expanding upon `sanitizeHtml.defaults` in `src/utils/sanitize.ts` rather than overriding it. Default allowed tags like `<a>` and attributes like `href` could permit `javascript:` payloads nested inside SVGs.
 **Learning:** `sanitize-html` defaults are not safe for isolated SVG rendering contexts as they allow active navigation elements that shouldn't be permitted in simple icons.
 **Prevention:** When sanitizing specifically for an SVG context, define strict, exhaustive allowlists for `allowedTags` and `allowedAttributes`, omitting the spread of default permissions entirely.
+
+## 2025-04-06 - [Astro is:inline Scripts Exposing Hardcoded Secrets]
+**Vulnerability:** Found a hardcoded Supabase URL and Anon Key inside an inline analytics script (`<script is:inline>`) in the base layout.
+**Learning:** In Astro, scripts marked with `is:inline` bypass the Vite build pipeline and are injected directly into the HTML output as-is. If secrets are hardcoded here, they are fully exposed to the client.
+**Prevention:** Always use Astro's `define:vars` directive to securely pass environment variables (prefixed with `PUBLIC_` if safe for client-side) to inline scripts without hardcoding them in the source code.
