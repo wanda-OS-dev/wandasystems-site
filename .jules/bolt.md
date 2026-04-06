@@ -14,3 +14,6 @@
 ## 2026-03-22 - Inline object instantiation and data transformation in Astro templates
 **Learning:** Defining objects, arrays, or performing data transformations like `Object.entries()` inline within an Astro template's markup (e.g., inside curly braces `{}`) causes these objects and computations to be redundantly evaluated on every render cycle.
 **Action:** Extract all static data declarations and data transformations into the Astro component's frontmatter (the `---` block at the top). This ensures they execute only once at build time, optimizing memory usage and keeping the template logic clean.
+## 2025-05-19 - Adding keepalive to outbound analytics fetch calls
+**Learning:** Using `fetch()` for fire-and-forget analytics requests (e.g. tracking a product click before navigating away to a third-party site like Stripe) can result in data loss because the browser often cancels the request when the page unloads.
+**Action:** Always add `keepalive: true` to the fetch options in analytics or telemetry calls that occur immediately prior to navigation, ensuring the network request completes in the background.

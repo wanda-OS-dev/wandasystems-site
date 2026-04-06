@@ -78,6 +78,12 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
     <!-- 📊 Impact: Faster time-to-interactive for form submissions and checkout navigations. -->
     <link rel="preconnect" href="https://buy.stripe.com" crossorigin />
     <link rel="preconnect" href="https://formspree.io" crossorigin />
+
+    <!-- ⚡ Bolt: Added preload for Google Fonts -->
+    <!-- 💡 What: Explicitly preloading the font stylesheet before loading it asynchronously. -->
+    <!-- 🎯 Why: Ensures the browser discovers and fetches the stylesheet immediately with high priority, accelerating First Contentful Paint (FCP). -->
+    <!-- 📊 Impact: Faster First Contentful Paint (FCP) and prevents FOUC (Flash of Unstyled Content). -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
@@ -99,10 +105,15 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
       const SB_URL = 'https://xotcufmlrfdthnpeasqi.supabase.co';
       const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvdGN1Zm1scmZkdGhucGVhc3FpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxMjE0NjUsImV4cCI6MjA4MzY5NzQ2NX0.BhjCvvGW5xI-1Q9tXOFHHg3lTE73fso7V8vp6DgxSK4';
 
+      // ⚡ Bolt: Added keepalive to analytics fetch
+      // 💡 What: Passed `keepalive: true` to the fetch options in the analytics tracking function.
+      // 🎯 Why: Ensures the analytics request completes even if the user immediately navigates away or closes the page (e.g., clicking a product link).
+      // 📊 Impact: Prevents data loss for critical outbound click events.
       function track(eventType, data) {
         data = data || {};
         fetch(SB_URL + '/rest/v1/conversion_events', {
           method: 'POST',
+          keepalive: true,
           headers: {
             'Content-Type': 'application/json',
             'apikey': SB_KEY,
