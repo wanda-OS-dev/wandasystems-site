@@ -129,7 +129,7 @@ export default function ContactForm() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 8000);
 
-      const response = await fetch('https://formspree.io/f/xpwzogdb', {
+      const response = await fetch('https://wanda.lazytechlab.de/n8n/webhook/customer-inquiry', {
         method: 'POST',
         headers: { Accept: 'application/json' },
         body: payload,
