@@ -95,18 +95,23 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
     <script is:inline set:html={checkWebGLScript}></script>
 
     <!-- WandaSystems Analytics (DSGVO-konform, kein Cookie, kein PII) -->
-    <script is:inline>
+    <script is:inline define:vars={{
+      sbKey: import.meta.env.PUBLIC_SUPABASE_ANON_KEY
+    }}>
+      // 🛡️ Sentinel: Removed hardcoded API key
       const SB_URL = 'https://xotcufmlrfdthnpeasqi.supabase.co';
-      const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvdGN1Zm1scmZkdGhucGVhc3FpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxMjE0NjUsImV4cCI6MjA4MzY5NzQ2NX0.BhjCvvGW5xI-1Q9tXOFHHg3lTE73fso7V8vp6DgxSK4';
 
       function track(eventType, data) {
+        if (!sbKey) return; // 🛡️ Sentinel: Fail securely if key is missing
+
         data = data || {};
         fetch(SB_URL + '/rest/v1/conversion_events', {
           method: 'POST',
+          keepalive: true, // 🛡️ Sentinel: Ensure fire-and-forget requests complete reliably
           headers: {
             'Content-Type': 'application/json',
-            'apikey': SB_KEY,
-            'Authorization': 'Bearer ' + SB_KEY
+            'apikey': sbKey,
+            'Authorization': 'Bearer ' + sbKey
           },
           body: JSON.stringify({
             event_type: eventType,
