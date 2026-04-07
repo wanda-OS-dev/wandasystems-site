@@ -27,3 +27,6 @@
 ## 2024-05-30 - Global Sticky Header Anchor Link Offset
 **Learning:** When navigating via anchor links on a page with a fixed or sticky header, the browser's default scroll behavior places the target element at the very top of the viewport, causing the header to obscure the section's title.
 **Action:** Apply a global `scroll-padding-top` (e.g., `scroll-pt-24`) to the `html` element rather than adding individual `scroll-mt-*` classes to every section. This ensures all anchor links consistently account for the sticky header offset globally.
+## 2024-06-15 - Hover Effects Keyboard Accessibility
+**Learning:** Elements relying solely on `group-hover` utility classes for visual feedback, or inline styles mapped to mouse events (like `--mouse-x` and `--mouse-y`), are inaccessible to keyboard-only users navigating via focus.
+**Action:** Always pair `group-hover` classes with their corresponding `group-focus-visible` classes (e.g., `group-hover:opacity-100 group-focus-visible:opacity-100`). For CSS variables tracking mouse movement, always provide a fallback value in the inline style (e.g., `var(--mouse-x, 50%) var(--mouse-y, 50%)`) to ensure the effect renders correctly when triggered by focus instead of a mouse event.
