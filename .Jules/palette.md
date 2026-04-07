@@ -27,3 +27,7 @@
 ## 2024-05-30 - Global Sticky Header Anchor Link Offset
 **Learning:** When navigating via anchor links on a page with a fixed or sticky header, the browser's default scroll behavior places the target element at the very top of the viewport, causing the header to obscure the section's title.
 **Action:** Apply a global `scroll-padding-top` (e.g., `scroll-pt-24`) to the `html` element rather than adding individual `scroll-mt-*` classes to every section. This ensures all anchor links consistently account for the sticky header offset globally.
+
+## 2026-04-01 - Equivalent Visual Feedback for Keyboard Focus
+**Learning:** Tailwind `group-hover` styles are often applied to interactive elements (like anchor tags acting as cards) without an equivalent focus state. This creates an inconsistent and poor experience for keyboard-only users navigating via focus, as they miss visual cues provided to mouse users. Additionally, mouse-dependent CSS variables (like `--mouse-x`) can break styles if they lack fallback values.
+**Action:** When applying `group-hover` utility classes to interactive components, always include corresponding `group-focus-visible` classes to ensure keyboard-only users receive equivalent visual feedback. Explicitly provide fallback values (e.g., `var(--mouse-x, 50%)`) for mouse-tied CSS variables.
