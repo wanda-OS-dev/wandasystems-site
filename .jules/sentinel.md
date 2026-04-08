@@ -23,3 +23,8 @@
 **Vulnerability:** A Supabase API key was hardcoded in an inline `<script>` tag within `src/layouts/Layout.astro`.
 **Learning:** Inline scripts (`<script is:inline>`) in Astro components execute directly on the client and expose any hardcoded secrets.
 **Prevention:** Always use Astro's `define:vars` directive with `import.meta.env` references to securely inject environment variables, ensuring secrets aren't checked into version control.
+
+## 2024-05-20 - [Fix CSP connect-src and form-action for n8n Webhook]
+**Vulnerability:** The Content Security Policy (CSP) defined in `vercel.json`, `netlify.toml`, and `public/_headers` still explicitly restricted `connect-src` and `form-action` to `'self' https://formspree.io`, which caused modern browsers to block all outgoing requests and form submissions made from `ContactForm.tsx` to the newly deployed n8n webhook at `https://wanda.lazytechlab.de/n8n/webhook/customer-inquiry`. This resulted in a silent, but complete breakage of the site's primary conversion mechanism on production.
+**Learning:** Changing integration endpoints in frontend code (`fetch` URLs) necessitates a synchronized update of the deployment configuration's Content Security Policy headers, which are often duplicated across multiple deployment platforms (Vercel, Netlify) to maintain a consistent security posture.
+**Prevention:** Whenever changing external integration URLs (e.g., swapping form providers or analytics platforms), explicitly verify that the new domains are allowed within the CSP's `connect-src` and/or `form-action` directives in all relevant configuration files (`vercel.json`, `netlify.toml`, `public/_headers`).
