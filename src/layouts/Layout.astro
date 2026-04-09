@@ -133,12 +133,15 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
 
       track('page_view');
 
-      document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('a[href*=gumroad.com], a[href*=buy.stripe.com]').forEach(function(el) {
-          el.addEventListener('click', function() {
-            track('product_click', { product: el.textContent.trim().substring(0, 50), url: el.href });
-          });
-        });
+      // ⚡ Bolt: Event delegation for analytics tracking
+      // 💡 What: Replaced document.querySelectorAll loop with a single event listener on document.
+      // 🎯 Why: Binding listeners to every matching element on DOMContentLoaded increases memory usage and delays Time to Interactive (TTI). Delegation is O(1) listener setup instead of O(N).
+      // 📊 Impact: Faster page initialization and reduced memory overhead, especially on pages with many links.
+      document.addEventListener('click', function(e) {
+        var el = e.target.closest('a[href*=gumroad.com], a[href*=buy.stripe.com]');
+        if (el) {
+          track('product_click', { product: el.textContent.trim().substring(0, 50), url: el.href });
+        }
       });
     </script>
   </head>
