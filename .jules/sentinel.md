@@ -23,3 +23,8 @@
 **Vulnerability:** A Supabase API key was hardcoded in an inline `<script>` tag within `src/layouts/Layout.astro`.
 **Learning:** Inline scripts (`<script is:inline>`) in Astro components execute directly on the client and expose any hardcoded secrets.
 **Prevention:** Always use Astro's `define:vars` directive with `import.meta.env` references to securely inject environment variables, ensuring secrets aren't checked into version control.
+
+## 2024-04-09 - [CSP Formspree Removal]
+**Vulnerability:** The application changed from Formspree to n8n webhook (`https://wanda.lazytechlab.de`) for form submission, but the old `https://formspree.io` was still present in the Content Security Policy (CSP) and `<link rel="preconnect">` in multiple places (`public/_headers`, `vercel.json`, `netlify.toml`, `src/layouts/Layout.astro`). The CSP was updated to remove the obsolete Formspree endpoints and whitelist the new n8n endpoint.
+**Learning:** CSP headers must be kept synchronized across all hosting configuration files (`vercel.json`, `netlify.toml`, `public/_headers`) when replacing external services to ensure that the newly added external service is permitted to work correctly while also cleaning up and removing the old ones for better security hygiene.
+**Prevention:** Whenever changing form submission mechanisms or external API dependencies, cross-check and update all CSP headers in all configurations.
