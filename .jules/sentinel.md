@@ -23,3 +23,8 @@
 **Vulnerability:** A Supabase API key was hardcoded in an inline `<script>` tag within `src/layouts/Layout.astro`.
 **Learning:** Inline scripts (`<script is:inline>`) in Astro components execute directly on the client and expose any hardcoded secrets.
 **Prevention:** Always use Astro's `define:vars` directive with `import.meta.env` references to securely inject environment variables, ensuring secrets aren't checked into version control.
+
+## 2024-04-10 - [Stale Formspree references in CSP and preconnect]
+**Vulnerability:** The application was migrating from Formspree to a self-hosted n8n webhook, but CSP directives and preconnect hints were still allowing connections to Formspree.
+**Learning:** When migrating services, update security configurations like CSP to remove stale allowances. Keeping unused domains in CSP increases the attack surface if that third-party is compromised.
+**Prevention:** When a third-party integration is removed, always audit and clean up related security configurations (CSP) and performance hints (preconnect).
