@@ -18,3 +18,7 @@
 ## 2026-04-05 - Preloading with Async CSS
 **Learning:** Using the `media="print" onload="this.media='all'"` pattern for asynchronous CSS loading without a `<link rel="preload">` hint means the browser won't start fetching the stylesheet until the HTML parser encounters the tag and realizes it's needed for the print media type, slowing down the eventual FCP/text rendering compared to immediately prioritizing it via preload.
 **Action:** Always pair asynchronous CSS loading patterns (like `media="print" onload="..."`) with a `<link rel="preload" as="style">` tag right before it to ensure the highest network priority while still avoiding render blocking.
+
+## 2026-04-11 - Event delegation for global analytics tracking
+**Learning:** Using `document.querySelectorAll` within a `DOMContentLoaded` listener to attach analytics tracking click events to many elements adds unnecessary processing overhead during the critical page load phase. This delays Time to Interactive (TTI), particularly on pages with numerous targeted elements.
+**Action:** Replace `DOMContentLoaded` loop initialization with a single global event listener on `document` (event delegation) that leverages `e.target.closest(selector)`. This eliminates initial DOM iteration, reduces the overall memory footprint, and handles dynamically added elements natively.
