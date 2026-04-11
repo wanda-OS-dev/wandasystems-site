@@ -31,3 +31,6 @@
 ## 2026-04-01 - Equivalent Visual Feedback for Keyboard Focus
 **Learning:** Tailwind `group-hover` styles are often applied to interactive elements (like anchor tags acting as cards) without an equivalent focus state. This creates an inconsistent and poor experience for keyboard-only users navigating via focus, as they miss visual cues provided to mouse users. Additionally, mouse-dependent CSS variables (like `--mouse-x`) can break styles if they lack fallback values.
 **Action:** When applying `group-hover` utility classes to interactive components, always include corresponding `group-focus-visible` classes to ensure keyboard-only users receive equivalent visual feedback. Explicitly provide fallback values (e.g., `var(--mouse-x, 50%)`) for mouse-tied CSS variables.
+## 2024-04-11 - Contextual Link Labels for Screen Readers
+**Learning:** Generic links like "Learn more" or "Read more" placed inside repeated components (like cards) violate WCAG link purpose criteria. Screen reader users navigating by links hear "Learn more, Learn more, Learn more" without knowing what the link points to.
+**Action:** Always append visually hidden context using `<span class="sr-only"> about {context}</span>` immediately after generic link text to ensure screen readers announce a complete, contextual phrase.
