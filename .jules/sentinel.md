@@ -23,3 +23,8 @@
 **Vulnerability:** A Supabase API key was hardcoded in an inline `<script>` tag within `src/layouts/Layout.astro`.
 **Learning:** Inline scripts (`<script is:inline>`) in Astro components execute directly on the client and expose any hardcoded secrets.
 **Prevention:** Always use Astro's `define:vars` directive with `import.meta.env` references to securely inject environment variables, ensuring secrets aren't checked into version control.
+
+## 2024-04-12 - [Update Content Security Policy for N8N Webhook]
+**Vulnerability:** The Content Security Policy (CSP) configurations in `vercel.json`, `netlify.toml`, and `public/_headers` (as well as a preconnect link in `Layout.astro`) still referenced `https://formspree.io` for `connect-src` and `form-action`. The application had migrated its form submissions to use an n8n webhook at `https://wanda.lazytechlab.de`.
+**Learning:** Hardcoded endpoints in security headers must be updated when backend services change to ensure that new legitimate requests aren't blocked, and to adhere to the principle of least privilege by not whitelisting deprecated third-party services.
+**Prevention:** Always search for all references of an old backend service domain across the codebase when migrating to a new service. Specifically check CSP headers and preload/preconnect hints.
