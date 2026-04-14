@@ -23,3 +23,7 @@
 **Vulnerability:** A Supabase API key was hardcoded in an inline `<script>` tag within `src/layouts/Layout.astro`.
 **Learning:** Inline scripts (`<script is:inline>`) in Astro components execute directly on the client and expose any hardcoded secrets.
 **Prevention:** Always use Astro's `define:vars` directive with `import.meta.env` references to securely inject environment variables, ensuring secrets aren't checked into version control.
+## 2024-05-24 - [CSP Configuration: Legacy Endpoints]
+**Vulnerability:** Legacy `formspree.io` domain was still whitelisted in the Content-Security-Policy (CSP) headers across `vercel.json`, `netlify.toml`, and `public/_headers`, as well as preconnected in `src/layouts/Layout.astro`, despite the application migrating to a self-hosted n8n webhook at `https://wanda.lazytechlab.de`.
+**Learning:** When migrating API endpoints, it is critical to update not only the application code but also the security headers and preconnect directives to remove trust from the legacy domain and establish trust for the new domain. Keeping legacy domains in CSP headers unnecessarily expands the attack surface.
+**Prevention:** Establish a checklist for endpoint migrations that explicitly includes updating security headers (CSP `connect-src`, `form-action`) and performance hints (`preconnect`, `dns-prefetch`) alongside the application logic.
