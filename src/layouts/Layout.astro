@@ -134,10 +134,16 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
       track('page_view');
 
       document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('a[href*=gumroad.com], a[href*=buy.stripe.com]').forEach(function(el) {
-          el.addEventListener('click', function() {
+        /**
+         * ⚡ Bolt: Use event delegation for product link tracking.
+         * 💡 What: Replaced querySelectorAll loop with a single delegated listener.
+         * 🎯 Why: Reduces memory overhead and improves Time to Interactive (TTI) by avoiding loop operations and multiple event bindings during initialization.
+         */
+        document.addEventListener('click', function(e) {
+          const el = e.target.closest('a[href*="gumroad.com"], a[href*="buy.stripe.com"]');
+          if (el) {
             track('product_click', { product: el.textContent.trim().substring(0, 50), url: el.href });
-          });
+          }
         });
       });
     </script>
