@@ -34,3 +34,6 @@
 ## 2024-04-15 - Contextual Screen Reader Text for Repeated Links
 **Learning:** Generic call-to-action links in mapped list components (like "Learn more" on service cards) fail WCAG criteria for "link purpose in context." Screen reader users navigating by landmarks or jumping from link to link hear "Learn more... Learn more... Learn more..." without understanding what each link points to.
 **Action:** When using generic link text like "Learn more" or "Read more" in mapped card components, always append visually hidden (`sr-only`) context spans (e.g., `<span class="sr-only"> about {title}</span>`) to ensure screen readers announce a complete, contextual phrase.
+## 2026-04-17 - External Links and List Numbering
+**Learning:** Screen readers announce numbers generated in custom list elements, making them noisy, and external links missing warning context will break screen-reader users out of context.
+**Action:** Add `aria-hidden="true"` to manually generated list numbering if the wrapper uses an ordered list, and apply `sr-only` context tags on `target="_blank"` anchor text.
