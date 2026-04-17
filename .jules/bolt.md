@@ -21,3 +21,7 @@
 ## 2025-04-15 - Event Delegation over Iterative Initialization
 **Learning:** Initializing analytics tracking by iterating over all matching elements via `querySelectorAll` and attaching individual event listeners blocks the main thread during `DOMContentLoaded`, negatively impacting Time to Interactive (TTI), particularly on pages with many elements.
 **Action:** Use event delegation on a higher-level DOM node (e.g., `document`) with `e.target.closest(selector)` instead. This establishes an O(1) initialization process and naturally captures dynamically added elements without requiring re-binding.
+
+## 2026-04-17 - Document-relative coordinates over Viewport-relative with WeakMap
+**Learning:** Caching `getBoundingClientRect()` inside a `WeakMap` initially improved performance by avoiding recalculations during `mousemove`. However, because `getBoundingClientRect()` is viewport-relative, the cache had to be invalidated on every `scroll` event. Scroll events fire at a very high frequency and invalidating/rebuilding the cache defeated the purpose during active scrolling.
+**Action:** Store document-relative coordinates (`clientRect.left + window.scrollX`) in the cache, and calculate the mouse position using document-relative mouse coordinates (`pageX` instead of `clientX`). This makes the cached positions immune to scrolling, allowing us to remove the high-frequency `scroll` event listener entirely and guarantee O(1) cache hits.
