@@ -46,8 +46,10 @@ export default function ContactForm() {
     // Check if there is a 'service' query parameter to pre-fill intent
     const params = new URLSearchParams(window.location.search);
     const serviceParam = params.get('service');
-    if (serviceParam && serviceOptions.some((opt) => opt.value === serviceParam)) {
-      setData((prev) => ({ ...prev, service: serviceParam }));
+    const matchedOption = serviceParam ? serviceOptions.find((opt) => opt.value === serviceParam) : null;
+    if (matchedOption) {
+      // Security: Assign strict whitelist value instead of raw URL parameter
+      setData((prev) => ({ ...prev, service: matchedOption.value }));
     }
   }, []);
 
@@ -93,6 +95,16 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Security: Honeypot check to prevent automated spam bot submissions.
+    // Real users will not see or fill this visually hidden field.
+    // Sentinel: Placed at the very beginning to prevent bots from performing reconnaissance on validation logic
+    if (data._gotcha) {
+      // Simulate successful submission to fool the bot without sending real data
+      setTimeout(() => setFormState('success'), 1000);
+      return;
+    }
+
     if (!validate()) {
       // 🎨 Palette: Accessibility Enhancement
       // 💡 What: Auto-focus the first invalid input on form submission failure.
@@ -108,14 +120,6 @@ export default function ContactForm() {
     }
 
     setFormState('loading');
-
-    // Security: Honeypot check to prevent automated spam bot submissions.
-    // Real users will not see or fill this visually hidden field.
-    if (data._gotcha) {
-      // Simulate successful submission to fool the bot without sending real data
-      setTimeout(() => setFormState('success'), 1000);
-      return;
-    }
 
     try {
       const payload = new FormData();
