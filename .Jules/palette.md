@@ -34,3 +34,6 @@
 ## 2024-04-15 - Contextual Screen Reader Text for Repeated Links
 **Learning:** Generic call-to-action links in mapped list components (like "Learn more" on service cards) fail WCAG criteria for "link purpose in context." Screen reader users navigating by landmarks or jumping from link to link hear "Learn more... Learn more... Learn more..." without understanding what each link points to.
 **Action:** When using generic link text like "Learn more" or "Read more" in mapped card components, always append visually hidden (`sr-only`) context spans (e.g., `<span class="sr-only"> about {title}</span>`) to ensure screen readers announce a complete, contextual phrase.
+## 2025-04-19 - Screen Reader Concatenation and Redundancy
+**Learning:** When adding `sr-only` helper text without a leading space, HTML minifiers concatenate the visual word and the helper text, causing screen readers to pronounce a garbled word (e.g., "€29(opens"). Additionally, custom visual list counters inside semantic `<ol>` or `<ul>` tags cause screen readers to announce the list number twice.
+**Action:** Always include a leading space inside `sr-only` spans (e.g., `<span class="sr-only"> (opens in a new tab)</span>`) and explicitly mark custom visual list numbers with `aria-hidden="true"`.
