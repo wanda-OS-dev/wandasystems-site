@@ -21,3 +21,7 @@
 ## 2025-04-15 - Event Delegation over Iterative Initialization
 **Learning:** Initializing analytics tracking by iterating over all matching elements via `querySelectorAll` and attaching individual event listeners blocks the main thread during `DOMContentLoaded`, negatively impacting Time to Interactive (TTI), particularly on pages with many elements.
 **Action:** Use event delegation on a higher-level DOM node (e.g., `document`) with `e.target.closest(selector)` instead. This establishes an O(1) initialization process and naturally captures dynamically added elements without requiring re-binding.
+
+## 2026-04-25 - Prevent scroll-induced layout thrashing
+**Learning:** Using `getBoundingClientRect()` and invalidating the cache on scroll causes layout thrashing when mousemove and scroll events occur simultaneously.
+**Action:** Use document-relative coordinates (`window.scrollX/Y` + `rect.left/top`) and compare against `MouseEvent.pageX/pageY` so bounds remain valid during scrolling.
