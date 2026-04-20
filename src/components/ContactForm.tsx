@@ -19,6 +19,14 @@ const serviceOptions = [
   { value: 'other', label: 'Other / Not sure yet' },
 ];
 
+// ⚡ Bolt: Cache allowed values in a Set for O(1) lookups
+// 💡 What: Created a Set of valid service options outside the component.
+// 🎯 Why: Replaces O(N) Array.some() iterations on every component mount.
+// 📊 Impact: O(1) query parameter validation.
+const validServices = new Set(
+  serviceOptions.map(opt => opt.value).filter(val => val !== '')
+);
+
 export default function ContactForm() {
   const [formState, setFormState] = useState<FormState>('idle');
   const successRef = useRef<HTMLDivElement>(null);
@@ -46,7 +54,10 @@ export default function ContactForm() {
     // Check if there is a 'service' query parameter to pre-fill intent
     const params = new URLSearchParams(window.location.search);
     const serviceParam = params.get('service');
-    if (serviceParam && serviceOptions.some((opt) => opt.value === serviceParam)) {
+    // ⚡ Bolt: O(1) Set lookup instead of Array.some()
+    // By checking the Set and assigning the parameter directly when valid,
+    // we avoid iterating over the array on every mount and securely validate the parameter.
+    if (serviceParam && validServices.has(serviceParam)) {
       setData((prev) => ({ ...prev, service: serviceParam }));
     }
   }, []);

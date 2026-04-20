@@ -21,3 +21,7 @@
 ## 2025-04-15 - Event Delegation over Iterative Initialization
 **Learning:** Initializing analytics tracking by iterating over all matching elements via `querySelectorAll` and attaching individual event listeners blocks the main thread during `DOMContentLoaded`, negatively impacting Time to Interactive (TTI), particularly on pages with many elements.
 **Action:** Use event delegation on a higher-level DOM node (e.g., `document`) with `e.target.closest(selector)` instead. This establishes an O(1) initialization process and naturally captures dynamically added elements without requiring re-binding.
+
+## 2026-05-18 - Replacing Array.some() with Set.has() for O(1) performance
+**Learning:** Using `Array.some()` or `Array.includes()` for membership checks requires $O(N)$ operations on every component mount, causing redundant array iterations. While negligible for tiny arrays, this anti-pattern scales poorly with larger configurations or high-frequency mounts.
+**Action:** When validating against static collections (like allowed URL parameters), initialize a `Set` outside the component lifecycle and use `Set.has()` to ensure guaranteed $O(1)$ lookup performance and zero re-evaluation overhead during renders.
