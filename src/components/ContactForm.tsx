@@ -46,8 +46,12 @@ export default function ContactForm() {
     // Check if there is a 'service' query parameter to pre-fill intent
     const params = new URLSearchParams(window.location.search);
     const serviceParam = params.get('service');
-    if (serviceParam && serviceOptions.some((opt) => opt.value === serviceParam)) {
-      setData((prev) => ({ ...prev, service: serviceParam }));
+
+    // 🛡️ Sentinel: XSS Mitigation for URL Parameters
+    // 💡 What: Validate against whitelist and use the hardcoded option value instead of raw user input.
+    const matchedOption = serviceOptions.find((opt) => opt.value === serviceParam);
+    if (matchedOption) {
+      setData((prev) => ({ ...prev, service: matchedOption.value }));
     }
   }, []);
 
@@ -93,6 +97,15 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // 🛡️ Sentinel: Honeypot Validation Timing Fix
+    // 💡 What: Move honeypot check *before* validation and loading states.
+    // 🎯 Why: If validation runs first, bots could trigger validation errors and learn about form requirements, or bypass the honeypot silently.
+    if (data._gotcha) {
+      setTimeout(() => setFormState('success'), 1000);
+      return;
+    }
+
     if (!validate()) {
       // 🎨 Palette: Accessibility Enhancement
       // 💡 What: Auto-focus the first invalid input on form submission failure.
@@ -108,14 +121,6 @@ export default function ContactForm() {
     }
 
     setFormState('loading');
-
-    // Security: Honeypot check to prevent automated spam bot submissions.
-    // Real users will not see or fill this visually hidden field.
-    if (data._gotcha) {
-      // Simulate successful submission to fool the bot without sending real data
-      setTimeout(() => setFormState('success'), 1000);
-      return;
-    }
 
     try {
       const payload = new FormData();
