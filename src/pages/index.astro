@@ -292,18 +292,18 @@ const processSteps = [
     // This adds a mouse-following glow that makes the "boring" cards feel dynamic.
     const cards = document.querySelectorAll('.spotlight-card');
 
-    // ⚡ Bolt: Cache getBoundingClientRect() to prevent layout thrashing on high-frequency mousemove events.
-    // 💡 What: Cached DOM rects in a WeakMap and invalidated them on scroll/resize.
-    // 🎯 Why: getBoundingClientRect() forces synchronous layout recalculation. Calling it on every mousemove degrades performance.
-    // 📊 Impact: Smoother 60fps animations and reduced main-thread blocking time during interaction.
-    const rectCache = new WeakMap<HTMLElement, DOMRect>();
+    // ⚡ Bolt: Cache document-relative bounds to prevent scroll-induced layout thrashing.
+    // 💡 What: Cached { left, top } using window.scrollX/Y instead of raw getBoundingClientRect(). Removed scroll invalidation.
+    // 🎯 Why: Viewport-relative bounds require cache invalidation on scroll. When invalidated, the next mousemove triggers a synchronous layout recalculation, causing main-thread thrashing while scrolling. Document-relative bounds stay static during scroll.
+    // 📊 Impact: Prevents main-thread blocking during scroll interactions, ensuring consistent 60fps animations.
+    const rectCache = new WeakMap<HTMLElement, { left: number; top: number }>();
 
     const invalidateCache = () => {
       cards.forEach(card => rectCache.delete(card as HTMLElement));
     };
 
     window.addEventListener('resize', invalidateCache, { passive: true });
-    window.addEventListener('scroll', invalidateCache, { passive: true });
+    // Scroll listener removed: document-relative coordinates do not change when scrolling.
 
     // ⚡ Bolt: Use requestAnimationFrame to throttle high-frequency style updates
     // 💡 What: Wrapped CSS custom property updates inside a requestAnimationFrame callback, canceling any pending frames on new events.
@@ -322,12 +322,16 @@ const processSteps = [
 
           let rect = rectCache.get(target);
           if (!rect) {
-            rect = target.getBoundingClientRect();
+            const clientRect = target.getBoundingClientRect();
+            rect = {
+              left: clientRect.left + window.scrollX,
+              top: clientRect.top + window.scrollY
+            };
             rectCache.set(target, rect);
           }
 
-          const x = mouseEvent.clientX - rect.left;
-          const y = mouseEvent.clientY - rect.top;
+          const x = mouseEvent.pageX - rect.left;
+          const y = mouseEvent.pageY - rect.top;
 
           target.style.setProperty('--mouse-x', `${x}px`);
           target.style.setProperty('--mouse-y', `${y}px`);
