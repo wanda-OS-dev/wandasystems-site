@@ -27,3 +27,8 @@
 **Vulnerability:** The Content-Security-Policy restricted `connect-src` and `form-action` to the legacy `https://formspree.io` domain, while the app was updated to use a new n8n webhook (`https://wanda.lazytechlab.de`). This prevented successful form submissions in compliant browsers.
 **Learning:** When migrating external services (e.g., APIs, webhooks), all security headers, specifically CSP directives (`connect-src`, `form-action`, etc.), must be updated simultaneously across all deployment configuration files (`vercel.json`, `netlify.toml`, `public/_headers`).
 **Prevention:** Add a checklist step for third-party integration changes to review and update CSP rules to avoid breaking functionality or leaving unused domains whitelisted.
+
+## 2024-04-22 - [Honeypot Validation Order]
+**Vulnerability:** The honeypot validation check in `ContactForm.tsx` was performed after form field validation.
+**Learning:** Checking honeypot fields after input validation allows automated bots to trigger validation errors and learn about form field requirements and constraints, weakening the honeypot's effectiveness.
+**Prevention:** The validation check (e.g., for `_gotcha`) must occur at the very beginning of the form submission handler, before field validation or loading state changes, to immediately simulate success for bots.
