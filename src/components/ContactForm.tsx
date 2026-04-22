@@ -19,6 +19,12 @@ const serviceOptions = [
   { value: 'other', label: 'Other / Not sure yet' },
 ];
 
+// ⚡ Bolt: Use a Set for O(1) membership checks
+// 💡 What: Initialized a Set of valid service values outside the component.
+// 🎯 Why: Using Array.some() for membership checks against static collections causes redundant O(n) iterations during component mounting. A Set provides O(1) lookup performance.
+// 📊 Impact: Micro-optimization for component initialization speed and CPU usage.
+const validServiceValues = new Set(serviceOptions.map((opt) => opt.value));
+
 export default function ContactForm() {
   const [formState, setFormState] = useState<FormState>('idle');
   const successRef = useRef<HTMLDivElement>(null);
@@ -46,7 +52,7 @@ export default function ContactForm() {
     // Check if there is a 'service' query parameter to pre-fill intent
     const params = new URLSearchParams(window.location.search);
     const serviceParam = params.get('service');
-    if (serviceParam && serviceOptions.some((opt) => opt.value === serviceParam)) {
+    if (serviceParam && validServiceValues.has(serviceParam)) {
       setData((prev) => ({ ...prev, service: serviceParam }));
     }
   }, []);
