@@ -8,3 +8,7 @@
 ## 2026-03-31 - [Conditional Character Count Announcements]
 **Learning:** For inputs with character limits (like the 2000-character Contact Form message), having a constant `aria-live` region for the character count can overwhelm screen reader users on every keystroke.
 **Action:** Implement a visually hidden `aria-live="polite"` region that conditionally renders only when the user approaches the maximum length (e.g. >= 95% full or >= 1900 characters) to prevent fatigue while still providing critical context.
+
+## 2026-04-23 - [Keyboard Shortcuts Accessibility]
+**Learning:** When adding keyboard shortcuts like Cmd/Ctrl+Enter for form submission, visual hints in the label should be hidden from screen readers using `aria-hidden="true"` to prevent clunky announcements. Instead, use the semantic `aria-keyshortcuts` attribute on the input element itself to properly inform Assistive Technologies.
+**Action:** Always pair visual keyboard shortcut hints with the `aria-keyshortcuts` attribute on the target element.

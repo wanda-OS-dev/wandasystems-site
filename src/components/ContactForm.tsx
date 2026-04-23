@@ -91,8 +91,8 @@ export default function ContactForm() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.SyntheticEvent) => {
+    if (e) e.preventDefault();
     if (!validate()) {
       // 🎨 Palette: Accessibility Enhancement
       // 💡 What: Auto-focus the first invalid input on form submission failure.
@@ -293,18 +293,28 @@ export default function ContactForm() {
 
       {/* Message */}
       <div>
-        <label htmlFor="message" className="label-text mb-2 block">
-          Your Request <span className="text-red-400" aria-hidden="true">*</span>
+        <label htmlFor="message" className="label-text mb-2 flex items-center">
+          Your Request <span className="text-red-400 ml-1" aria-hidden="true">*</span>
+          <span className="hidden sm:inline text-text-muted text-[10px] font-normal ml-auto normal-case tracking-normal" aria-hidden="true">
+            ⌘/Ctrl + Enter to send
+          </span>
         </label>
         <textarea
           id="message"
           name="message"
           value={data.message}
           onChange={handleChange}
+          onKeyDown={(e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+              e.preventDefault();
+              handleSubmit();
+            }
+          }}
           rows={5}
           // Security: Limit input length to prevent excessively large payloads
           maxLength={2000}
           aria-required="true"
+          aria-keyshortcuts="Control+Enter Meta+Enter"
           className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold resize-none ${
             errors.message ? 'border-red-500' : 'border-border'
           }`}
