@@ -91,6 +91,13 @@ export default function ContactForm() {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+      e.preventDefault();
+      e.currentTarget.form?.requestSubmit();
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) {
@@ -301,10 +308,12 @@ export default function ContactForm() {
           name="message"
           value={data.message}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
           rows={5}
           // Security: Limit input length to prevent excessively large payloads
           maxLength={2000}
           aria-required="true"
+          aria-keyshortcuts="Control+Enter Meta+Enter"
           className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold resize-none ${
             errors.message ? 'border-red-500' : 'border-border'
           }`}
@@ -367,6 +376,9 @@ export default function ContactForm() {
           ) : (
             <>
               Send message
+              <span className="opacity-50 ml-1 font-mono text-[10px]" aria-hidden="true">
+                ⌘↵
+              </span>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
