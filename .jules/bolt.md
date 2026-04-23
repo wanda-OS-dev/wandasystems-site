@@ -21,3 +21,6 @@
 ## 2025-04-15 - Event Delegation over Iterative Initialization
 **Learning:** Initializing analytics tracking by iterating over all matching elements via `querySelectorAll` and attaching individual event listeners blocks the main thread during `DOMContentLoaded`, negatively impacting Time to Interactive (TTI), particularly on pages with many elements.
 **Action:** Use event delegation on a higher-level DOM node (e.g., `document`) with `e.target.closest(selector)` instead. This establishes an O(1) initialization process and naturally captures dynamically added elements without requiring re-binding.
+## 2025-03-09 - O(1) Lookups for Static Configurations
+**Learning:** For membership checks against static collections (like allowed URL query parameters), using `Array.some` or `Array.includes` introduces unnecessary O(n) iteration during component initialization.
+**Action:** Extract the values into a `Set` initialized once outside the component to ensure O(1) lookup performance.
