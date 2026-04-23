@@ -27,3 +27,12 @@
 **Vulnerability:** The Content-Security-Policy restricted `connect-src` and `form-action` to the legacy `https://formspree.io` domain, while the app was updated to use a new n8n webhook (`https://wanda.lazytechlab.de`). This prevented successful form submissions in compliant browsers.
 **Learning:** When migrating external services (e.g., APIs, webhooks), all security headers, specifically CSP directives (`connect-src`, `form-action`, etc.), must be updated simultaneously across all deployment configuration files (`vercel.json`, `netlify.toml`, `public/_headers`).
 **Prevention:** Add a checklist step for third-party integration changes to review and update CSP rules to avoid breaking functionality or leaving unused domains whitelisted.
+## 2024-04-23 - Form Honeypot Validation Timing
+**Vulnerability:** The `_gotcha` honeypot check in the contact form was placed after form validation.
+**Learning:** Automated bots could trigger validation errors or learn about form requirements by submitting invalid data to the honeypot field.
+**Prevention:** Always perform honeypot checks at the very beginning of the form submission handler, before any field validation or state changes.
+
+## 2024-04-23 - Plain-text HTTP Headers Format
+**Vulnerability:** The `public/_headers` file used TOML syntax instead of plain-text HTTP header syntax, which could result in ignored security headers by the deployment platform.
+**Learning:** TOML configuration for headers and redirects should be placed in `netlify.toml` or `vercel.json`. `public/_headers` must strictly follow plain-text HTTP header syntax. URL redirect rules should be in `public/_redirects`.
+**Prevention:** Always verify the correct file format required by the deployment platform for headers and redirects.
