@@ -19,6 +19,12 @@ const serviceOptions = [
   { value: 'other', label: 'Other / Not sure yet' },
 ];
 
+// ⚡ Bolt: Extracted allowed service values into a Set for O(1) lookups
+// 💡 What: Created a Set of valid service option values outside the component.
+// 🎯 Why: Replaces O(n) Array.some() iterations during component initialization with O(1) Set.has() checks.
+// 📊 Impact: Micro-optimization for initialization performance when validating URL parameters.
+const allowedServiceValues = new Set(serviceOptions.map(opt => opt.value).filter(Boolean));
+
 export default function ContactForm() {
   const [formState, setFormState] = useState<FormState>('idle');
   const successRef = useRef<HTMLDivElement>(null);
@@ -46,7 +52,7 @@ export default function ContactForm() {
     // Check if there is a 'service' query parameter to pre-fill intent
     const params = new URLSearchParams(window.location.search);
     const serviceParam = params.get('service');
-    if (serviceParam && serviceOptions.some((opt) => opt.value === serviceParam)) {
+    if (serviceParam && allowedServiceValues.has(serviceParam)) {
       setData((prev) => ({ ...prev, service: serviceParam }));
     }
   }, []);
