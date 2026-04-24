@@ -27,3 +27,7 @@
 **Vulnerability:** The Content-Security-Policy restricted `connect-src` and `form-action` to the legacy `https://formspree.io` domain, while the app was updated to use a new n8n webhook (`https://wanda.lazytechlab.de`). This prevented successful form submissions in compliant browsers.
 **Learning:** When migrating external services (e.g., APIs, webhooks), all security headers, specifically CSP directives (`connect-src`, `form-action`, etc.), must be updated simultaneously across all deployment configuration files (`vercel.json`, `netlify.toml`, `public/_headers`).
 **Prevention:** Add a checklist step for third-party integration changes to review and update CSP rules to avoid breaking functionality or leaving unused domains whitelisted.
+## 2024-05-24 - [Fix Security Headers Format]
+**Vulnerability:** Security headers (CSP, X-Frame-Options, etc.) were not being applied because `public/_headers` was formatted in TOML instead of standard plain-text HTTP header syntax.
+**Learning:** Cloudflare Pages/Netlify ignores `_headers` files formatted in TOML, silently skipping application of critical security headers.
+**Prevention:** Ensure `public/_headers` uses plain-text syntax (`/*\n  Header: Value`) and place redirect rules in a separate `public/_redirects` file.
