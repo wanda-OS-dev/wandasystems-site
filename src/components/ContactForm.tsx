@@ -171,7 +171,17 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-6">
+    <form
+      onSubmit={handleSubmit}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+          e.preventDefault();
+          e.currentTarget.requestSubmit();
+        }
+      }}
+      noValidate
+      className="space-y-6"
+    >
       {/* Security: Honeypot field. Must remain empty. */}
       <input
         type="text"
@@ -305,6 +315,7 @@ export default function ContactForm() {
           // Security: Limit input length to prevent excessively large payloads
           maxLength={2000}
           aria-required="true"
+          aria-keyshortcuts="Control+Enter Meta+Enter"
           className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold resize-none ${
             errors.message ? 'border-red-500' : 'border-border'
           }`}
@@ -351,12 +362,16 @@ export default function ContactForm() {
         <p className="text-xs text-text-muted">
           Your data is treated confidentially. No newsletter, no spam.
         </p>
-        <button
-          type="submit"
-          aria-busy={formState === 'loading'}
-          disabled={formState === 'loading'}
-          className="btn-primary flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
+        <div className="flex items-center gap-4">
+          <span className="hidden text-xs text-text-muted sm:inline-block" aria-hidden="true">
+            Press <kbd className="font-sans rounded border border-border bg-bg-card px-1 py-0.5 text-[10px]">Cmd</kbd> + <kbd className="font-sans rounded border border-border bg-bg-card px-1 py-0.5 text-[10px]">Enter</kbd> to submit
+          </span>
+          <button
+            type="submit"
+            aria-busy={formState === 'loading'}
+            disabled={formState === 'loading'}
+            className="btn-primary flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
           {formState === 'loading' ? (
             <>
               <svg className="animate-spin" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -373,6 +388,7 @@ export default function ContactForm() {
             </>
           )}
         </button>
+        </div>
       </div>
     </form>
   );

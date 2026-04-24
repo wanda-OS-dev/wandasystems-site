@@ -34,3 +34,10 @@
 ## 2024-04-15 - Contextual Screen Reader Text for Repeated Links
 **Learning:** Generic call-to-action links in mapped list components (like "Learn more" on service cards) fail WCAG criteria for "link purpose in context." Screen reader users navigating by landmarks or jumping from link to link hear "Learn more... Learn more... Learn more..." without understanding what each link points to.
 **Action:** When using generic link text like "Learn more" or "Read more" in mapped card components, always append visually hidden (`sr-only`) context spans (e.g., `<span class="sr-only"> about {title}</span>`) to ensure screen readers announce a complete, contextual phrase.
+## 2026-04-24 - List Numbering Redundancy
+**Learning:** Decorative numbers in `<ol>` or `<ul>` elements are redundantly announced by screen readers if not hidden, creating unnecessary auditory clutter since the list semantic inherently provides numbering.
+**Action:** Always apply `aria-hidden="true"` to custom decorative numbering elements rendered inside semantic lists.
+
+## 2026-04-24 - Form Keyboard Shortcuts
+**Learning:** Keyboard shortcuts like Cmd/Ctrl+Enter for form submission improve power-user UX, but native `form.submit()` bypasses validation and React event handlers.
+**Action:** Use `form.requestSubmit()` for programmatic form submissions via keyboard shortcuts, and visually hide the shortcut hint from screen readers (using `aria-hidden="true"`) to prevent redundancy if the shortcut is already known or handled natively.
