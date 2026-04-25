@@ -301,10 +301,17 @@ export default function ContactForm() {
           name="message"
           value={data.message}
           onChange={handleChange}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+              e.preventDefault();
+              e.currentTarget.form?.requestSubmit();
+            }
+          }}
           rows={5}
           // Security: Limit input length to prevent excessively large payloads
           maxLength={2000}
           aria-required="true"
+          aria-keyshortcuts="Meta+Enter Control+Enter"
           className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold resize-none ${
             errors.message ? 'border-red-500' : 'border-border'
           }`}
@@ -318,7 +325,7 @@ export default function ContactForm() {
               {errors.message}
             </p>
           ) : (
-            <div />
+            <span className="text-xs text-text-muted hidden sm:inline-block" aria-hidden="true">Cmd / Ctrl + Enter to submit</span>
           )}
           <p
             className={`text-[10px] font-medium uppercase tracking-widest transition-colors ${
