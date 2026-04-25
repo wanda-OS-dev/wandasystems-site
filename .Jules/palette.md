@@ -34,3 +34,6 @@
 ## 2024-04-15 - Contextual Screen Reader Text for Repeated Links
 **Learning:** Generic call-to-action links in mapped list components (like "Learn more" on service cards) fail WCAG criteria for "link purpose in context." Screen reader users navigating by landmarks or jumping from link to link hear "Learn more... Learn more... Learn more..." without understanding what each link points to.
 **Action:** When using generic link text like "Learn more" or "Read more" in mapped card components, always append visually hidden (`sr-only`) context spans (e.g., `<span class="sr-only"> about {title}</span>`) to ensure screen readers announce a complete, contextual phrase.
+## 2026-04-25 - Focus Indicators on Custom Buttons
+**Learning:** Interactive elements like the mobile menu toggle button, when styled with utility classes, often lose their default focus indicators. This makes them invisible to keyboard-only users who rely on focus outlines to navigate.
+**Action:** Always verify that custom buttons and interactive elements include explicit `focus-visible` utility classes (e.g., `focus-visible:ring-2`, `focus-visible:outline-none`) to provide clear visual feedback during keyboard navigation.
