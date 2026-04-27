@@ -293,18 +293,30 @@ export default function ContactForm() {
 
       {/* Message */}
       <div>
-        <label htmlFor="message" className="label-text mb-2 block">
-          Your Request <span className="text-red-400" aria-hidden="true">*</span>
-        </label>
+        <div className="mb-2 flex items-center justify-between">
+          <label htmlFor="message" className="label-text block">
+            Your Request <span className="text-red-400" aria-hidden="true">*</span>
+          </label>
+          <span className="text-xs text-text-muted" aria-hidden="true">
+            <kbd className="font-sans">Cmd/Ctrl</kbd> + <kbd className="font-sans">Enter</kbd> to submit
+          </span>
+        </div>
         <textarea
           id="message"
           name="message"
           value={data.message}
           onChange={handleChange}
+          onKeyDown={(e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+              e.preventDefault();
+              (e.target as HTMLTextAreaElement).form?.requestSubmit();
+            }
+          }}
           rows={5}
           // Security: Limit input length to prevent excessively large payloads
           maxLength={2000}
           aria-required="true"
+          aria-keyshortcuts="Control+Enter"
           className={`w-full rounded-lg border bg-bg-card px-4 py-3 text-small text-text-primary placeholder-text-muted transition-colors focus:border-brand-gold focus:outline-none focus:ring-1 focus:ring-brand-gold resize-none ${
             errors.message ? 'border-red-500' : 'border-border'
           }`}
