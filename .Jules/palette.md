@@ -34,3 +34,6 @@
 ## 2024-04-15 - Contextual Screen Reader Text for Repeated Links
 **Learning:** Generic call-to-action links in mapped list components (like "Learn more" on service cards) fail WCAG criteria for "link purpose in context." Screen reader users navigating by landmarks or jumping from link to link hear "Learn more... Learn more... Learn more..." without understanding what each link points to.
 **Action:** When using generic link text like "Learn more" or "Read more" in mapped card components, always append visually hidden (`sr-only`) context spans (e.g., `<span class="sr-only"> about {title}</span>`) to ensure screen readers announce a complete, contextual phrase.
+## 2024-04-27 - Keyboard Shortcuts for Form Submission
+**Learning:** Adding keyboard shortcuts (like Cmd/Ctrl+Enter) to multi-line textareas improves the experience for power users, but it can create accessibility noise if not implemented correctly.
+**Action:** When adding keyboard shortcuts to inputs, hide the visual text hint from screen readers using `aria-hidden="true"` to prevent redundant announcements, and apply the semantic `aria-keyshortcuts` attribute directly to the target input element.
