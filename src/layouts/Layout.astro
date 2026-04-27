@@ -128,7 +128,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, siteBase);
             product_id: data.product || null,
             metadata: { page: window.location.pathname, ua: navigator.userAgent.substring(0, 100) }
           })
-        }).catch(function() {});
+        }).catch(function(err) { console.error('Analytics error:', err); });
       }
 
       track('page_view');
