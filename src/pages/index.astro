@@ -205,15 +205,17 @@ const processSteps = [
         <!-- Right: Process steps -->
         <div class="space-y-6">
           <p class="label-text mb-6">Our Process</p>
-          {processSteps.map((p) => (
-            <div class="flex gap-5 group">
-              <div class="label-text text-brand-gold w-6 flex-shrink-0 pt-1 group-hover:text-brand-white transition-colors">{p.step}</div>
-              <div class="pb-6 border-b border-border last:border-0">
-                <p class="font-semibold text-text-primary text-small mb-1">{p.title}</p>
-                <p class="text-small text-text-secondary">{p.desc}</p>
-              </div>
-            </div>
-          ))}
+          <ol class="space-y-6" role="list">
+            {processSteps.map((p) => (
+              <li class="flex gap-5 group">
+                <div class="label-text text-brand-gold w-6 flex-shrink-0 pt-1 group-hover:text-brand-white transition-colors" aria-hidden="true">{p.step}</div>
+                <div class="pb-6 border-b border-border last:border-0">
+                  <p class="font-semibold text-text-primary text-small mb-1">{p.title}</p>
+                  <p class="text-small text-text-secondary">{p.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </div>
